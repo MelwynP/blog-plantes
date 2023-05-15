@@ -11,7 +11,7 @@ class AppFixtures extends Fixture
 {
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
-        $this->passwordHasher = $passwordHasher;
+        $this->PasswordHasher = $passwordHasher;
     }
 
     public function load(ObjectManager $manager): void
