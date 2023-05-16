@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,11 +22,23 @@ class Post
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+    #[ORM\Column(type: "datetime")]
+    private \DateTime $publishedAt;
+
+
     #[ORM\ManyToOne(inversedBy: 'posts')]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
     private ?Category $category = null;
+
+    #[ORM\OneToMany(mappedBy: 'posts', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
+    private $image;
+
+  public function __construct()
+  {
+    $this->image = new ArrayCollection();
+  }
 
     public function getId(): ?int
     {
@@ -55,6 +69,18 @@ class Post
         return $this;
     }
 
+    public function getPublishedAt()
+    {
+      return $this->publishedAt;
+    }
+
+    public function setPublishedAt($publishedAt)
+    {
+      $this->publishedAt = $publishedAt;
+
+      return $this;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -78,4 +104,31 @@ class Post
 
         return $this;
     }
+
+  public function getImage(): Collection
+  {
+    return $this->image;
+  }
+
+  public function addImage(Image $image): self
+  {
+    if (!$this->image->contains($image)) {
+      $this->image[] = $image;
+      $image->setPost($this);
+    }
+
+    return $this;
+  }
+
+  public function removeImage(Image $image): self
+  {
+    if ($this->image->removeElement($image)) {
+      // set the owning side to null (unless already changed)
+      if ($image->getPost() === $this) {
+        $image->setPost(null);
+      }
+    }
+
+    return $this;
+  }
 }

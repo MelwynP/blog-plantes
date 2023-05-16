@@ -16,11 +16,15 @@ class Image
     #[ORM\Column(length: 200, nullable: true)]
     private ?string $path = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Post $post = null;
+    #[ORM\ManyToOne(targetEntity: Post::class, inversedBy: 'image')]
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Article $article = null;
+    #[ORM\JoinColumn(nullable: true)]
+    private $post;
+
+    #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'image')]
+
+    #[ORM\JoinColumn(nullable: true)]
+    private $article;
 
     public function getId(): ?int
     {
