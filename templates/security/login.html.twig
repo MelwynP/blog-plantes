@@ -1,31 +1,41 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Connexion
+{% endblock %}
+
 {% block body %}
-	{% if error %}
-		<div class="alert alert-danger">
-			{{error.messageKey}}
-		</div>
-	{% endif %}
+	<section class="container">
+		<div class="row">
+			<div class="col">
+        <h2 class="resReg-title">Formulaire de connexion</h2>
+				<form method="post" id="monFormulaire">
+					{% if error %}
+						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					{% endif %}
+					{% if app.user %}
+						<div class="mb-3">
+							Vous êtes connecté(e) en tant que :<br>
+							{{ app.user.userIdentifier }}
+<a class="btn-style primary" href="{{ path('app_logout') }}">Me déconnecter</a>
 
-	{# {{form_start(form)}}
-	{{form_rest(form)}}
-	<input type="submit" value="Connexion" class="btn btn-success mt-2"> #}
-
-	<form class="container" method="post">
-		<label for="username" class="form-label">Nom d'utilisateur</label>
-		<input type="text" name="_username" id="username" value="{{ last_username }}" class="form-control" required>
-		<label for="password" class="form-label">Mot de passe</label>
-		<div class="input-group">
-			<input type="password" name="_password" id="user_password" class="form-control" required>
-			<span role="button" class="input-group-text" onclick="togglePassword()">
-				<i class="bi bi-eye" id="eye"></i>
-				<i class="bi bi-eye-slash d-none" id="eye-slash"></i>
-			</span>
+						</div>
+					{% endif %}
+					<label for="inputEmail">E-mail</label>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+					<label for="inputPassword">Mot de passe</label>
+					<div class="input-group">
+						<input type="password" name="password" class="form-control" id="inputPassword" autocomplete="current-password" required>
+						<button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('inputPassword').type = (document.getElementById('inputPassword').type === 'password') ? 'text' : 'password'">
+							Afficher/Masquer
+						</button>
+					</div>
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+          <button class="btn-style primary" type="submit">Me connecter</button>
+          <a href="{{ path('app_register') }}" class="btn-style secondary">S'inscrire</a>
+          <a href="{{ path('app_forgot_password') }}" class="btn-style secondary">Mot de passe oublié</a>
+				</form>
+			</div>
 		</div>
-		<input type="hidden" name="_target_path" value="/">
-		<input type="hidden" name="">
-		<input type="submit" value="Connexion" class="btn btn-success mt-2">
-	</form>
-	<a href="/user/new" class="btn btn-link">Vous n'avez pas encore de compte ?</a>
+	</section>
 
 {% endblock %}

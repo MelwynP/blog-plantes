@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des menus
+{% endblock %}
+
+{% block body %}
+	<h2 class="histoire-title">Liste des menus</h2>
+	<div class="container">
+		<div class="row">
+			<main class="col-lg-9 col-md-8 col-sm-12 border border-light bg-white p-2">
+				<a href="{{ path('admin_menu_add') }}" class="btn btn-success">Ajouter un menu</a>
+				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Nom du menu</th>
+							<th>Description</th>
+							<th>Prix</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for menu in menu %}
+							<tr>
+								<td>{{ menu.name }}</td>
+								<td>{{ menu.description }}</td>
+								<td>{{ menu.price }}</td>
+								<td>
+									<a href="{{ path('admin_menu_edit', {id: menu.id})}}" class="btn btn-success">Modifier</a>
+									<a href="{{ path('admin_menu_delete', {id: menu.id})}}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce menu ?')">Supprimer</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</main>
+		</div>
+	</div>
+{% endblock %}
