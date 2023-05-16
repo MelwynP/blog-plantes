@@ -3,15 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity("username", message: "Le nom d'utilisateur est déjà pris...")]
+//une entité User doit avoir un email unique
+#[UniqueEntity(fields: ['email'], message: 'Un compte existe déjà avec cet email')]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
   #[ORM\Id]
@@ -19,10 +22,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[ORM\Column]
   private ?int $id = null;
 
-  private ?string $uuid;
-
   #[ORM\Column(length: 180, unique: true)]
-  private ?string $username = null;
+  #[Assert\NotBlank(message: 'L\'adresse email est obligatoire')]
+  #[Assert\Email(message: 'L\'adresse email n\'est pas valide')]
+  private ?string $email = null;
 
   #[ORM\Column]
   private array $roles = [];
@@ -33,14 +36,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[ORM\Column]
   private ?string $password = null;
 
-  private ?string $confirm = null;
+  #[ORM\Column(length: 255, nullable: true)]
+  #[Assert\Length(min: 2, max: 100, minMessage: 'Le nom doit contenir au moins {{ limit }} caractères', maxMessage: 'Le nom doit contenir au maximum {{ limit }} caractères')]
+  private ?string $name = null;
 
-  #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "user")]
-  private $posts;
+  #[ORM\Column(length: 255)]
+  #[Assert\Length(min: 2, max: 80, minMessage: 'Le pseudo doit contenir au moins {{ limit }} caractères', maxMessage: 'Le pseudo doit contenir au maximum {{ limit }} caractères')]
+  private ?string $pseudo = null;
 
-  public function __construct(UserPasswordHasherInterface $passwordHasher)
+  #[ORM\Column(type: 'boolean')]
+  private $is_verified = false;
+
+  #[ORM\Column(length: 100, nullable: true)]
+  private ?string $resetToken = null;
+
+  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
+  private Collection $articles;
+
+  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
+  private Collection $posts;
+
+  // #[ORM\OneToMany(mappedBy: 'users', targetEntity: Booking::class)]
+  // private Collection $bookings;
+
+  public function __construct()
   {
-    $this->passwordHasher = $passwordHasher;
+    // $this->bookings = new ArrayCollection();
+    $this->articles = new ArrayCollection();
     $this->posts = new ArrayCollection();
   }
 
@@ -49,14 +71,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     return $this->id;
   }
 
-  public function getUsername(): ?string
+  public function getEmail(): ?string
   {
-    return $this->username;
+    return $this->email;
   }
 
-  public function setUsername(string $username): self
+  public function setEmail(string $email): self
   {
-    $this->username = $username;
+    $this->email = $email;
 
     return $this;
   }
@@ -68,7 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
    */
   public function getUserIdentifier(): string
   {
-    return (string) $this->username;
+    return (string) $this->email;
   }
 
   /**
@@ -100,7 +122,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
   public function setPassword(string $password): self
   {
-    $this->password = $this->passwordHasher->hashPassword($this, $password);
+    $this->password = $password;
+
     return $this;
   }
 
@@ -113,63 +136,142 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // $this->plainPassword = null;
   }
 
-  /**
-   * Get the value of posts
-   */
-  public function getPosts()
+  public function getName(): ?string
   {
-    return $this->posts;
+    return $this->name;
   }
 
-  /**
-   * Set the value of posts
-   *
-   * @return  self
-   */
-  public function setPosts($posts)
+  public function setName(string $name): self
   {
-    $this->posts = $posts;
+    $this->name = $name;
 
     return $this;
   }
 
-  /**
-   * Get the value of confirm
-   */
-  public function getConfirm()
+
+  public function getPseudo(): ?string
   {
-    return $this->confirm;
+    return $this->pseudo;
   }
 
-  /**
-   * Set the value of confirm
-   *
-   * @return  self
-   */
-  public function setConfirm($confirm)
+  public function setPseudo(string $pseudo): self
   {
-    $this->confirm = $confirm;
+    $this->pseudo = $pseudo;
 
     return $this;
   }
 
-  /**
-   * Get the value of uuid
-   */
-  public function getUuid()
+  public function getIsVerified(): ?bool
   {
-    return $this->uuid;
+    return $this->is_verified;
+  }
+
+  public function setIsVerified(bool $is_verified): self
+  {
+    $this->is_verified = $is_verified;
+
+    return $this;
+  }
+
+  public function getResetToken()
+  {
+    return $this->resetToken;
+  }
+
+  public function setResetToken($resetToken)
+  {
+    $this->resetToken = $resetToken;
+
+    return $this;
+  }
+
+  // /**
+  //  * @return Collection<int, Booking>
+  //  */
+  // public function getBookings(): Collection
+  // {
+  //   return $this->bookings;
+  // }
+
+  // public function addBooking(Booking $booking): self
+  // {
+  //   if (!$this->bookings->contains($booking)) {
+  //     $this->bookings->add($booking);
+  //     $booking->setUsers($this);
+  //   }
+
+  //   return $this;
+  // }
+
+  // public function removeBooking(Booking $booking): self
+  // {
+  //   if ($this->bookings->removeElement($booking)) {
+  //     // set the owning side to null (unless already changed)
+  //     if ($booking->getUsers() === $this) {
+  //       $booking->setUsers(null);
+  //     }
+  //   }
+
+  //   return $this;
+  // }
+
+  /**
+   * @return Collection<int, Article>
+   */
+  public function getArticles(): Collection
+  {
+      return $this->articles;
+  }
+
+  public function addArticle(Article $article): self
+  {
+      if (!$this->articles->contains($article)) {
+          $this->articles->add($article);
+          $article->setUser($this);
+      }
+
+      return $this;
+  }
+
+  public function removeArticle(Article $article): self
+  {
+      if ($this->articles->removeElement($article)) {
+          // set the owning side to null (unless already changed)
+          if ($article->getUser() === $this) {
+              $article->setUser(null);
+          }
+      }
+
+      return $this;
   }
 
   /**
-   * Set the value of uuid
-   *
-   * @return  self
+   * @return Collection<int, Post>
    */
-  public function setUuid($uuid)
+  public function getPosts(): Collection
   {
-    $this->uuid = $uuid;
+      return $this->posts;
+  }
 
-    return $this;
+  public function addPost(Post $post): self
+  {
+      if (!$this->posts->contains($post)) {
+          $this->posts->add($post);
+          $post->setUser($this);
+      }
+
+      return $this;
+  }
+
+  public function removePost(Post $post): self
+  {
+      if ($this->posts->removeElement($post)) {
+          // set the owning side to null (unless already changed)
+          if ($post->getUser() === $this) {
+              $post->setUser(null);
+          }
+      }
+
+      return $this;
   }
 }
