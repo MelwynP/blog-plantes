@@ -16,6 +16,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class PostController extends AbstractController
 {
     #[Route('/', name: "home")]
+    // function qui recupere tout le contenu de la table post avec la methode findAll() de la class PostRepository et qui l'envoie dans la vue home.html.twig 
     public function index(Request $request, PostRepository $repository): Response
     {
         $search = $request->request->get("search"); // $_POST["search"]
@@ -30,6 +31,7 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/new')]
+    // function qui permet de creer un nouveau post si l'utilisateur est connecté 
     public function create(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -38,12 +40,14 @@ class PostController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $form->get('image')->getData();
-
+          //  si l'utilisateur a ajouté une image, on la traite et on l'enregistre dans le dossier public/uploads 
             if ($image) {
                 $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
+                // génération d'un nom de fichier unique
                 $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
                 try {
+                    // déplacement de l'image dans le dossier public/uploads
                     $image->move(
                         $this->getParameter('uploads'),
                         $newFilename
@@ -51,11 +55,13 @@ class PostController extends AbstractController
                 } catch (FileException $e) {
                     dump($e);
                 }
+                // mise à jour de l'image dans l'entité post association du post a l'image 
                 $post->setImage($newFilename);
             }
-
+              // association du post a l'utilisateur connecté
             $post->setUser($this->getUser());
-            $post->setPublishedAt(new \DateTime());
+            $post->setPublishedAt(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
+            // $post->setPublishedAt(new \DateTime());
             $em = $doctrine->getManager();
             $em->persist($post);
             $em->flush();
@@ -66,18 +72,39 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/edit/{id<\d+>}', name: "edit-post")]
-    public function update(Request $request, Post $post, ManagerRegistry $doctrine): Response
+    #[Route('/post/edit/{id}', name: "edit-post")]
+    public function update(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if ($this->getUser() !== $post->getUser()) {
-            $this->addFlash("error", "Vous ne pouvez pas modifier une publication qui ne vous appartient pas.");
-            return $this->redirectToRoute("home");
-            // throw new AccessDeniedException("Vous n'avez pas accès à cette fonctionnalité.");
+          $this->addFlash("error", "Vous ne pouvez pas modifier une publication qui ne vous appartient pas.");
+          
+          return $this->redirectToRoute("home");
+          // throw new AccessDeniedException("Vous n'avez pas accès à cette fonctionnalité.");
         }
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+      // -----
+      $image = $form->get('image')->getData();
+            if ($image) {
+              $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+              $safeFilename = $slugger->slug($originalFilename);
+              // génération d'un nom de fichier unique
+              $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
+              try {
+                // déplacement de l'image dans le dossier public/uploads
+                $image->move(
+                  $this->getParameter('uploads'),
+                  $newFilename
+                );
+              } catch (FileException $e) {
+                dump($e);
+              }
+              // mise à jour de l'image dans l'entité post association du post a l'image 
+              $post->setImage($newFilename);
+            }
+            // --------
             $em = $doctrine->getManager();
             $em->flush();
             return $this->redirectToRoute("home");
@@ -86,6 +113,19 @@ class PostController extends AbstractController
             "form" => $form->createView()
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     #[Route('/post/delete/{id<\d+>}', name: "delete-post")]
     public function delete(Post $post, ManagerRegistry $doctrine): Response
