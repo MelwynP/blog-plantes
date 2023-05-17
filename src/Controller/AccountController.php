@@ -13,42 +13,58 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/mon-compte', name: 'app_account_')]
 class AccountController extends AbstractController
 {
-    #[Route('/', name: 'index')]
-    public function index(): Response
-    {
+  #[Route('/', name: 'index')]
+  public function index(): Response
+  {
 
-        return $this->render('account/index.html.twig');
+    return $this->render('account/index.html.twig');
+  }
+
+  #[Route('/modifier/{email}', name: "edit_email")]
+  public function update(Request $request, string $email, User $user, EntityManagerInterface $em): Response
+  {
+    $user = $em->getRepository(User::class)->findOneBy(['email' => $email]);
+    if (!$user) {
+      throw $this->createNotFoundException('L\'utilisateur n\'existe pas.');
     }
 
-    #[Route('/modifier/{email}', name: "edit_email")]
-    public function update(Request $request, string $email, User $user, EntityManagerInterface $em): Response
-    {
-        $user = $em->getRepository(User::class)->findOneBy(['email' => $email]);
-        if (!$user) {
-            throw $this->createNotFoundException('L\'utilisateur n\'existe pas.');
-        }
-
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
 
-        if ($this->getUser()->getEmail() !== $email) {
-            $this->addFlash("error", "Vous ne pouvez pas modifier.");
-            return $this->redirectToRoute("app_account_index");
-        }
-
-        $updateUserForm = $this->createForm(UpdateUserFormType::class, $user);
-        $updateUserForm->handleRequest($request);
-
-        if ($updateUserForm->isSubmitted() && $updateUserForm->isValid()) {
-
-            $em->flush();
-
-            $this->addFlash('success', 'Vos données ont été mises à jour.');
-
-            return $this->redirectToRoute("app_account_index");
-        }
-        return $this->render('account/edit.html.twig', [
-            "updateUserForm" => $updateUserForm->createView()
-        ]);
+    if ($this->getUser()->getEmail() !== $email) {
+      $this->addFlash("error", "Vous ne pouvez pas modifier.");
+      return $this->redirectToRoute("app_account_index");
     }
+
+    $updateUserForm = $this->createForm(UpdateUserFormType::class, $user);
+    $updateUserForm->handleRequest($request);
+
+    if ($updateUserForm->isSubmitted() && $updateUserForm->isValid()) {
+
+      $em->flush();
+
+      $this->addFlash('success', 'Vos données ont été mises à jour.');
+
+      return $this->redirectToRoute("app_account_index");
+    }
+    return $this->render('account/edit.html.twig', [
+      "updateUserForm" => $updateUserForm->createView()
+    ]);
+  }
+
+  #[Route('/supprimer/{email}', name: "delete_email")]
+  public function delete(Request $request, string $email, User $user, EntityManagerInterface $em): Response
+  {
+
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+    $em->remove($user);
+    $em->flush();
+
+    $this->addFlash(
+      'success',
+      'Compte supprimé avec succès'
+    );
+    return $this->redirectToRoute("app_post_index");
+  }
 }

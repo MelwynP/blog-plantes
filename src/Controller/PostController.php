@@ -16,25 +16,29 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
 
-#[Route('/', name: "post")]
+#[Route('/', name: 'app_post_')]
 class PostController extends AbstractController
 {
+  #[Route('/', name: 'index')]
+
     // function qui recupere tout le contenu de la table post avec la methode findAll() de la class PostRepository et qui l'envoie dans la vue index.html.twig 
-    public function index(Request $request, PostRepository $postRepository): Response
+    public function index(Request $request, PostRepository $postRepository, ArticleRepository $articleRepository, ImageRepository $imageRepository): Response
     {
         $search = $request->request->get("search"); // $_POST["search"]
         $posts = $postRepository->findAll(); // SELECT * FROM `post`;
         if ($search) {
-            $posts = $postRepository->findBySearch($search); // SELECT * FROM `post` WHERE title LIKE :search;
+          $posts = $postRepository->findBySearch($search); // SELECT * FROM `post` WHERE title LIKE :search;
         }
 
         return $this->render('post/index.html.twig', [
-            "posts" => $posts,
-            
+          'posts' => $posts,
+          'post' => $postRepository->findAll(),
+          'article' => $articleRepository->findAll(),
+          'images' => $imageRepository->findAll(),
         ]);
-    }
-
-    #[Route('/post/new')]
+      }
+      
+    #[Route('/ajouter', name: 'add')]
     // function qui permet de creer un nouveau post si l'utilisateur est connecté 
     public function create(Request $request,EntityManagerInterface $em, PictureService $pictureService): Response
     {
@@ -65,15 +69,17 @@ class PostController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Post ajouté avec succès');
 
+            return $this->redirectToRoute('app_post_index');
             }
-            return $this->redirectToRoute("post");
-        
-        return $this->render('post/form.html.twig', [
-            "PostForm" => $PostForm->createView()
+
+        $this->addFlash('success', 'Post ajouté avec succès');
+        return $this->render('post/index.html.twig', [
+            'PostForm' => $PostForm->createView(),
+            'post' => $post,
         ]);
     }
 
-    #[Route('/post/edit/{id}', name: "edit-post")]
+    #[Route('/modifier/{id}', name: 'edit')]
     public function update(Post $post, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
 
@@ -81,7 +87,7 @@ class PostController extends AbstractController
 
         if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() !== $post->getUser()) {
           $this->addFlash("error", "Vous ne pouvez pas modifier une publication qui ne vous appartient pas.");
-          return $this->redirectToRoute("post");
+          return $this->redirectToRoute('app_post_index');
         }
 
         $PostForm = $this->createForm(PostType::class, $post);
@@ -115,25 +121,25 @@ class PostController extends AbstractController
 
             $this->addFlash('success', 'Post modifié avec succès');
 
-            return $this->redirectToRoute("post");
+            return $this->redirectToRoute("app_post_index");
         }
-        return $this->render('post/form.html.twig', [
+        return $this->render('post/edit.html.twig', [
             "PostForm" => $PostForm->createView(),
             'post' => $post
         ]);
     }
 
-    #[Route('/post/delete/{id}', name: "delete-post")]
+    #[Route('/supprimer/{id}', name: 'delete')]
     public function delete(Post $post, EntityManagerInterface $em): Response
     {
         if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() !== $post->getUser()) {
           $this->addFlash("error", "Vous ne pouvez pas supprimer une publication qui ne vous appartient pas.");
-          return $this->redirectToRoute("post");
+          return $this->redirectToRoute("app_post_index");
         }
         $em->remove($post);
         $em->flush();
         $this->addFlash('success', 'Post supprimé avec succès');
-        return $this->redirectToRoute("post");
+        return $this->redirectToRoute("app_post_index");
     }
 
 }

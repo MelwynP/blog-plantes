@@ -2,17 +2,17 @@
 
 {% block body %}
 	<h2 class="histoire-title">Page de l'administrateur</h2>
-<section class="container my-3">
-	<div class="row">
-		<div class="col">
-<a href="{{ path('admin_flat_index') }}" class="btn-reserve">Gérer les plats</a>
-<a href="{{ path('admin_menu_index') }}" class="btn-reserve">Gérer les menus</a>
-<a href="{{ path('admin_hour_index') }}" class="btn-reserve">Gérer les horaires</a>
-<a href="{{ path('admin_reservation_index') }}" class="btn-reserve">Consulter les réservations<a>
-<a href="{{ path('admin_users_index') }}" class="btn-reserve">Contrôler les utilisateurs</a>
-<a href="{{ path('admin_capacity_index') }}" class="btn-reserve">Contrôler la capacité</a>
-<a href="{{ path('app_account_index') }}" class="btn-reserve">Gérer mon compte</a>
-	</div>
-  </div>
-</section>
+	<section class="container my-3">
+		<div class="row">
+			<div class="col">
+				<a href="{{ path('admin_article_index') }}" class="btn-reserve">Gérer les articles</a>
+
+				<a href="{{ path('admin_category_index') }}" class="btn-reserve">Gérer les categories</a>
+
+				<a href="{{ path('admin_users_index') }}" class="btn-reserve">Contrôler les utilisateurs</a>
+
+				<a href="{{ path('app_account_index') }}" class="btn-reserve">Gérer mon compte</a>
+			</div>
+		</div>
+	</section>
 {% endblock %}

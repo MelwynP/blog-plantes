@@ -28,10 +28,8 @@
 								<td>{{ user.email }}</td>
 								<td>{{ user.createdAt|date('d/m/Y') }}</td>
 								<td>
-
 									<a href="{{ path('admin_users_delete', {id: user.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
 								</td>
-
 							</tr>
 						{% endfor %}
 					</table>

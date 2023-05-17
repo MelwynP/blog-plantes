@@ -71,7 +71,7 @@ class RegistrationController extends AbstractController
         'contact@blog-participatif.tech',
         $user->getEmail(),
         //on récupère l'email de l'utilisateur avec la methode getemail()
-        'Activation de votre compte Quai Antique', //le subject
+        'Activation de votre compte ', //le subject
         'register', //le template
         compact('user', 'token')
         // [
@@ -91,7 +91,7 @@ class RegistrationController extends AbstractController
     }
 
     return $this->render('registration/register.html.twig', [
-      'registrationForm' => $form->createView(),
+      'form' => $form->createView(),
     ]);
   }
 
@@ -114,7 +114,7 @@ class RegistrationController extends AbstractController
         $user->setIsVerified(true);
         $entityManager->flush($user);
         $this->addFlash('success', 'Votre compte est activé, vous pouvez maintenant modifier vos informations personnelles');
-        return $this->redirectToRoute('app_main');
+        return $this->redirectToRoute('app_post_index');
       }
     }
     // Ici un problème se pose dans le token
@@ -170,6 +170,6 @@ class RegistrationController extends AbstractController
       ]
     );
     $this->addFlash('success', 'Email de vérification envoyé');
-    return $this->redirectToRoute('app_main');
+    return $this->redirectToRoute('app_post_index');
   }
 }

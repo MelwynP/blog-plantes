@@ -52,16 +52,6 @@ class PostType extends AbstractType
             ])
           )
         ]
-      ])
-
-      ->add('RGPDConsent', CheckboxType::class, [
-        'mapped' => false,
-        'constraints' => [
-          new IsTrue([
-            'message' => 'Vous devez accepter les conditions d\'utilisation.',
-          ]),
-        ],
-        'label' => 'J\'accepte que mes données personnelles soient utilisées pour le traitement de ma demande.',
       ]);
   }
 
