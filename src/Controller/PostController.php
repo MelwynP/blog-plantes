@@ -16,11 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
 
-#[Route('/', name: "home")]
+#[Route('/', name: "post")]
 class PostController extends AbstractController
 {
-    // function qui recupere tout le contenu de la table post avec la methode findAll() de la class PostRepository et qui l'envoie dans la vue home.html.twig 
-    public function index(Request $request, PostRepository $postRepository, ArticleRepository $articleRepository, ImageRepository $imageRepository): Response
+    // function qui recupere tout le contenu de la table post avec la methode findAll() de la class PostRepository et qui l'envoie dans la vue index.html.twig 
+    public function index(Request $request, PostRepository $postRepository): Response
     {
         $search = $request->request->get("search"); // $_POST["search"]
         $posts = $postRepository->findAll(); // SELECT * FROM `post`;
@@ -30,9 +30,7 @@ class PostController extends AbstractController
 
         return $this->render('post/index.html.twig', [
             "posts" => $posts,
-            'post' => $postRepository->findAll(),
-            'article' => $articleRepository->findAll(),
-            'images' => $imageRepository->findAll(),
+            
         ]);
     }
 
@@ -68,7 +66,7 @@ class PostController extends AbstractController
             $this->addFlash('success', 'Post ajouté avec succès');
 
             }
-            return $this->redirectToRoute("home");
+            return $this->redirectToRoute("post");
         
         return $this->render('post/form.html.twig', [
             "PostForm" => $PostForm->createView()
@@ -83,7 +81,7 @@ class PostController extends AbstractController
 
         if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() !== $post->getUser()) {
           $this->addFlash("error", "Vous ne pouvez pas modifier une publication qui ne vous appartient pas.");
-          return $this->redirectToRoute("home");
+          return $this->redirectToRoute("post");
         }
 
         $PostForm = $this->createForm(PostType::class, $post);
@@ -117,7 +115,7 @@ class PostController extends AbstractController
 
             $this->addFlash('success', 'Post modifié avec succès');
 
-            return $this->redirectToRoute("home");
+            return $this->redirectToRoute("post");
         }
         return $this->render('post/form.html.twig', [
             "PostForm" => $PostForm->createView(),
@@ -130,12 +128,12 @@ class PostController extends AbstractController
     {
         if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() !== $post->getUser()) {
           $this->addFlash("error", "Vous ne pouvez pas supprimer une publication qui ne vous appartient pas.");
-          return $this->redirectToRoute("home");
+          return $this->redirectToRoute("post");
         }
         $em->remove($post);
         $em->flush();
         $this->addFlash('success', 'Post supprimé avec succès');
-        return $this->redirectToRoute("home");
+        return $this->redirectToRoute("post");
     }
 
 }

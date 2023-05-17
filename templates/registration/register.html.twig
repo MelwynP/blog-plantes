@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row">
+			<div class="col">
+				<h2 class="resReg-title">Inscritpion</h2>
+
+				{{ form_start(registrationForm, {'attr': {'id': 'monFormulaire'}}) }}
+				{{ form_label(registrationForm.civility, 'Civilité *') }}
+				{{ form_widget(registrationForm.civility, {
+						'placeholder': 'Veuillez renseigner votre civilité',
+						'attr': {'class': 'form-control'}}) }}
+				{{ form_row(registrationForm.firstname) }}
+				{{ form_row(registrationForm.name) }}
+				{{ form_row(registrationForm.phone) }}
+				{{ form_row(registrationForm.numberPeople) }}
+				{{ form_row(registrationForm.allergy) }}
+				{{ form_row(registrationForm.email) }}
+				{{ form_label(registrationForm.plainPassword, 'Mot de passe *') }}
+				<div class="input-group">
+					{{ form_widget(registrationForm.plainPassword) }}
+					<button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('registration_form_plainPassword').type = (document.getElementById('registration_form_plainPassword').type === 'password') ? 'text' : 'password'">
+						Afficher/Masquer
+					</button>
+				</div>
+				<p id="mdpinfo"></p>
+				{{ form_row(registrationForm.RGPDConsent) }}
+				<button type="submit" id="submitBtn" class="btn-style primary">M'inscrire</button>
+				{{ form_end(registrationForm) }}
+			</div>
+		</div>
+	</section>
+
+	{#--------- Div d'animation ----- #}
+	<div id="blur-background" class="blur-background"></div>
+
+	<div id="inscription-message" class="inscription-message">
+		<span class="separateur separateur-register">
+			<img src="assets/pictures/separateur.png" alt="séparateur">
+		</span>
+		<h3>Inscrivez-vous dès maintenant !</h3><br>
+		<span>En vous inscrivant sur notre site, vous pourrez réserver plus rapidement à l'avenir et bénéficier de nombreux avantages
+		</span>
+		<span class="separateur separateur-register">
+			<img src="assets/pictures/separateur.png" alt="séparateur">
+		</span>
+	</div>
+
+	<script src="{{ asset('assets/js/fichier/scriptRegister.js') }}"></script>
+
+{% endblock %}
