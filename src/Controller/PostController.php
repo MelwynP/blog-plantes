@@ -72,11 +72,9 @@ class PostController extends AbstractController
             return $this->redirectToRoute('app_post_index');
             }
 
-        $this->addFlash('success', 'Post ajouté avec succès');
         return $this->render('post/index.html.twig', [
-            'PostForm' => $PostForm->createView(),
-            'post' => $post,
-        ]);
+            'PostForm' => $PostForm->createView()
+            ]);
     }
 
     #[Route('/modifier/{id}', name: 'edit')]
