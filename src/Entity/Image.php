@@ -17,12 +17,10 @@ class Image
     private ?string $path = null;
 
     #[ORM\ManyToOne(targetEntity: Post::class, inversedBy: 'image')]
-
     #[ORM\JoinColumn(nullable: true)]
     private $post;
 
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'image')]
-
     #[ORM\JoinColumn(nullable: true)]
     private $article;
 

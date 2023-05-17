@@ -56,12 +56,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
   private Collection $posts;
 
-  // #[ORM\OneToMany(mappedBy: 'users', targetEntity: Booking::class)]
-  // private Collection $bookings;
-
   public function __construct()
   {
-    // $this->bookings = new ArrayCollection();
     $this->articles = new ArrayCollection();
     $this->posts = new ArrayCollection();
   }

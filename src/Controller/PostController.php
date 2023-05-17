@@ -7,6 +7,7 @@ use App\Entity\Image;
 use App\Repository\PostRepository;
 use App\Form\PostType;
 use App\Repository\ImageRepository;
+use App\Repository\ArticleRepository;
 use App\Service\PictureService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class PostController extends AbstractController
 {
     // function qui recupere tout le contenu de la table post avec la methode findAll() de la class PostRepository et qui l'envoie dans la vue home.html.twig 
-    public function index(Request $request, PostRepository $postRepository): Response
+    public function index(Request $request, PostRepository $postRepository, ArticleRepository $articleRepository, ImageRepository $imageRepository): Response
     {
         $search = $request->request->get("search"); // $_POST["search"]
         $posts = $postRepository->findAll(); // SELECT * FROM `post`;
@@ -28,7 +29,10 @@ class PostController extends AbstractController
         }
 
         return $this->render('post/index.html.twig', [
-            "posts" => $posts
+            "posts" => $posts,
+            'post' => $postRepository->findAll(),
+            'article' => $articleRepository->findAll(),
+            'images' => $imageRepository->findAll(),
         ]);
     }
 

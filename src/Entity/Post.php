@@ -29,8 +29,6 @@ class Post
     #[ORM\ManyToOne(inversedBy: 'posts')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'posts')]
-    private ?Category $category = null;
 
     #[ORM\OneToMany(mappedBy: 'posts', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
     private $image;
@@ -93,17 +91,6 @@ class Post
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
 
   public function getImage(): Collection
   {

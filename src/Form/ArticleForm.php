@@ -2,9 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Article;
 use App\Entity\Category;
-use App\Entity\Flat;
-use App\Entity\Menu;
+// use App\Entity\Image;
+use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -16,46 +17,29 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FlatForm extends AbstractType
+class ArticleForm extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options): void
   {
     $builder
-      ->add('name', TextType::class, [
-        'attr' => [
-          'class' => 'form-control'
-        ],
-        'label' => 'Nom'
-      ])
-
-      ->add('titre', TextType::class, [
+        ->add('title', TextType::class, [
         'attr' => [
           'class' => 'form-control'
         ],
         'label' => 'Titre',
-        'required' => false
+        'required' => true
       ])
 
-      ->add('description', TextType::class, [
+      ->add('content', TextType::class, [
         'attr' => [
           'class' => 'form-control'
         ],
-        'label' => 'Description',
+        'label' => 'contenu',
         'required' => false
 
       ])
 
-      ->add('price', MoneyType::class, [
-        'label' => 'Prix',
-        // Si prix en centime 'divisor' => 100,
-        'constraints' => [
-          new Positive(
-            message: 'Le prix ne peut être négatif'
-          )
-        ]
-      ])
-
-      ->add('images', FileType::class, [
+      ->add('image', FileType::class, [
         'label' => 'Image',
         'multiple' => true,
         'mapped' => false,
@@ -82,10 +66,10 @@ class FlatForm extends AbstractType
         ]
       ])
 
-      ->add('menu', EntityType::class, [
-        'class' => Menu::class,
-        'choice_label' => 'name',
-        'label' => 'Menu',
+      ->add('user', EntityType::class, [
+        'class' => User::class,
+        'choice_label' => 'pseudo',
+        'label' => 'Auteur',
         'required' => false,
         'attr' => [
           'class' => 'form-control'
@@ -96,7 +80,7 @@ class FlatForm extends AbstractType
   public function configureOptions(OptionsResolver $resolver): void
   {
     $resolver->setDefaults([
-      'data_class' => Flat::class,
+      'data_class' => Article::class,
     ]);
   }
 }

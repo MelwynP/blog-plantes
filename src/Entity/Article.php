@@ -25,9 +25,9 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?User $user = null;
 
-  #[ORM\ManyToOne(inversedBy: 'article')]
-  #[ORM\JoinColumn(nullable: true)]
-  private ?Category $category = null;
+    #[ORM\ManyToOne(inversedBy: 'article')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Category $category = null;
 
     #[ORM\OneToMany(mappedBy: 'articles', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
     private $image;

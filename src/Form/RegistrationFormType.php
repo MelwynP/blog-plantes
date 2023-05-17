@@ -21,60 +21,21 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
-            ->add('civility', ChoiceType::class, [
-                'required' => true,
-                'choices' => [
-                    'Monsieur' => 'Monsieur',
-                    'Madame' => 'Madame'
-                ]
-            ])
-
-            ->add('firstname', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'Ecrivez votre prénom ici',
-                ],
-                'label' => 'Prénom',
-                'required' => false,
-
-            ])
+        ->add('pseudo', TextType::class, [
+            'attr' => [
+                'placeholder' => 'Ecrivez votre pseudo ici',
+            ],
+            'label' => 'Pseudo *',
+            'required' => true
+        ])
 
             ->add('name', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Ecrivez votre nom ici',
                 ],
-                'label' => 'Nom *',
-                'required' => true
-            ])
-
-            ->add('phone', TextType::class, [
-                'attr' => [
-                    'placeholder' => '06 00 00 00 00',
-
-                ],
-                'label' => 'Téléphone',
+                'label' => 'Nom',
                 'required' => false,
-            ])
 
-            ->add('numberPeople', ChoiceType::class, [
-                'required' => true,
-                'label' => 'Nombre de personne(s) *',
-                'choices' => [
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                    '4' => '4',
-                    '5' => '5',
-                    '6' => '6',
-                    '7' => '7',
-                    '8' => '8',
-                ]
-            ])
-
-            ->add('allergy', null, [
-                'attr' => [
-                ],
-                'label' => 'Allergie(s)'
             ])
 
             ->add('email', EmailType::class, [
@@ -108,7 +69,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Vous devez accepter les conditions d\'utilisation.',
                     ]),
                 ],
-                'label' => 'J\'accepte que mes données personnelles soient utilisées pour la gestion de ma réservation et de ma relation commerciale avec l\'établissement.'
+                'label' => 'J\'accepte que mes données personnelles soient utilisées pour le traitement de ma demande.',
             ]);
     }
 

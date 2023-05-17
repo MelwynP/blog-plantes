@@ -2,35 +2,41 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Validator\Constraints\All;
-use Symfony\Component\Validator\Constraints\Image;
-use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategoryForm extends AbstractType
+class UpdateUserFormType extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options): void
   {
     $builder
+
+      ->add('pseudo', TextType::class, [
+        'attr' => [
+          'placeholder' => 'Modifiez votre pseudo ici',
+        ],
+        'label' => 'Pseudo *',
+        'required' => true
+      ])
+
       ->add('name', TextType::class, [
         'attr' => [
-          'class' => 'form-control'
+          'placeholder' => 'Modifiez votre nom ici',
         ],
-        'label' => 'Nom de la catégorie'
+        'label' => 'Nom',
+        'required' => false,
+
       ]);
   }
 
   public function configureOptions(OptionsResolver $resolver): void
   {
     $resolver->setDefaults([
-      'data_class' => Category::class,
+      'data_class' => User::class,
     ]);
   }
 }

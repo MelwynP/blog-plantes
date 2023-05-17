@@ -33,7 +33,7 @@ class RegistrationController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-      if ($user->getEmail() === "contact@quai-antique.tech") {
+      if ($user->getEmail() === "contact@blog-participatif.tech") {
         $user->setRoles(["ROLE_ADMIN"]) && $user->setIsVerified(true);
       } else {
         $user->setRoles(["ROLE_USER"]);
@@ -68,7 +68,7 @@ class RegistrationController extends AbstractController
 
       //on envoie un email 
       $sendMailService->send(
-        'contact@quai-antique.tech',
+        'contact@blog-participatif.tech',
         $user->getEmail(),
         //on récupère l'email de l'utilisateur avec la methode getemail()
         'Activation de votre compte Quai Antique', //le subject
@@ -156,7 +156,7 @@ class RegistrationController extends AbstractController
 
     //on envoie un email 
     $sendMailService->send(
-      'contact@quai-antique.tech',
+      'contact@blog-participatif.tech',
       $user->getEmail(),
       //on récupère l'email de l'utilisateur avec la methode getemail()
       'Activation de votre compte Quai Antique', //le subject
