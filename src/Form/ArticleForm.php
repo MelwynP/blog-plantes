@@ -4,8 +4,9 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\User;
 // use App\Entity\Image;
-use App\Entity\Users;
+// use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -46,7 +47,7 @@ class ArticleForm extends AbstractType
         'required' => false,
         'constraints' => [
           new All(
-            new Image([
+            new image([
               'maxSize' => '5000k',
               'maxWidth' => 1280,
               'maxWidthMessage' => 'L\'image doit faire {{ max_width }} pixels de large au maximum',
@@ -57,7 +58,7 @@ class ArticleForm extends AbstractType
       ])
 
       ->add('category', EntityType::class, [
-        'class' => Category::class,
+        'class' => category::class,
         'choice_label' => 'name',
         'label' => 'Catégorie',
         'required' => false,
@@ -67,7 +68,7 @@ class ArticleForm extends AbstractType
       ])
 
       ->add('user', EntityType::class, [
-        'class' => User::class,
+        'class' => user::class,
         'choice_label' => 'pseudo',
         'label' => 'Auteur',
         'required' => false,

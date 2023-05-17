@@ -5,10 +5,43 @@
 
 
 {% block body %}
-	<div class="containerPrincipal">
-
 		<h1>the world</h1>
 		<h2>article</h2>
+{# {% for image in image %}
+	<img src="{{ asset('assets/uploads/imageBlog/' ~ image.path) }}" alt="">
+{% endfor %} #}
+
+{% for article in article %}
+	<pre>
+    {{ dump(article) }}
+  </pre>
+{% endfor %}
+{% for article in article %}
+	<h2>{{ article.title }}</h2>
+	<p>{{ article.content }}</p>
+
+	{% for image in article.image %}
+		<img src="{{ asset('assets/uploads/imageBlog/' ~ image.path) }}" alt="">
+	{% endfor %}
+{% endfor %}
+
+
+
+
+{# {% for article in articles %}
+	{% if article.image.first() %}
+		<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ article.image.first().path) }}" alt="{{ article.title }}">
+	{% endif %}
+{% endfor %} #}
+
+
+
+
+
+
+
+
+
 		{# <div class="imageAccueil-container">
 							<img src="assets/pictures/restaurant.jpg" alt="restaurant le Quai Antique" class="rounded-image">
 							<h1 class="image-title">DECOUVREZ NOTRE RESTAURANT<br>SAVOYARD | CHAMBERY</h1>
@@ -43,24 +76,24 @@
 		</div>
 	{% endfor %}
 	<div class="d-flex justify-content-around flex-wrap container mt-5">
-		{# {% for post in post %} #}
+		{% for post in post %}
 			<div class="card" style="width: 18rem;">
 				{# {% if post.image  %}
 					<img src="{{ asset('assets/uploads/flats/mini/300x300-' ~ post.images.first().titre) }}" alt="{{ post.title }}">
 				{% endif %} #}
 				<div class="card-body">
-					{# {% if post.title  %}
+					{% if post.title  %}
 						<h5 class="card-title">{{ post.title }}</h5>
 					{% endif %}
 					<p class="card-text">{{ post.content }}</p>
-					{% if app.user and app.user is same as post.user %}
+					{# {% if app.user and app.user is same as post.user %}
 						<a href="{{ path('delete-post', {'id': post.id}) }}" class="btn btn-danger">Supprimer</a>
 						<a href="{{ path('edit-post', {'id': post.id}) }}" class="btn btn-warning">Modifier</a>
-					{% endif %}
+					{% endif %} #}
 				</div>
-				<div class="card-footer"> #}
+				<div class="card-footer">
 					<small class="text-muted">Publié par
-						{# {{post.user.pseudo}} #}
+						{{post.user.pseudo}}
 						le
 						{# {{post.publishedAt | date("d/m/Y")}}
 						à
@@ -68,6 +101,6 @@
 					</small>
 				</div>
 			</div>
-		{# {% endfor %} #}
+		 {% endfor %} 
 	</div>
 {% endblock %}

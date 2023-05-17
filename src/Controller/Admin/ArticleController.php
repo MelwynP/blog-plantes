@@ -24,7 +24,7 @@ class ArticleController extends AbstractController
   {
     $article = $articleRepository->findAll();
     $image = $imageRepository->findAll();
-    return $this->render('admin/article/index.html.twig', compact('article', 'images'));
+    return $this->render('admin/article/index.html.twig', compact('article', 'image'));
   }
 
   // Route ajout article
@@ -63,7 +63,8 @@ class ArticleController extends AbstractController
       $em->flush();
 
       $this->addFlash('success', 'Article ajouté avec succès');
-
+      // $article = $articleRepository->findAll();
+      
       // On redirige vers la liste
       return $this->redirectToRoute('admin_article_index');
     }
@@ -113,8 +114,7 @@ class ArticleController extends AbstractController
       $em->flush();
 
       $this->addFlash(
-        'success',
-        'article modifié avec succès'
+        'success', 'article modifié avec succès'
       );
 
       // On redirige

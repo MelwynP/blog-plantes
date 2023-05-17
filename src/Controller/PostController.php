@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Entity\Image;
-use App\Repository\PostRepository;
 use App\Form\PostType;
+use App\Repository\UserRepository;
+use App\Repository\PostRepository;
 use App\Repository\ImageRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use App\Service\PictureService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,20 +24,24 @@ class PostController extends AbstractController
   #[Route('/', name: 'index')]
 
     // function qui recupere tout le contenu de la table post avec la methode findAll() de la class PostRepository et qui l'envoie dans la vue index.html.twig 
-    public function index(Request $request, PostRepository $postRepository, ArticleRepository $articleRepository, ImageRepository $imageRepository): Response
+    public function index(Request $request, PostRepository $postRepository, ArticleRepository $articleRepository, ImageRepository $imageRepository, CategoryRepository $categoryRepository, UserRepository $userRepository): Response
     {
         $search = $request->request->get("search"); // $_POST["search"]
         $posts = $postRepository->findAll(); // SELECT * FROM `post`;
         if ($search) {
           $posts = $postRepository->findBySearch($search); // SELECT * FROM `post` WHERE title LIKE :search;
         }
+$articles = $articleRepository->findAll();
 
-        return $this->render('post/index.html.twig', [
-          'posts' => $posts,
-          'post' => $postRepository->findAll(),
-          'article' => $articleRepository->findAll(),
-          'images' => $imageRepository->findAll(),
-        ]);
+      return $this->render('post/index.html.twig', [
+    'post' => $postRepository->findAll(),
+    'user' => $userRepository->findAll(),
+    'article' => $articleRepository->findAll(),
+    'image' => $imageRepository->findAll(),
+    'category' => $categoryRepository->findAll(),
+    'search' => $search,
+]);
+
       }
       
     #[Route('/ajouter', name: 'add')]
@@ -72,9 +78,15 @@ class PostController extends AbstractController
             return $this->redirectToRoute('app_post_index');
             }
 
-        return $this->render('post/index.html.twig', [
-            'PostForm' => $PostForm->createView()
-            ]);
+        return $this->render('post/add.html.twig', [
+            'PostForm' => $PostForm->createView(),
+             'post' => $postRepository->findAll(),
+    'user' => $userRepository->findAll(),
+    'article' => $articleRepository->findAll(),
+    'image' => $imageRepository->findAll(),
+    'category' => $categoryRepository->findAll(),
+    'search' => $search,
+]);
     }
 
     #[Route('/modifier/{id}', name: 'edit')]
@@ -123,8 +135,13 @@ class PostController extends AbstractController
         }
         return $this->render('post/edit.html.twig', [
             "PostForm" => $PostForm->createView(),
-            'post' => $post
-        ]);
+         'post' => $postRepository->findAll(),
+    'user' => $userRepository->findAll(),
+    'article' => $articleRepository->findAll(),
+    'image' => $imageRepository->findAll(),
+    'category' => $categoryRepository->findAll(),
+    'search' => $search,
+]);
     }
 
     #[Route('/supprimer/{id}', name: 'delete')]

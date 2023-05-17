@@ -41,23 +41,23 @@
 										{% endif %}
 									</td>
 									<td>
-										{% if article.image is defined %}
-											{% for image in article.path %}
-												<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
-											{% endfor %}
-										{% endif %}
-									</td>
-									<td>
-										<a href="{{ path('admin_article_edit', {id: flat.id})}}" class="btn btn-success">Modifier</a>
-										<a href="{{ path('admin_article_delete', {id: flat.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">Supprimer</a>
-									</td>
+										{# % if app.request.get('article') is defined %}
+										{% set article = app.request.get('article') %}
+										{% for article in article %}
+											<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
+										{% endfor %}
+									{% endif %} #}
+                  </td>
 								</tr>
-							{% endfor %}
+							</td>
+							{# <td>
+								<a href="{{ path('admin_article_edit', {id: article.id})}}" class="btn btn-success">Modifier</a>
+								<a href="{{ path('admin_article_delete', {id: article.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">Supprimer</a>
+							</td> #}
 						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</section>
-{% endblock %}
-
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div></div></section>{% endblock %}
