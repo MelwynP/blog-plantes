@@ -6,41 +6,38 @@
 {% block body %}
 	<h2 class="histoire-title">Contrôler les utilisateurs</h2>
 
-<div class="container">
-			<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
-	<div class="row">
-		<main class="col-12 col-md-9 border border-light bg-white p-2">
+	<div class="container">
+		<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+		<div class="row">
+			<main class="col-12 col-md-9 border border-light bg-white p-2">
 
-			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Civilité</th>
-							<th>Nom</th>
-							<th>Prénom</th>
-							<th>Création du compte</th>
-							<th>Nombre de convive(s)</th>
-							<th>Allergie(s)</th>
-							<th>Téléphone</th>
-							<th>E-mail</th>
-						</tr>
-					</thead>
-					{% for user in user %}
-						<tr>
-							<td>{{ user.civility }}</td>
-							<td>{{ user.name }}</td>
-							<td>{{ user.firstname }}</td>
-							<td>{{ user.createdAt|date('d/m/Y') }}</td>
-							<td>{{ user.numberPeople }}</td>
-							<td>{{ user.allergy }}</td>
-							<td>{{ user.phone }}</td>
-							<td>{{ user.email }}</td>
-						</tr>
-					{% endfor %}
-				</table>
-			</div>
-		</main>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Pseudo</th>
+								<th>Nom</th>
+								<th>E-mail</th>
+								<th>Création du compte</th>
+							</tr>
+						</thead>
+						{% for user in user %}
+							<tr>
+								<td>{{ user.pseudo }}</td>
+								<td>{{ user.name }}</td>
+								<td>{{ user.email }}</td>
+								<td>{{ user.createdAt|date('d/m/Y') }}</td>
+								<td>
+
+									<a href="{{ path('admin_users_delete', {id: user.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
+								</td>
+
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</main>
+		</div>
 	</div>
-</div>
 
 {% endblock %}

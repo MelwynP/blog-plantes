@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[Assert\Length(min: 2, max: 80, minMessage: 'Le pseudo doit contenir au moins {{ limit }} caractères', maxMessage: 'Le pseudo doit contenir au maximum {{ limit }} caractères')]
   private ?string $pseudo = null;
 
+  #[ORM\Column]
+  private ?\DateTimeImmutable $createdAt = null;
+
   #[ORM\Column(type: 'boolean')]
   private $is_verified = false;
 
@@ -60,6 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   {
     $this->articles = new ArrayCollection();
     $this->posts = new ArrayCollection();
+    $this->createdAt = new \DateTimeImmutable();
   }
 
   public function getId(): ?int
@@ -153,6 +157,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   public function setPseudo(string $pseudo): self
   {
     $this->pseudo = $pseudo;
+
+    return $this;
+  }
+
+  public function getCreatedAt(): ?\DateTimeImmutable
+  {
+    return $this->createdAt;
+  }
+
+  public function setCreatedAt(\DateTimeImmutable $createdAt): self
+  {
+    $this->createdAt = $createdAt;
 
     return $this;
   }

@@ -27,7 +27,7 @@ class ArticleController extends AbstractController
     return $this->render('admin/article/index.html.twig', compact('article', 'images'));
   }
 
-  // Route ajout Admin
+  // Route ajout article
   #[Route('/ajouter', name: 'add')]
 
   public function add(Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
