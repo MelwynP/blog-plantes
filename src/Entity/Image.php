@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
@@ -21,9 +23,12 @@ class Image
     private $post;
 
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'image')]
-    
     #[ORM\JoinColumn(nullable: false)]
     private $article;
+
+    #[ORM\ManyToOne(targetEntity: discover::class, inversedBy: 'image')]
+    #[ORM\JoinColumn(nullable: true)]
+    private $discover;
 
     public function getId(): ?int
     {
@@ -65,4 +70,18 @@ class Image
 
         return $this;
     }
+
+    public function getDiscover(): ?discover
+    {
+        return $this->discover;
+    }
+
+    public function setDiscover(?Discover $discover): self
+    {
+        $this->discover = $discover;
+
+        return $this;
+    }
+
+
 }

@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\PostRepository;
+use App\Repository\UserRepository;
+use App\Repository\ArticleRepository;
 use App\Form\UpdateUserFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

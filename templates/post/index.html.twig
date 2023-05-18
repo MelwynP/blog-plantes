@@ -32,6 +32,10 @@
 		{% if image.path %}
 			<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
 		{% endif %}
+		{% if post.user == app.user %}
+			<a href="{{ path('app_post_edit', { id: post.id }) }}">Modifier</a>
+			<a href="{{ path('app_post_delete', { id: post.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
+		{% endif %}
 	{% endfor %}
 {% endfor %}
 

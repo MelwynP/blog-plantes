@@ -40,9 +40,9 @@ class PostController extends AbstractController
       'category' => $categoryRepository->findAll(),
       'search' => $search,
       ]);
-
   }
       
+
     #[Route('/ajouter', name: 'add')]
     // function qui permet de creer un nouveau post si l'utilisateur est connecté 
     public function create(Request $request,EntityManagerInterface $em, PictureService $pictureService): Response
