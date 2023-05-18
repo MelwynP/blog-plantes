@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contrôler les posts
+{% endblock %}
+
+{% block body %}
+	<h2 class="histoire-title">Contrôler les posts</h2>
+
+	<div class="container">
+		<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+		<div class="row">
+			<main class="col-12 col-md-9 border border-light bg-white p-2">
+
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Auteur du post</th>
+								<th>Titre</th>
+								<th>Contenu</th>
+								<th>Date de publication</th>
+								<th>Photo</th>
+							</tr>
+						</thead>
+						{% for post in postOrder %}
+							<tr>
+								<td>
+									{% if post.user is null %}
+										{{ " - " }}
+									{% else %}
+										{{ post.user.pseudo }}
+									{% endif %}
+								</td>
+								<td>{{ post.title }}</td>
+								<td>{{ post.content }}</td>
+								<td>{{ post.publishedAt|date('d/m/Y') }}</td>
+								<td>
+									{% if post.image is defined %}
+										{% for image in post.image %}
+											<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
+										{% endfor %}
+									{% endif %}
+								</td>
+
+								<td>
+									<a href="{{ path('admin_post_delete', {id: post.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</main>
+		</div>
+	</div>
+
+{% endblock %}

@@ -56,7 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
   private Collection $articles;
 
-  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
+  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class, cascade: ['remove'])]
   private Collection $posts;
 
   public function __construct()

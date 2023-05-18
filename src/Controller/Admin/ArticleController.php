@@ -63,7 +63,6 @@ class ArticleController extends AbstractController
       $em->flush();
 
       $this->addFlash('success', 'Article ajouté avec succès');
-      // $article = $articleRepository->findAll();
       
       // On redirige vers la liste
       return $this->redirectToRoute('admin_article_index');
@@ -79,24 +78,14 @@ class ArticleController extends AbstractController
   {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-    // On récupère les images existantes
-    $existingImages = $article->getImage()->toArray(); // Copie des images existantes
-    // On crée le formulaire
-    $articleFormulaire = $this->createForm(ArticleForm::class, $article);
+    // Copie des images existantes
+    $existingImages = $article->getImage()->toArray(); 
 
-    // On traite la requête du formulaire
+    $articleFormulaire = $this->createForm(ArticleForm::class, $article);
     $articleFormulaire->handleRequest($request);
 
-    //On vérifie si le formulaire est soumis ET valide
     if ($articleFormulaire->isSubmitted() && $articleFormulaire->isValid()) {
 
-      // foreach ($article->getImage() as $image) {
-      //   // Supprime l'image du dossier
-      //   $pictureService->delete($image->getPath());
-      //   // Supprime l'image de la collection
-      //   // $flat->removeImage($image);
-      //   $article->getImage()->removeElement($image);
-      // }
       $images = $articleFormulaire->get('image')->getData();
 
       if (!empty($images)) {

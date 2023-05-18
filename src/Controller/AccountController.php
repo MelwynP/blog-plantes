@@ -8,7 +8,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
 
 #[Route('/mon-compte', name: 'app_account_')]
 class AccountController extends AbstractController
@@ -52,19 +57,57 @@ class AccountController extends AbstractController
     ]);
   }
 
-  #[Route('/supprimer/{email}', name: "delete_email")]
-  public function delete(Request $request, string $email, User $user, EntityManagerInterface $em): Response
+
+
+#[Route('/supprimer/{email}', name: 'delete')]
+public function delete(User $user, EntityManagerInterface $em): Response
   {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        if ($user->getEmail() === 'contact@blog-participatif.tech') {
+        $this->addFlash('danger', 'Vous ne pouvez pas supprimer le compte administrateur.');
+        return $this->redirectToRoute('admin_users_index');
+        }
 
-    $em->remove($user);
-    $em->flush();
+        //suppression de la session a revoir
+        $session = new Session();
+        $session->invalidate();
+        
+        $em->remove($user);
+        $em->flush();
 
-    $this->addFlash(
-      'success',
-      'Compte supprimé avec succès'
-    );
-    return $this->redirectToRoute("app_post_index");
-  }
+
+        return $this->redirectToRoute('app_post_index');
+      }
+  
+
+
+
+
+//  #[Route('/supprimer/{email}', name: "delete")]
+//   #[ParamConverter("user", class:"App\Entity\User")]  
+
+//   public function delete(string $email, User $user, EntityManagerInterface $em): Response
+//   {
+
+//     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+//     if ($user->getEmail() === 'contact@blog-participatif.tech') {
+//         // Gérer le cas où la suppression de cet utilisateur est interdite
+//         $this->addFlash(
+//             'danger',
+//             'Vous ne pouvez pas supprimer le compte administrateur.'
+//         );
+//                 return $this->redirectToRoute("admin_users_index");
+//     }
+
+//     $em->remove($user);
+//     $em->flush();
+
+//     $this->addFlash(
+//       'success',
+//       'Compte supprimé avec succès'
+//     );
+//     return $this->redirectToRoute("app_post_index");
+//   }
 }
