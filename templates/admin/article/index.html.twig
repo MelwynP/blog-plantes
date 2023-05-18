@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des articles
+{% endblock %}
+
+{% block body %}
+	<h2 class="histoire-title">Liste des articles</h2>
+	<section class="container my-3">
+		<div class="row">
+			<div class="col">
+				<a href="{{ path('admin_article_add') }}" class="btn btn-success">Ajouter un article</a>
+				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Auteur</th>
+								<th>Catégorie</th>
+								<th>Titre</th>
+								<th>Contenu</th>
+								<th>Photo</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for article in article %}
+								<tr>
+									<td>
+										{% if article.user is null %}
+											{{ " - " }}
+										{% else %}
+											{{ article.user.pseudo }}
+										{% endif %}
+									</td>
+									<td>
+										{% if article.category is null %}
+											{{ " - " }}
+										{% else %}
+											{{ article.category.name }}
+										{% endif %}
+									</td>
+									<td>{{ article.title }}</td>
+									<td>{{ article.content }}</td>
+									<td>
+										{% if article.image is defined %}
+											{% for image in article.image %}
+												<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
+											{% endfor %}
+										{% endif %}
+									</td>
+							<td>
+								<a href="{{ path('admin_article_edit', {id: article.id})}}" class="btn btn-success">Modifier</a>
+								<a href="{{ path('admin_article_delete', {id: article.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">Supprimer</a>
+							</td>
+
+								</tr>
+							</td>
+						</tbody>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div></div></section>{% endblock %}

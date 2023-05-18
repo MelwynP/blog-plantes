@@ -1,0 +1,14 @@
+{{ form_start(PostForm, {'attr': {'id': 'monFormulaire'}}) }}
+{{ form_row(PostForm.title) }}
+{{ form_row(PostForm.content) }}
+{{ form_row(PostForm.image) }}
+{# {{ form_row(PostForm.category) }}
+{{ form_row(PostForm.user) }}
+#}
+<button class="btn-style primary">Publier</button>
+
+{{ form_end(PostForm) }}
+
+
+
+

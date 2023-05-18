@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contrôler les utilisateurs
+{% endblock %}
+
+{% block body %}
+	<h2 class="histoire-title">Contrôler les utilisateurs</h2>
+
+	<div class="container">
+		<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+		<div class="row">
+			<main class="col-12 col-md-9 border border-light bg-white p-2">
+
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Pseudo</th>
+								<th>Nom</th>
+								<th>E-mail</th>
+								<th>Création du compte</th>
+							</tr>
+						</thead>
+						{% for user in userOrder %}
+							<tr>
+								<td>{{ user.pseudo }}</td>
+								<td>{{ user.name }}</td>
+								<td>{{ user.email }}</td>
+								<td>{{ user.createdAt|date('d/m/Y') }}</td>
+<td>
+	{% if user.email != 'contact@blog-participatif.tech' %}
+		<a href="{{ path('admin_users_delete', {id: user.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
+	{% endif %}
+</td>
+
+
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</main>
+		</div>
+	</div>
+
+{% endblock %}

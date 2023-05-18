@@ -1,0 +1,11 @@
+{{ form_start(articleFormulaire, {'attr': {'id': 'monFormulaire'}}) }}
+{{ form_row(articleFormulaire.title) }}
+{{ form_row(articleFormulaire.content) }}
+{{ form_row(articleFormulaire.image) }}
+{{ form_row(articleFormulaire.category) }}
+{{ form_row(articleFormulaire.user) }}
+<button class="btn-style primary">Publier</button>
+<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+{{ form_end(articleFormulaire) }}
+
+

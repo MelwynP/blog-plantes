@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Administration des categories
+{% endblock %}
+
+{% block body %}
+	<h2 class="histoire-title">Ajouter une categorie</h2>
+	<main class="container">
+		<section class="row">
+			<div class="col-12">
+				{% include "admin/category/_form.html.twig" %}
+			</div>
+		</section>
+	</main>
+{% endblock %}

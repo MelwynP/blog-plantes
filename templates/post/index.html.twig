@@ -1,42 +1,63 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
 
 {% block body %}
+		<h1>the world</h1>
+
+    <h2>Article</h2>
+{% for article in article %}
+	<h2>{{ article.title }}</h2>
+	{% for image in article.image %}
+		{% if image.path %}
+			<img src="{{ asset('assets/uploads/imageBlog/' ~ image.path) }}">
+		{% endif %}
+	{% endfor %}
+{% endfor %}
 
 
-HELLO
+
+
+
+
+
+
+
+	<h3>post</h3>
+{% for post in post %}
+	<h2>{{ post.title }}</h2>
+	{% for image in post.image %}
+		{% if image.path %}
+			<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{# {{post.publishedAt | date("d/m/Y")}}
+						à
+						{{post.publishedAt | date("H:i")}} #}
+
+
 	{% for message in app.flashes('error') %}
 		<div class="alert alert-danger mt-3" role="alert">
 			{{ message }}
 		</div>
 	{% endfor %}
-	<div class="d-flex justify-content-around flex-wrap container mt-5">
-		{% for post in posts %}
-			<div class="card" style="width: 18rem;">
-				{% if post.image  %}
-					<img src={{ asset('uploads/' ~ post.image) }} class="card-img-top" alt={{post.title}}>
-				{% endif %}
-				<div class="card-body">
-					{% if post.title  %}
-						<h5 class="card-title">{{ post.title }}</h5>
-					{% endif %}
-					<p class="card-text">{{ post.content }}</p>
 
-					{% if app.user and app.user is same as post.user %}
-						<a href="{{ path('delete-post', {'id': post.id}) }}" class="btn btn-danger">Supprimer</a>
-						<a href="{{ path('edit-post', {'id': post.id}) }}" class="btn btn-warning">Modifier</a>
-						<a href="{{ path('copy-post', {'id': post.id}) }}" class="btn btn-info">Copier</a>
-					{% endif %}
-				</div>
-				<div class="card-footer">
-					<small class="text-muted">Publié par
-						{{post.user.username}}
-						le
-						{{post.publishedAt | date("d/m/Y")}}
-						à
-						{{post.publishedAt | date("H:i")}}
-					</small>
-				</div>
-			</div>
-		{% endfor %}
-	</div>
+
+
 {% endblock %}

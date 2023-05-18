@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row">
+			<div class="col">
+				<h2 class="resReg-title">Inscritpion</h2>
+				{{ form_start(form, {'attr': {'id': 'monFormulaire'}}) }}
+				{{ form_row(form.pseudo) }}
+				{{ form_row(form.name) }}
+				{{ form_row(form.email) }}
+				{{ form_label(form.plainPassword, 'Mot de passe *') }}
+				<div class="input-group">
+          {{ form_widget(form.plainPassword) }}
+          <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('registration_form_plainPassword').type = (document.getElementById('registration_form_plainPassword').type === 'password') ? 'text' : 'password'">
+          Afficher/Masquer
+					</button>
+				</div>
+				{{ form_row(form.RGPDConsent) }}
+				<button type="submit" id="submitBtn" class="btn-style primary">M'inscrire</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -2,106 +2,120 @@
 
 namespace App\Entity;
 
+use App\Repository\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity()]
-#[ORM\Table(name: "post")]
+#[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
-  #[ORM\Id()]
-  #[ORM\GeneratedValue(strategy: "AUTO")]
-  #[ORM\Column(type: "integer")]
-  private int $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-  #[ORM\Column(type: "string", nullable: true, length: 150)]
-  private ?string $title = NULL;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $title = null;
 
-  #[ORM\Column(type: "text", length: 320)]
-  private string $content;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $content = null;
 
-  #[ORM\Column(type: "text", nullable: true)]
-  private ?string $image = NULL;
+    #[ORM\Column(type: "datetime")]
+    private \DateTime $publishedAt;
 
-  #[ORM\Column(type: "datetime")]
-  private \DateTime $publishedAt;
 
-  #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "posts")]
-  #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", onDelete: "CASCADE")]
-  private $user;
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    private ?User $user = null;
 
-  public function getId(): int
+
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
+    private $image;
+
+  public function __construct()
   {
-    return $this->id;
+    $this->image = new ArrayCollection();
   }
 
-  public function setId(int $id): self
-  {
-    $this->id = $id;
-    return $this;
-  }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-  public function getTitle()
-  {
-    return $this->title;
-  }
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
 
-  public function setTitle($title)
-  {
-    $this->title = $title;
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  public function getContent()
-  {
-    return $this->content;
-  }
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
 
-  public function setContent($content)
-  {
-    $this->content = $content;
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  public function getImage()
+    public function getPublishedAt()
+    {
+      return $this->publishedAt;
+    }
+
+    public function setPublishedAt($publishedAt)
+    {
+      $this->publishedAt = $publishedAt;
+
+      return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+
+  public function getImage(): Collection
   {
     return $this->image;
   }
 
-  public function setImage($image)
+  public function addImage(Image $image): self
   {
-    $this->image = $image;
+    if (!$this->image->contains($image)) {
+      $this->image[] = $image;
+      $image->setPost($this);
+    }
 
     return $this;
   }
 
-  public function getUser()
+  public function removeImage(Image $image): self
   {
-    return $this->user;
-  }
-
-  public function setUser($user)
-  {
-    $this->user = $user;
+    if ($this->image->removeElement($image)) {
+      // set the owning side to null (unless already changed)
+      if ($image->getPost() === $this) {
+        $image->setPost(null);
+      }
+    }
 
     return $this;
-  }
-
-  public function getPublishedAt()
-  {
-    return $this->publishedAt;
-  }
-
-  public function setPublishedAt($publishedAt)
-  {
-    $this->publishedAt = $publishedAt;
-
-    return $this;
-  }
-
-  public function __toString()
-  {
-    return $this->username;
   }
 }

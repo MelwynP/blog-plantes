@@ -3,124 +3,145 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\Image;
 use App\Form\PostType;
+use App\Repository\UserRepository;
 use App\Repository\PostRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\ImageRepository;
+use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
+use App\Service\PictureService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
+
+#[Route('/', name: 'app_post_')]
 class PostController extends AbstractController
 {
-    #[Route('/', name: "home")]
-    public function index(Request $request, PostRepository $repository): Response
+  #[Route('/', name: 'index')]
+
+    // function qui recupere tout le contenu de la table post avec la methode findAll() de la class PostRepository et qui l'envoie dans la vue index.html.twig 
+    public function index(Request $request, PostRepository $postRepository, ArticleRepository $articleRepository, ImageRepository $imageRepository, CategoryRepository $categoryRepository, UserRepository $userRepository): Response
     {
         $search = $request->request->get("search"); // $_POST["search"]
-        $posts = $repository->findAll(); // SELECT * FROM `post`;
+        $posts = $postRepository->findAll(); // SELECT * FROM `post`;
         if ($search) {
-            $posts = $repository->findBySearch($search); // SELECT * FROM `post` WHERE title LIKE :search;
+          $posts = $postRepository->findBySearch($search); // SELECT * FROM `post` WHERE title LIKE :search;
         }
 
-        return $this->render('post/index.html.twig', [
-            "posts" => $posts
-        ]);
-    }
+      return $this->render('post/index.html.twig', [
+      'post' => $postRepository->findAll(),
+      'user' => $userRepository->findAll(),
+      'article' => $articleRepository->findAll(),
+      'image' => $imageRepository->findAll(),
+      'category' => $categoryRepository->findAll(),
+      'search' => $search,
+      ]);
 
-    #[Route('/post/new')]
-    public function create(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
+  }
+      
+    #[Route('/ajouter', name: 'add')]
+    // function qui permet de creer un nouveau post si l'utilisateur est connecté 
+    public function create(Request $request,EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $post = new Post();
-        $form = $this->createForm(PostType::class, $post);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $image = $form->get('image')->getData();
+        $PostForm = $this->createForm(PostType::class, $post);
+        $PostForm->handleRequest($request);
+        if ($PostForm->isSubmitted() && $PostForm->isValid()) {
+            $image = $PostForm->get('image')->getData();
+              //  si l'utilisateur a ajouté une image, on la traite et on l'enregistre dans le dossier public/uploads 
+              foreach ($image as $image) {
+                // On définit le dossier de destination
+                $folder = 'imageBlog';
 
-            if ($image) {
-                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
-                try {
-                    $image->move(
-                        $this->getParameter('uploads'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    dump($e);
-                }
-                $post->setImage($newFilename);
-            }
+                // On appelle le service d'ajout
+                $fichier = $pictureService->add($image, $folder, 300, 300);
 
+                $img = new Image();
+                $img->setPath($fichier);
+                $post->addImage($img);
+              }
+              
+              // association du post a l'utilisateur connecté
             $post->setUser($this->getUser());
-            $post->setPublishedAt(new \DateTime());
-            $em = $doctrine->getManager();
+            $post->setPublishedAt(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
+            // $post->setPublishedAt(new \DateTime());
             $em->persist($post);
             $em->flush();
-            return $this->redirectToRoute("home");
-        }
-        return $this->render('post/form.html.twig', [
-            "form" => $form->createView()
+            $this->addFlash('success', 'Post ajouté avec succès');
+
+            return $this->redirectToRoute('app_post_index');
+            }
+
+        return $this->render('post/add.html.twig', [
+            "PostForm" => $PostForm->createView(),
         ]);
     }
 
-    #[Route('/post/edit/{id<\d+>}', name: "edit-post")]
-    public function update(Request $request, Post $post, ManagerRegistry $doctrine): Response
+    #[Route('/modifier/{id}', name: 'edit')]
+    public function update(Post $post, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        if ($this->getUser() !== $post->getUser()) {
-            $this->addFlash("error", "Vous ne pouvez pas modifier une publication qui ne vous appartient pas.");
-            return $this->redirectToRoute("home");
-            // throw new AccessDeniedException("Vous n'avez pas accès à cette fonctionnalité.");
+
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() !== $post->getUser()) {
+          $this->addFlash("error", "Vous ne pouvez pas modifier une publication qui ne vous appartient pas.");
+          return $this->redirectToRoute('app_post_index');
         }
-        $form = $this->createForm(PostType::class, $post);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $doctrine->getManager();
+
+        $PostForm = $this->createForm(PostType::class, $post);
+        $PostForm->handleRequest($request);
+        if ($PostForm->isSubmitted() && $PostForm->isValid()) {
+
+
+      foreach ($post->getImage() as $image) {
+        // Supprime l'image du dossier
+        $pictureService->delete($image->getPath());
+        // Supprime l'image de la collection
+        $post->getImage()->removeElement($image);
+      }
+
+      $images = $PostForm->get('images')->getData();
+
+      foreach ($images as $image) {
+        // On définit le dossier de destination
+        $folder = 'imageBlog';
+
+        // On appelle le service d'ajout
+        $fichier = $pictureService->add($image, $folder, 300, 300);
+
+        $img = new Image();
+        $img->setPath($fichier);
+        $post->addImage($img);
+      }
+
+            $em->persist($post);
             $em->flush();
-            return $this->redirectToRoute("home");
+
+            $this->addFlash('success', 'Post modifié avec succès');
+
+            return $this->redirectToRoute("app_post_index");
         }
-        return $this->render('post/form.html.twig', [
-            "form" => $form->createView()
+        return $this->render('post/edit.html.twig', [
+            "PostForm" => $PostForm->createView(),
         ]);
     }
 
-    #[Route('/post/delete/{id<\d+>}', name: "delete-post")]
-    public function delete(Post $post, ManagerRegistry $doctrine): Response
+    #[Route('/supprimer/{id}', name: 'delete')]
+    public function delete(Post $post, EntityManagerInterface $em): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        if ($this->getUser() !== $post->getUser()) {
-            $this->addFlash("error", "Vous ne pouvez pas supprimer une publication qui ne vous appartient pas.");
-            return $this->redirectToRoute("home");
+        if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() !== $post->getUser()) {
+          $this->addFlash("error", "Vous ne pouvez pas supprimer une publication qui ne vous appartient pas.");
+          return $this->redirectToRoute("app_post_index");
         }
-        $em = $doctrine->getManager();
         $em->remove($post);
         $em->flush();
-        return $this->redirectToRoute("home");
+        $this->addFlash('success', 'Post supprimé avec succès');
+        return $this->redirectToRoute("app_post_index");
     }
 
-    #[Route('/post/copy/{id<\d+>}', name: "copy-post")]
-    public function duplicate(Post $post, ManagerRegistry $doctrine): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        if ($this->getUser() !== $post->getUser()) {
-            $this->addFlash("error", "Vous ne pouvez pas dupliquer une publication qui ne vous appartient pas.");
-            return $this->redirectToRoute("home");
-        }
-        $copyPost = clone $post;
-        $em = $doctrine->getManager();
-        $em->persist($copyPost);
-        $em->flush();
-        return $this->redirectToRoute("home");
-    }
-
-    /* #[Route('/post/search/{search}', name: "search-post")]
-    public function search(string $search): Response
-    {
-        dump($search);
-        return new Response("");
-        //return $this->redirectToRoute("home");
-    } */
 }

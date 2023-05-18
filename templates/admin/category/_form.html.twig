@@ -1,0 +1,5 @@
+{{ form_start(categoryFormulaire, {'attr': {'id': 'monFormulaire'}}) }}
+{{ form_row(categoryFormulaire.name) }}
+<button class="btn-style primary">Publier</button>
+<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+{{ form_end(categoryFormulaire) }}
