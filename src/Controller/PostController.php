@@ -31,18 +31,17 @@ class PostController extends AbstractController
         if ($search) {
           $posts = $postRepository->findBySearch($search); // SELECT * FROM `post` WHERE title LIKE :search;
         }
-$articles = $articleRepository->findAll();
 
       return $this->render('post/index.html.twig', [
-    'post' => $postRepository->findAll(),
-    'user' => $userRepository->findAll(),
-    'article' => $articleRepository->findAll(),
-    'image' => $imageRepository->findAll(),
-    'category' => $categoryRepository->findAll(),
-    'search' => $search,
-]);
+      'post' => $postRepository->findAll(),
+      'user' => $userRepository->findAll(),
+      'article' => $articleRepository->findAll(),
+      'image' => $imageRepository->findAll(),
+      'category' => $categoryRepository->findAll(),
+      'search' => $search,
+      ]);
 
-      }
+  }
       
     #[Route('/ajouter', name: 'add')]
     // function qui permet de creer un nouveau post si l'utilisateur est connecté 
@@ -79,14 +78,8 @@ $articles = $articleRepository->findAll();
             }
 
         return $this->render('post/add.html.twig', [
-            'PostForm' => $PostForm->createView(),
-             'post' => $postRepository->findAll(),
-    'user' => $userRepository->findAll(),
-    'article' => $articleRepository->findAll(),
-    'image' => $imageRepository->findAll(),
-    'category' => $categoryRepository->findAll(),
-    'search' => $search,
-]);
+            "PostForm" => $PostForm->createView(),
+        ]);
     }
 
     #[Route('/modifier/{id}', name: 'edit')]
@@ -135,13 +128,7 @@ $articles = $articleRepository->findAll();
         }
         return $this->render('post/edit.html.twig', [
             "PostForm" => $PostForm->createView(),
-         'post' => $postRepository->findAll(),
-    'user' => $userRepository->findAll(),
-    'article' => $articleRepository->findAll(),
-    'image' => $imageRepository->findAll(),
-    'category' => $categoryRepository->findAll(),
-    'search' => $search,
-]);
+        ]);
     }
 
     #[Route('/supprimer/{id}', name: 'delete')]

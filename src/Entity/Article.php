@@ -29,7 +29,7 @@ class Article
     #[ORM\JoinColumn(nullable: true)]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'articles', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
     private $image;
 
     public function __construct()

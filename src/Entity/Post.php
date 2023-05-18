@@ -30,7 +30,7 @@ class Post
     private ?User $user = null;
 
 
-    #[ORM\OneToMany(mappedBy: 'posts', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
     private $image;
 
   public function __construct()

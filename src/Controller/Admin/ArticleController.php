@@ -78,6 +78,9 @@ class ArticleController extends AbstractController
   public function edit(Article $article, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
   {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+    // On récupère les images existantes
+    $existingImages = $article->getImage()->toArray(); // Copie des images existantes
     // On crée le formulaire
     $articleFormulaire = $this->createForm(ArticleForm::class, $article);
 
@@ -87,15 +90,21 @@ class ArticleController extends AbstractController
     //On vérifie si le formulaire est soumis ET valide
     if ($articleFormulaire->isSubmitted() && $articleFormulaire->isValid()) {
 
-      foreach ($article->getImage() as $image) {
-        // Supprime l'image du dossier
-        $pictureService->delete($image->getPath());
-        // Supprime l'image de la collection
-        // $flat->removeImage($image);
-        $article->getImage()->removeElement($image);
-      }
+      // foreach ($article->getImage() as $image) {
+      //   // Supprime l'image du dossier
+      //   $pictureService->delete($image->getPath());
+      //   // Supprime l'image de la collection
+      //   // $flat->removeImage($image);
+      //   $article->getImage()->removeElement($image);
+      // }
+      $images = $articleFormulaire->get('image')->getData();
 
-      $images = $articleFormulaire->get('images')->getData();
+      if (!empty($images)) {
+        // Supprimer les images existantes seulement si de nouvelles images sont ajoutées
+        foreach ($existingImages as $image) {
+            $pictureService->delete($image->getPath());
+            $article->removeImage($image);
+        }
 
       foreach ($images as $image) {
         // On définit le dossier de destination
@@ -108,6 +117,7 @@ class ArticleController extends AbstractController
         $img->setPath($fichier);
         $article->addImage($img);
       }
+    }
 
       // On stocke
       $em->persist($article);
@@ -126,6 +136,7 @@ class ArticleController extends AbstractController
       'article' => $article
     ]);
   }
+
 
   #[Route('/supprimer/{id}', name: "delete")]
   public function delete(Article $article, EntityManagerInterface $em): Response

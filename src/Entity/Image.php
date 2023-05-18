@@ -21,7 +21,8 @@ class Image
     private $post;
 
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'image')]
-    #[ORM\JoinColumn(nullable: true)]
+    
+    #[ORM\JoinColumn(nullable: false)]
     private $article;
 
     public function getId(): ?int
