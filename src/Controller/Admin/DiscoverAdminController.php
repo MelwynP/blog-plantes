@@ -2,11 +2,11 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\discover;
+use App\Entity\Discover;
 use App\Entity\Images;
 use App\Repository\DiscoverRepository;
-use App\Form\DiscoverForm;
 use App\Repository\ImagesRepository;
+use App\Form\DiscoverForm;
 use App\Service\PictureService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,13 +21,13 @@ class DiscoverAdminController extends AbstractController
 {
     #[Route('/', name: 'index')]
 
-    public function index(): Response
+    public function index(DiscoverRepository $discoverRepository, ImageRepository $imageRepository): Response
     {
-       
-        return $this->render('admin/discover/index.html.twig');
+        $discover = $discoverRepository->findAll();
+        $image = $imageRepository->findAll();
+        return $this->render('admin/discover/index.html.twig', compact('discover', 'image'));
     }
 
-    // Route ajout Flat Admin
     #[Route('/ajouter', name: 'add')]
 
     public function add(Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
@@ -54,7 +54,7 @@ class DiscoverAdminController extends AbstractController
                 // On appelle le service d'ajout
                 $fichier = $pictureService->add($image, $folder, 300, 300);
 
-                $img = new Images();
+                $img = new Image();
                 $img->setPath($fichier);
                 $discover->addImage($img);
             }
@@ -65,10 +65,10 @@ class DiscoverAdminController extends AbstractController
             $this->addFlash('success', 'La découverte à été ajouté avec succès');
 
             // On redirige 
-            return $this->redirectToRoute('app_admin');
+            return $this->redirectToRoute('admin_discover_index');
         }
 
-        return $this->render('discover/add.html.twig', [
+        return $this->render('admin/discover/add.html.twig', [
             'discoverFormulaire' => $discoverFormulaire->createView()
         ]);
     }
@@ -77,69 +77,70 @@ class DiscoverAdminController extends AbstractController
     public function edit(Discover $discover, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        // On crée le formulaire
-        $flatFormulaire = $this->createForm(FlatForm::class, $flat);
 
-        // On traite la requête du formulaire
-        $flatFormulaire->handleRequest($request);
+        $existingImages = $article->getImage()->toArray(); 
 
-        //On vérifie si le formulaire est soumis ET valide
-        if ($flatFormulaire->isSubmitted() && $flatFormulaire->isValid()) {
+        $discoverFormulaire = $this->createForm(DiscoverForm::class, $discover);
 
-            foreach ($flat->getImages() as $image) {
-                // Supprime l'image du dossier
-                $pictureService->delete($image->getTitre());
-                // Supprime l'image de la collection
-                // $flat->removeImage($image);
-                $flat->getImages()->removeElement($image);
+        $discoverFormulaire->handleRequest($request);
+
+        if ($discoverFormulaire->isSubmitted() && $discoverFormulaire->isValid()) {
+
+          $images = $discoverFormulaire->get('image')->getData();
+
+          if (!empty($images)) {
+            // Supprimer les images existantes seulement si de nouvelles images sont ajoutées
+            foreach ($existingImages as $image) {
+                $pictureService->delete($image->getPath());
+                $discover->removeImage($image);
             }
 
-            $images = $flatFormulaire->get('images')->getData();
 
             foreach ($images as $image) {
                 // On définit le dossier de destination
-                $folder = 'flats';
+                $folder = 'imageBlog';
 
                 // On appelle le service d'ajout
                 $fichier = $pictureService->add($image, $folder, 300, 300);
 
-                $img = new Images();
-                $img->setTitre($fichier);
-                $flat->addImage($img);
+                $img = new Image();
+                $img->setPath($fichier);
+                $discover->addImage($img);
             }
+        }
 
             // On stocke
-            $em->persist($flat);
+            $em->persist($discover);
             $em->flush();
 
             $this->addFlash(
                 'success',
-                'Produit modifié avec succès'
+                'Découverte modifié avec succès'
             );
 
             // On redirige
-            return $this->redirectToRoute('admin_flat_index');
+            return $this->redirectToRoute('admin_discover_index');
         }
 
-        return $this->render('admin/flat/edit.html.twig', [
-            'flatFormulaire' => $flatFormulaire->createView(),
-            'flat' => $flat
+        return $this->render('admin/discover/edit.html.twig', [
+            'discoverFormulaire' => $discoverFormulaire->createView(),
+            'discover' => $discover,
         ]);
     }
 
     #[Route('/supprimer/{id}', name: "delete")]
-    public function delete(Flat $flat, EntityManagerInterface $em): Response
+    public function delete(Discover $discover, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $em->remove($flat);
+        $em->remove($discover);
         $em->flush();
 
         $this->addFlash(
             'success',
-            'Produit supprimé avec succès'
+            'Découverte supprimé avec succès'
         );
 
-        return $this->redirectToRoute("admin_flat_index");
+        return $this->redirectToRoute("admin_discover_index");
     }
 }

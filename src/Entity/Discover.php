@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DiscoverRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -33,13 +35,13 @@ class Discover
     private ?string $area = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $content_intro = null;
+    private ?string $contentIntro = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $content_footer = null;
+    private ?string $contentFooter = null;
 
     #[ORM\OneToMany(mappedBy: 'discover', targetEntity: Image::class)]
     private $image;

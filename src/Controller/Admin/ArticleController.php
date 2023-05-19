@@ -77,7 +77,6 @@ class ArticleController extends AbstractController
   public function edit(Article $article, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
   {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
     // Copie des images existantes
     $existingImages = $article->getImage()->toArray(); 
 

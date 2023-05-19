@@ -1,16 +1,62 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Découvrir
+{% block title %}Page découverte
 {% endblock %}
 
 {% block body %}
-	<h2 class="histoire-title">Découvrez le pays a l'honneur </h2>
-	<div class="container">
+	<h2 class="histoire-title">page découverte</h2>
+	<section class="container my-3">
 		<div class="row">
-			<main class="col-lg-9 col-md-8 col-sm-12 border border-light bg-white p-2">
-				
-			</main>
-		</div>
+			<div class="col">
+				<a href="{{ path('admin_discover_add') }}" class="btn btn-success">Ajouter a la page</a>
+				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Pays</th>
+								<th>Capitale</th>
+								<th>Langue</th>
+								<th>Monnaie</th>
+								<th>Population</th>
+								<th>Superficie</th>
+								<th>Contenu introductif</th>
+								<th>Contenu</th>
+								<th>Contenu finale</th>
+								<th>Image</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for discover in discover %}
+								<tr>
+									<td>{{ discover.country }}</td>
+									<td>{{ discover.capital }}</td>
+									<td>{{ discover.language }}</td>
+									<td>{{ discover.currency }}</td>
+									<td>{{ discover.population }}</td>
+									<td>{{ discover.area }}</td>
+									<td>{{ discover.contentIntro }}</td>
+									<td>{{ discover.content }}</td>
+									<td>{{ discover.contentFooter }}</td>
+									<td>
+										{% if discover.image is defined %}
+											{% for image in discover.image %}
+												<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
+											{% endfor %}
+										{% endif %}
+									</td>
+									<td>
+										<a href="{{ path('admin_discover_edit', {id: discover.id})}}" class="btn btn-success">Modifier</a>
+										<a href="{{ path('admin_discover_delete', {id: discover.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce pays ?')">Supprimer</a>
+									</td>
+
+								</tr>
+							</td>
+						</tbody>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
-{% endblock %}
+</div></div></section>{% endblock %}
 
