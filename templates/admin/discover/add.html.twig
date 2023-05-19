@@ -1,16 +1,33 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Administration des articles
+{% block title %}Administration de la page découverte
 {% endblock %}
 
 {% block body %}
-	<h2 class="histoire-title">ajouter un article</h2>
+	<h2 class="histoire-title">ajout de la page découverte</h2>
 	<main class="container">
 		<section class="row">
 			<div class="col-12">
-				{% include "admin/article/_form.html.twig" %}
-			</div>
+				{{ form_start(discoverFormulaire, {'attr': {'id': 'monFormulaire'}}) }}
+
+				{{ form_row(discoverFormulaire.country) }}
+
+				{{ form_row(discoverFormulaire.capital) }}
+
+				{{ form_row(discoverFormulaire.language) }}
+
+				{{ form_row(discoverFormulaire.currency) }}
+				{{ form_row(discoverFormulaire.population) }}
+
+				{{ form_row(discoverFormulaire.area) }}
+				{{ form_row(discoverFormulaire.contentIntro) }}
+				{{ form_row(discoverFormulaire.content) }}
+				{{ form_row(discoverFormulaire.contentFooter) }}
+				{{ form_row(discoverFormulaire.image) }}
+				<button class="btn-style primary">Publier</button>
+				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+				{{ form_end(discoverFormulaire) }}
+      </div>
 		</section>
 	</main>
 {% endblock %}
-

@@ -3,9 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Discover;
-use App\Entity\Images;
+use App\Entity\Image;
 use App\Repository\DiscoverRepository;
-use App\Repository\ImagesRepository;
+use App\Repository\ImageRepository;
 use App\Form\DiscoverForm;
 use App\Service\PictureService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,9 +45,9 @@ class DiscoverAdminController extends AbstractController
 
         if ($discoverFormulaire->isSubmitted() && $discoverFormulaire->isValid()) {
             // On récupère l'image
-            $discover = $discoverFormulaire->get('image')->getData();
+            $images = $discoverFormulaire->get('image')->getData();
 
-            foreach ($image as $image) {
+            foreach ($images as $image) {
                 // On définit le dossier de destination
                 $folder = 'imageBlog';
 
@@ -78,7 +78,7 @@ class DiscoverAdminController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $existingImages = $article->getImage()->toArray(); 
+        $existingImages = $discover->getImage()->toArray(); 
 
         $discoverFormulaire = $this->createForm(DiscoverForm::class, $discover);
 

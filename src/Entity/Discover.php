@@ -43,7 +43,7 @@ class Discover
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $contentFooter = null;
 
-    #[ORM\OneToMany(mappedBy: 'discover', targetEntity: Image::class)]
+    #[ORM\OneToMany(mappedBy: 'discover', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
     private $image;
 
   public function __construct()
@@ -130,12 +130,12 @@ class Discover
 
     public function getContentIntro(): ?string
     {
-        return $this->content_intro;
+        return $this->contentIntro;
     }
 
-    public function setContentIntro(?string $content_intro): self
+    public function setContentIntro(?string $contentIntro): self
     {
-        $this->content_intro = $content_intro;
+        $this->contentIntro = $contentIntro;
 
         return $this;
     }
@@ -154,12 +154,12 @@ class Discover
 
     public function getContentFooter(): ?string
     {
-        return $this->content_footer;
+        return $this->contentFooter;
     }
 
-    public function setContentFooter(?string $content_footer): self
+    public function setContentFooter(?string $contentFooter): self
     {
-        $this->content_footer = $content_footer;
+        $this->contentFooter = $contentFooter;
 
         return $this;
     }

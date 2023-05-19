@@ -4,17 +4,28 @@
 {% endblock %}
 
 {% block body %}
-	<h2 class="histoire-title">Modifier un article</h2>
+	<h2 class="histoire-title">Modifier la page découverte</h2>
 	<main class="container">
 		<section class="row">
 			<div class="col-12">
-				{{ form_start(articleFormulaire, {'attr': {'id': 'monFormulaire'}}) }}
-				{{ form_row(articleFormulaire.title) }}
-				{{ form_row(articleFormulaire.content) }}
-				{{ form_row(articleFormulaire.image) }}
+				{{ form_start(discoverFormulaire, {'attr': {'id': 'monFormulaire'}}) }}
+
+				{{ form_row(discoverFormulaire.country) }}
+
+				{{ form_row(discoverFormulaire.capital) }}
+
+				{{ form_row(discoverFormulaire.language) }}
+
+				{{ form_row(discoverFormulaire.currency) }}
+
+				{{ form_row(discoverFormulaire.area) }}
+				{{ form_row(discoverFormulaire.contentIntro) }}
+				{{ form_row(discoverFormulaire.content) }}
+				{{ form_row(discoverFormulaire.contentFooter) }}
+				{{ form_row(discoverFormulaire.image) }}
 				<div>
-					<label>Images existantes :</label>
-					{% for image in article.image %}
+					<label>Image existante :</label>
+					{% for image in discover.image %}
 						<div class="existing-image">
 							<img
 							src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}" alt="">
@@ -22,13 +33,9 @@
 						</div>
 					{% endfor %}
 				</div>
-
-				{{ form_row(articleFormulaire.category) }}
-				{{ form_row(articleFormulaire.user) }}
 				<button class="btn-style primary">Publier</button>
 				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
-				{{ form_end(articleFormulaire) }}
-
+				{{ form_end(discoverFormulaire) }}
 			</div>
 		</section>
 	</main>

@@ -29,6 +29,8 @@ class DiscoverForm extends AbstractType
             'attr' => [
                 'placeholder' => 'Le nom du pays',
             ],
+      "required" => false,
+
             'label' => 'Pays',
         ])
 
@@ -36,6 +38,8 @@ class DiscoverForm extends AbstractType
                 'attr' => [
                     'placeholder' => 'La capitale du pays',
                 ],
+      "required" => false,
+
                 'label' => 'Capitale',
             ])
 
@@ -43,6 +47,8 @@ class DiscoverForm extends AbstractType
                 'attr' => [
                     'placeholder' => 'La langue du pays',
                 ],
+      "required" => false,
+
                 'label' => 'Langue',
             ])
 
@@ -50,6 +56,8 @@ class DiscoverForm extends AbstractType
                 'attr' => [
                     'placeholder' => 'La monnaie du pays',
                 ],
+      "required" => false,
+
                 'label' => 'Monnaie',
             ])
 
@@ -57,6 +65,8 @@ class DiscoverForm extends AbstractType
               'attr' => [
                   'placeholder' => 'La population du pays',
                ],
+      "required" => false,
+
                 'label' => 'Population',
             ])
 
@@ -64,6 +74,8 @@ class DiscoverForm extends AbstractType
               'attr' => [
                   'placeholder' => 'La superficie du pays',
                ],
+      "required" => false,
+
                 'label' => 'Superficie',
             ])
 
@@ -71,6 +83,8 @@ class DiscoverForm extends AbstractType
               'attr' => [
                   'placeholder' => 'Contenu introductif',
                ],
+      "required" => false,
+
                 'label' => 'Contenu introductif',
             ])
 
@@ -78,6 +92,8 @@ class DiscoverForm extends AbstractType
               'attr' => [
                   'placeholder' => 'Contenu',
                ],
+      "required" => false,
+
                 'label' => 'Contenu',
             ])
 
@@ -85,6 +101,8 @@ class DiscoverForm extends AbstractType
               'attr' => [
                   'placeholder' => 'Contenu finale',
                ],
+      "required" => false,
+
                 'label' => 'Contenu finale',
             ])
 
