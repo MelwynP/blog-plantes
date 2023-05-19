@@ -22,7 +22,9 @@ class Article
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
-    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\ManyToOne(inversedBy: 'article')]
+    #[ORM\JoinColumn(nullable: true)]
+
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'article')]
@@ -30,6 +32,7 @@ class Article
     private ?Category $category = null;
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: true)]
     private $image;
 
     public function __construct()

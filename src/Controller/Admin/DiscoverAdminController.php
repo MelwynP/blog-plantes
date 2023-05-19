@@ -57,6 +57,8 @@ class DiscoverAdminController extends AbstractController
                 $img = new Image();
                 $img->setPath($fichier);
                 $discover->addImage($img);
+
+                
             }
 
             $em->persist($discover);

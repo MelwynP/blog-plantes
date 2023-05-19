@@ -33,14 +33,8 @@ class ArticleController extends AbstractController
   public function add(Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
   {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
-    //On crée un nouvel objet Photo
     $article = new Article();
-
-    //On crée le formulaire
     $articleFormulaire = $this->createForm(ArticleForm::class, $article);
-
-    //On traite la requête du formulaire
     $articleFormulaire->handleRequest($request);
 
     if ($articleFormulaire->isSubmitted() && $articleFormulaire->isValid()) {
@@ -56,11 +50,19 @@ class ArticleController extends AbstractController
 
         $img = new Image();
         $img->setPath($fichier);
+        $img->setArticle($article);
         $article->addImage($img);
+
+        // $article = $articleFormulaire->get('article')->getData();
+
+
       }
+
+      // $article->setUser($this->getUser());
 
       $em->persist($article);
       $em->flush();
+
 
       $this->addFlash('success', 'Article ajouté avec succès');
       

@@ -23,7 +23,7 @@ class Image
     private $post;
 
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'image')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $article;
 
     #[ORM\ManyToOne(targetEntity: Discover::class, inversedBy: 'image')]

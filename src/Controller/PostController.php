@@ -45,12 +45,13 @@ class PostController extends AbstractController
 
     #[Route('/ajouter', name: 'add')]
     // function qui permet de creer un nouveau post si l'utilisateur est connecté 
-    public function create(Request $request,EntityManagerInterface $em, PictureService $pictureService): Response
+    public function add(Request $request,EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $post = new Post();
         $PostForm = $this->createForm(PostType::class, $post);
         $PostForm->handleRequest($request);
+
         if ($PostForm->isSubmitted() && $PostForm->isValid()) {
             $image = $PostForm->get('image')->getData();
               //  si l'utilisateur a ajouté une image, on la traite et on l'enregistre dans le dossier public/uploads 
@@ -105,9 +106,9 @@ class PostController extends AbstractController
         $post->getImage()->removeElement($image);
       }
 
-      $images = $PostForm->get('images')->getData();
+      $image = $PostForm->get('image')->getData();
 
-      foreach ($images as $image) {
+      foreach ($image as $image) {
         // On définit le dossier de destination
         $folder = 'imageBlog';
 
