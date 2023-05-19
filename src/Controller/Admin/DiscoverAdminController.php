@@ -73,7 +73,7 @@ class DiscoverAdminController extends AbstractController
         ]);
     }
 
-    #[Route('/modidier/{id}', name: 'edit')]
+    #[Route('/modifier/{id}', name: 'edit')]
     public function edit(Discover $discover, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
