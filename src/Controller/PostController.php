@@ -64,6 +64,7 @@ class PostController extends AbstractController
 
                 $img = new Image();
                 $img->setPath($fichier);
+                $img->setPost($post);
                 $post->addImage($img);
               }
               
@@ -93,22 +94,22 @@ class PostController extends AbstractController
           $this->addFlash("error", "Vous ne pouvez pas modifier une publication qui ne vous appartient pas.");
           return $this->redirectToRoute('app_post_index');
         }
+    $existingImages = $post->getImage()->toArray(); 
 
         $PostForm = $this->createForm(PostType::class, $post);
         $PostForm->handleRequest($request);
+
         if ($PostForm->isSubmitted() && $PostForm->isValid()) {
+      $images = $PostForm->get('image')->getData();
 
+      if (!empty($images)) {
+        // Supprimer les images existantes seulement si de nouvelles images sont ajoutées
+        foreach ($existingImages as $image) {
+          $pictureService->delete($image->getPath());
+          $post->removeImage($image);
+        }
 
-      foreach ($post->getImage() as $image) {
-        // Supprime l'image du dossier
-        $pictureService->delete($image->getPath());
-        // Supprime l'image de la collection
-        $post->getImage()->removeElement($image);
-      }
-
-      $image = $PostForm->get('image')->getData();
-
-      foreach ($image as $image) {
+      foreach ($images as $image) {
         // On définit le dossier de destination
         $folder = 'imageBlog';
 
@@ -118,6 +119,7 @@ class PostController extends AbstractController
         $img = new Image();
         $img->setPath($fichier);
         $post->addImage($img);
+      }
       }
 
             $em->persist($post);
@@ -129,6 +131,7 @@ class PostController extends AbstractController
         }
         return $this->render('post/edit.html.twig', [
             "PostForm" => $PostForm->createView(),
+            'post' => $post,
         ]);
     }
 

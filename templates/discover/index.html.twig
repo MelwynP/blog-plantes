@@ -8,7 +8,27 @@
 {% block body %}
 <h2>Découverte</h2>
 
+{% for discover in discover %}
+{% for image in discover.image %}
 
+{% if image.path %}
+	<img src="{{ asset('assets/uploads/imageBlog/' ~ image.path) }}">
+{% endif %}
+
+{% endfor %}
+  {{ discover.country }}
+  {{ discover.capital }}
+  {{ discover.language }}
+  {{ discover.currency }}
+  {{ discover.population }}
+  {{ discover.area }}
+
+  {{ discover.contentIntro }}
+  {{ discover.content }}
+  {{ discover.contentFooter }}
+
+
+{% endfor %}
 
 
 {% endblock %}

@@ -18,20 +18,29 @@
 	{% endfor %}
 
 
-	{% for post in post %}
-		{% for image in post.image %}
-			{% if image.path %}
-				<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
-			{% endif %}
-			{% if post.title %}
-				{{ post.title }}
-				{% if app.user and app.user is same as post.user %}
-					<a href="{{ path('app_post_edit', { id: post.id }) }}">Modifier</a>
-					<a href="{{ path('app_post_delete', { id: post.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
-				{% endif %}
-			{% endif %}
-		{% endfor %}
+{% for post in post %}
+	{% for image in post.image %}
+		{% if image.path %}
+			<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
+		{% endif %}
 	{% endfor %}
+	{% if post.title %}
+		{{ post.title }}
+	{% endif %}
+	{% if post.content %}
+		{{ post.content }}
+	{% endif %}
+	{% if post.publishedAt %}
+{{ post.publishedAt|date('d/m/Y H\\hi') }}
+
+
+	{% endif %}
+	{% if app.user and app.user is same as post.user %}
+		<a href="{{ path('app_post_edit', { id: post.id }) }}">Modifier</a>
+		<a href="{{ path('app_post_delete', { id: post.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
+	{% endif %}
+{% endfor %}
+
 
 
 	{% for message in app.flashes('error') %}
