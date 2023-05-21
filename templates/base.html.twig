@@ -39,10 +39,10 @@
 				{% if app.user %}
 					Bienvenue
 					{{ app.user.pseudo}}
-					<a href="{{ path('app_logout') }}">Se déconnecter</a>
+					{# <a href="{{ path('app_logout') }}">Se déconnecter</a> #}
 					<a class="nav-link" href="{{ path('app_post_add') }}">Publier</a>
-				{% else %}
-					<a href="{{ path('app_login') }}">Se connecter</a>
+				{# {% else %} #}
+					{# <a href="{{ path('app_login') }}">Se connecter</a> #}
 				{% endif %}
 			</div>
 		</div>

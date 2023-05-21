@@ -105,7 +105,7 @@ class UserFixture extends Fixture
     $article1->setCategory($category);
     $article1->setUser($admin);
     $manager->persist($article1);
-    $this->addReference('Costa Rica', $article1);
+    $this->addReference('article1', $article1);
 
     $post1 = new post();
     $post1->setTitle('Une expérience naturelle inoubliable');
@@ -137,6 +137,26 @@ class UserFixture extends Fixture
     $manager->persist($post3);
     $this->addReference('post3', $post3);
 
+
+    $discover1 = new Discover();
+    $discover1->setCountry('Costa Rica');
+    $discover1->setCapital('San José');
+    $discover1->setLanguage('Espagnol');
+    $discover1->setCurrency('Colón costaricien');
+    $discover1->setArea('51 100 km²');
+    $discover1->setPopulation('5,1 millions');
+    $discover1->setContentIntro("Le Costa Rica, petit joyau d'Amérique centrale, est un pays qui évoque des images de plages tropicales, de jungles luxuriantes et de volcans majestueux. Niché entre la mer des Caraïbes et l'océan Pacifique, ce pays fascinant offre aux voyageurs une expérience inoubliable au cœur de la nature. Mais le Costa Rica est bien plus qu'une simple destination de vacances exotique. C'est un pays qui met en avant des valeurs telles que la préservation de l'environnement, l'éducation et la paix.");
+    $discover1->setContent("Le Costa Rica est réputé pour sa biodiversité extraordinaire, abritant une multitude d'espèces animales et végétales uniques au monde. Ses parcs nationaux et ses réserves naturelles offrent des opportunités incroyables d'explorer des écosystèmes variés, allant des forêts tropicales humides aux mangroves en passant par les récifs coralliens. Les amoureux de la nature peuvent observer des singes hurleurs, des toucans colorés, des paresseux tranquilles et même des tortues marines venant pondre sur les plages.
+    <br>
+    Le Costa Rica est également connu pour sa politique environnementale progressiste. Le pays s'est fixé pour objectif d'être neutre en carbone d'ici 2021, en favorisant les énergies renouvelables et en protégeant ses ressources naturelles. Les initiatives de conservation sont mises en place pour préserver les habitats fragiles et promouvoir le tourisme durable. Les visiteurs ont la possibilité de participer à des activités respectueuses de l'environnement, telles que l'observation des oiseaux, la randonnée dans la canopée et l'exploration des parcs nationaux.
+    <br>
+    Le peuple costaricien, appelé les 'Ticos', est réputé pour sa convivialité et sa joie de vivre. Leur devise nationale, 'Pura Vid', résume leur façon de voir la vie : profiter de l'instant présent, être reconnaissant pour les petites choses et trouver le bonheur dans la simplicité. Les traditions et la culture costariciennes sont profondément enracinées, et les visiteurs peuvent découvrir la cuisine locale, la musique traditionnelle et les danses folkloriques lors de festivals colorés.");
+    $discover1->setContentFooter("En conclusion, le Costa Rica est une destination de voyage extraordinaire qui offre une combinaison parfaite de nature préservée, d'aventure, de culture et de détente. Que vous soyez un passionné de plein air à la recherche de nouvelles découvertes ou que vous souhaitiez simplement vous détendre sur des plages de sable blanc, le Costa Rica saura vous séduire.
+    <br>
+    En explorant ce pays enchanteur, vous serez émerveillé par la richesse de sa biodiversité, la beauté de ses paysages et l'hospitalité chaleureuse de ses habitants. Que vous choisissiez de vous aventurer dans les profondeurs de la forêt tropicale, de vous détendre sur une plage isolée ou d'admirer les volcans actifs, chaque instant au Costa Rica sera une expérience inoubliable.");
+    $manager->persist($discover1);
+    $this->addReference('decouverte1', $discover1);
+
     $image1 = new Image();
     $user = $this->getReference('post1');
     $image1->setPost($post1);
@@ -156,19 +176,17 @@ class UserFixture extends Fixture
     $manager->persist($image3);
 
     $image4 = new Image();
-    $user = $this->getReference('Costa Rica');
+    $user = $this->getReference('article1');
     $image4->setArticle($article1);
     $image4->setPath('1c9cf1c7a50e8e814b8daf61fb005795.webp');
     $manager->persist($image4);
-
-    $discover = new Discover();
-    $discover->setCountry('Costa Rica');
-    $discover->setCapital('San José');
-    $discover->setLanguage('Espagnol');
-    $discover->setCurrency('Colón costaricien');
-    $discover->setArea('51 100 km²');
-    $discover->setPopulation('5,1 millions');
     
+    $image5 = new Image();
+    $user = $this->getReference('decouverte1');
+    $image5->setDiscover($discover1);
+    $image5->setPath('2c96d7031a6f310169cc33add733cff0.webp');
+    $manager->persist($image5);
+
 
 
 

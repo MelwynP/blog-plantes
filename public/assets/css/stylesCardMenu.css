@@ -1,0 +1,375 @@
+/* CARTE ET MENU  */
+@media screen and (min-width: 1024px) {
+  .titleMargeh2 {
+    margin-top: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
+    width: 65%;
+  }
+
+  .separateur {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 -20px;
+  }
+
+  .separateur img {
+    /* height: 100px; */
+    max-width: 100%;
+    width: 50%;
+  }
+
+  .titre-category-name {
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+
+  .flat-item {
+    font-family: 'Saira', sans-serif;
+    color: #C78522;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    width: 50%;
+    max-width: 50%;
+  }
+
+  .flat-name {
+    font-size: 22px;
+    /* margin-left: 75px; */
+  }
+
+  .flat-price {
+    font-size: 22px;
+    /* margin-right: 75px; */
+  }
+
+  .flat-description {
+    font-family: 'Saira', sans-serif;
+    color: #493414;
+    display: flex;
+    width: 50%;
+    max-width: 50%;
+    font-size: 18px;
+    justify-content: flex-start;
+    margin-top: -5px;
+  }
+
+  .menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cardMenu {
+    max-width: 100%;
+    width: 45%;
+    height: 750px;
+    margin: 50px;
+    border-radius: 15px;
+    background-image: url('/assets/pictures/backGroundMenu.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+
+  .titreMenu {
+    font-family: 'Oregano Regular', sans-serif;
+    color: #fff;
+    font-size: 44px;
+    margin-top: 300px;
+  }
+
+  .choiceMenu {
+    font-family: 'Oregano Regular', sans-serif;
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 70px;
+
+  }
+
+  .prixDescriptionMenu {
+
+    font-family: 'Oregano Regular', sans-serif;
+    color: #fff;
+    /* margin: 0 px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .prix {
+    background-color: #fff;
+    font-size: 22px;
+    color: black;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 55px;
+    margin-right: 20px;
+    position: relative;
+    top: -22px;
+    transform: rotate(-20deg);
+  }
+
+  .description {
+    font-style: italic;
+    margin-left: 20px;
+    font-size: 20px;
+    margin-bottom: 40px;
+
+  }
+}
+
+
+/* VUE TABLETTE PAGE CARTE ET MENU -------------- */
+@media screen and (max-width: 1024px) {
+  .titleMargeh2 {
+    margin-top: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+
+  .separateur {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 -20px;
+  }
+
+  .separateur img {
+    height: 80px;
+  }
+
+  .titre-category-name {
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+
+  .flat-item {
+    font-family: 'Saira', sans-serif;
+    color: #C78522;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    width: 80%;
+    max-width: 80%;
+  }
+
+  .flat-name {
+    font-size: 19px;
+  }
+
+  .flat-price {
+    font-size: 19px;
+  }
+
+  .flat-description {
+    font-family: 'Saira', sans-serif;
+    color: #493414;
+    display: flex;
+    width: 80%;
+    max-width: 80%;
+    font-size: 15px;
+    justify-content: flex-start;
+    margin-top: -5px;
+  }
+
+  .menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cardMenu {
+    width: 70%;
+    height: 550px;
+    margin: 50px 10px 10px;
+    /* padding: 10px; */
+    border-radius: 15px;
+    background-image: url('/assets/pictures/backGroundMenu.jpg');
+    background-size: cover;
+    /* pour couvrir l'ensemble de la zone */
+    background-position: center;
+    /* pour centrer l'image */
+  }
+
+
+  .titreMenu {
+    font-family: 'Oregano Regular', sans-serif;
+    color: #fff;
+    font-size: 30px;
+    margin-top: 230px;
+  }
+
+  .choiceMenu {
+    font-family: 'Oregano Regular', sans-serif;
+    color: #fff;
+    font-size: 21px;
+
+  }
+
+  .prixDescriptionMenu {
+
+    font-family: 'Oregano Regular', sans-serif;
+    color: #fff;
+    /* margin: 0 px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .prix {
+    background-color: #fff;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 55px;
+    margin-right: 20px;
+    position: relative;
+    top: -45px;
+    transform: rotate(-20deg);
+  }
+
+  .description {
+    font-style: italic;
+    margin-left: 20px;
+    font-size: 18px;
+    margin-bottom: 40px;
+
+  }
+}
+
+/* VUE TELEPHONE PAGE CARTE ET MENU-------------- */
+@media screen and (max-width: 768px) {
+
+  .titleMargeh2 {
+    margin-top: 10px;
+  }
+
+  .separateur {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 -20px;
+  }
+
+  .separateur img {
+    height: 45px;
+  }
+
+  .titre-category-name {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .flat-item {
+    font-family: 'Saira', sans-serif;
+    color: #C78522;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    width: 80%;
+    max-width: 80%;
+  }
+
+  .flat-name {
+    font-size: 17px;
+  }
+
+  .flat-price {
+    font-size: 17px;
+  }
+
+  .flat-description {
+    font-family: 'Saira', sans-serif;
+    color: #493414;
+    display: flex;
+    width: 80%;
+    max-width: 80%;
+    font-size: 12px;
+    justify-content: flex-start;
+    margin-top: -5px;
+  }
+
+  .menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cardMenu {
+    width: 90%;
+    height: 550px;
+    margin: 50px 10px 10px;
+    /* padding: 10px; */
+    border-radius: 15px;
+    background-image: url('/assets/pictures/backGroundMenu.jpg');
+    background-size: cover;
+    /* pour couvrir l'ensemble de la zone */
+    background-position: center;
+    /* pour centrer l'image */
+  }
+
+
+  .titreMenu {
+    font-family: 'Oregano Regular', sans-serif;
+    color: #fff;
+    font-size: 24px;
+    margin-top: 230px;
+  }
+
+  .choiceMenu {
+    font-family: 'Oregano Regular', sans-serif;
+    color: #fff;
+    font-size: 21px;
+
+  }
+
+  .prixDescriptionMenu {
+    font-family: 'Oregano Regular', sans-serif;
+    color: #fff;
+    /* margin: 0 px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .prix {
+    background-color: #fff;
+    font-size: 16px;
+
+    color: black;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 55px;
+    margin-right: 20px;
+    position: relative;
+    /* margin-top: -26px; */
+    transform: rotate(-20deg);
+  }
+
+  .description {
+    font-style: italic;
+    margin-left: 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+
+  }
+
+
+
+}

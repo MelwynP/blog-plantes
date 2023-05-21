@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230519125704 extends AbstractMigration
+final class Version20230521215126 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,7 +22,7 @@ final class Version20230519125704 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, category_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, content LONGTEXT DEFAULT NULL, INDEX IDX_23A0E66A76ED395 (user_id), INDEX IDX_23A0E6612469DE2 (category_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(150) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE discover (id INT AUTO_INCREMENT NOT NULL, country VARCHAR(255) DEFAULT NULL, capital VARCHAR(255) DEFAULT NULL, language VARCHAR(255) DEFAULT NULL, currency VARCHAR(255) DEFAULT NULL, population INT DEFAULT NULL, area VARCHAR(255) DEFAULT NULL, content_intro LONGTEXT DEFAULT NULL, content LONGTEXT DEFAULT NULL, content_footer LONGTEXT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE discover (id INT AUTO_INCREMENT NOT NULL, country VARCHAR(255) DEFAULT NULL, capital VARCHAR(255) DEFAULT NULL, language VARCHAR(255) DEFAULT NULL, currency VARCHAR(255) DEFAULT NULL, population VARCHAR(255) DEFAULT NULL, area VARCHAR(255) DEFAULT NULL, content_intro LONGTEXT DEFAULT NULL, content LONGTEXT DEFAULT NULL, content_footer LONGTEXT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE image (id INT AUTO_INCREMENT NOT NULL, post_id INT DEFAULT NULL, article_id INT DEFAULT NULL, discover_id INT DEFAULT NULL, path VARCHAR(200) DEFAULT NULL, INDEX IDX_C53D045F4B89032C (post_id), INDEX IDX_C53D045F7294869C (article_id), INDEX IDX_C53D045F98537D7C (discover_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE post (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, title VARCHAR(100) DEFAULT NULL, content LONGTEXT NOT NULL, published_at DATETIME NOT NULL, INDEX IDX_5A8A6C8DA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, name VARCHAR(255) DEFAULT NULL, pseudo VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', is_verified TINYINT(1) NOT NULL, reset_token VARCHAR(100) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

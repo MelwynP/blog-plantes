@@ -1,0 +1,125 @@
+/* -----------div animation vue pc------------- */
+@media(min-width: 1024px) {
+  .separateur-register {
+    margin-bottom: 20px;
+  }
+
+  .blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(27, 25, 25, 0.4);
+    /* Opacité de 70% pour l'écran de fond */
+    backdrop-filter: blur(2px);
+    /* Flou d'arrière-plan */
+    z-index: 1;
+    /* Placer l'écran de fond en dessous du message */
+  }
+
+  .inscription-message {
+    border: 1px solid black;
+    font-family: 'David Libre', sans-serif;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 600;
+    color: #040F48;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 35%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+}
+
+
+
+/* -----------div animation vue tablette------------- */
+@media(max-width: 1024px) {
+  .separateur-register {
+    margin-bottom: 20px;
+  }
+
+  .blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(27, 25, 25, 0.4);
+    /* Opacité de 70% pour l'écran de fond */
+    backdrop-filter: blur(2px);
+    /* Flou d'arrière-plan */
+    z-index: 1;
+    /* Placer l'écran de fond en dessous du message */
+  }
+
+  .inscription-message {
+    border: 1px solid black;
+    font-family: 'David Libre', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #040F48;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 55%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+}
+
+
+
+
+/*------div animation page register-----vue mobile------------  */
+@media(max-width: 768px) {
+  .separateur-register {
+    margin-bottom: 20px;
+  }
+
+  .blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(27, 25, 25, 0.4);
+    /* Opacité de 70% pour l'écran de fond */
+    backdrop-filter: blur(2px);
+    /* Flou d'arrière-plan */
+    z-index: 1;
+    /* Placer l'écran de fond en dessous du message */
+  }
+
+  .inscription-message {
+    border: 1px solid black;
+    font-family: 'David Libre', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #040F48;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 85%;
+    height: 350px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+}

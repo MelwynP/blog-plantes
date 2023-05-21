@@ -28,8 +28,8 @@ class Discover
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $currency = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $population = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $population = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $area = null;
@@ -104,12 +104,12 @@ class Discover
         return $this;
     }
 
-    public function getPopulation(): ?int
+    public function getPopulation(): ?string
     {
         return $this->population;
     }
 
-    public function setPopulation(?int $population): self
+    public function setPopulation(?string $population): self
     {
         $this->population = $population;
 
