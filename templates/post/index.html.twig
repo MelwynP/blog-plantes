@@ -16,43 +16,45 @@
 			<p>Découvrez chaque mois de nouveaux articles captivants sur des destinations du monde entier. Partagez vos expériences, astuces et photos avec notre communauté de voyageurs enregistrés. Respectez les règles de conduite pour une expérience agréable pour tous. Rejoignez-nous et faites-nous rêver avec vos aventures extraordinaires !</p>
 		</div>
 
-		<h2 class="histoire-title">Ce mois-ci, nous mettons en lumière le Costa Rica !</h2>
 
-<div class="imageAccueil-container">
-	{% for article in article %}
-				{# <h2>{{ article.title }}</h2> #}
-				{% for image in article.image %}
-					{% if image.path %}
-						<img src="{{ asset('assets/uploads/imageBlog/' ~ image.path) }} {# alt="blog the world" class=" rounded-image"#}>
-					{% endif %}
-				{% endfor %}
-			{% endfor %}
-</div>
-
-
-
-		{% for post in post %}
-			{% for image in post.image %}
-				{% if image.path %}
-					<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
+		{% for article in article %}
+			<h2 class="histoire-title">Ce mois-ci, nous mettons en lumière le
+				{{ article.title }}
+				!</h2>
+			<div class="imageAccueil-container">
+				{% if article.image.first %}
+					<img src="{{ asset('assets/uploads/imageBlog/' ~ article.image.first.path) }}" class="rounded-image">
 				{% endif %}
 			{% endfor %}
-			{% if post.title %}
-				{{ post.title }}
-			{% endif %}
-			{% if post.content %}
-				{{ post.content }}
-			{% endif %}
-			{% if post.publishedAt %}
-				{{ post.publishedAt|date('d/m/Y H\\hi') }}
+		</div>
+
+		<a href="{{ path('app_post_add') }}" class="btn-reserve">
+			Déposer un post</a>
 
 
+		{# {% if app.user and app.user is same as post.user %}
+												<a href="{{ path('app_post_edit', { id: post.id }) }}">Modifier</a>
+												<a href="{{ path('app_post_delete', { id: post.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
+											{% endif %} #}
+
+	<div class="containerCard">
+{% for post in post %}
+		<div class="card">
+			{% if post.image.first() %}
+				<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ post.image.first().path) }}" alt="Post Image" class="imageCard">
 			{% endif %}
-			{% if app.user and app.user is same as post.user %}
-				<a href="{{ path('app_post_edit', { id: post.id }) }}">Modifier</a>
-				<a href="{{ path('app_post_delete', { id: post.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
-			{% endif %}
-		{% endfor %}
+			<h4>{{ post.title }}</h4>
+			<p>{{ post.content }}</p>
+			<p class="publication-date">Publié le {{ post.publishedAt|date('d/m/Y à H\\hi') }}</p>
+		</div>
+{% endfor %}
+	</div>
+
+
+
+
+
+
 
 
 		{% for message in app.flashes('error') %}
@@ -61,7 +63,5 @@
 			</div>
 		{% endfor %}
 
-	</div>
-
-
-{% endblock %}
+</div>
+	{% endblock %}
