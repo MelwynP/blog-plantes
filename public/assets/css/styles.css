@@ -30,212 +30,242 @@ body {
 /* ------------VUE--PC------------- */
 @media(min-width: 1024px) {
 
-  /* Image accueil + titre h1 */
-  /* -------------------------- */
-  .imageAccueil-container {
-    position: relative;
-    display: inline-block;
+/* -------Message bienvenue + pseudo et bouton ----- */
+.welcome-container {
+    position: absolute;
+    top: 132px;
+    width: 100%;
+
+  }
+
+  .welcome-box {
+    background-color: #ffffff;
+    border: 1px solid #94778B;
+    border-radius: 5px;
+    padding: 3px;
+  }
+
+  .welcome-text {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 18px;
+    /* margin-bottom: 10px; */
     text-align: center;
-    width: 80%;
-    margin: 25px;
+    margin: 0px;
+    font-family: 'David Libre', sans-serif;
   }
 
-  .rounded-image {
-    border-radius: 7px;
-    border: 1px solid black;
-    width: 80%;
-    height: auto;
-  }
 
+/*-------- Titre h1--------- */
   .title-first {
     text-align: center;
     font-size: 42px;
     font-weight: 500;
     color: #94778B;
     font-family: 'David Libre', sans-serif;
-    margin: 55px 25px 45px 25px
+    margin: 0px 25px 40px 25px
   }
 
-  /* Notre histoire + titre h2 */
-  /* ------------- */
-  .histoire-title {
-    text-align: center;
-    font-size: 42px;
-    font-weight: 500;
-    color: #94778B;
-    font-family: 'David Libre', sans-serif;
-    margin: 45px 25px 45px 25px
-  }
-
+  /* ------info box------ */
   .info-box {
     position: relative;
     display: inline-block;
     text-align: center;
-    width: 55%;
+    width: 60%;
     margin-top: 25px;
-    margin-bottom: 25px;
     background-color: #1F5673;
     border-radius: 12px;
     border: 1px solid black;
   }
 
   .info-box p {
-    color: #FFF;
+    color: #ffffff;
     font-family: 'David Libre', sans-serif;
-    font-size: 24px;
-    margin: 35px 45px;
+    font-size: 22px;
+    margin: 15px;
     text-align: center;
   }
 
-  /* Titre h3 */
-  /* ---------------------- */
-  .title-h3 {
-    font-family: 'David Libre', sans-serif;
-    font-size: 42px;
+  /* ----- titre h2------- */
+  .histoire-title {
+    text-align: center;
+    font-size: 38px;
     font-weight: 500;
     color: #94778B;
-    text-align: center;
-    margin: 40px 25px 30px 25px;
-    margin-top: 45px;
-    margin-bottom: 45px;
-  }
-
-  /* Les plats préférés */
-  /* --------------------- */
-  .imageFlat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 30px;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    width: 80%;
-  }
-
-  .imageFlat-container {
-    position: relative;
-    height: 0;
-    padding-bottom: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 3px;
-  }
-
-  .imageFlat-container img {
-    border-radius: 7px;
-    border: 2px solid black;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .overlay {
     font-family: 'David Libre', sans-serif;
-    font-size: 30px;
-    background-color: rgba(255, 255, 255, 255);
-    position: absolute;
-    padding: 5px 0 5px 0;
-    margin: 0px 20px 5px 20px;
-    border-radius: 10px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: #040F48;
-    opacity: 0;
-    text-align: center;
-    transition: opacity 0.4s ease;
+    margin-top: 20px;
+    margin: 50px 25px 30px 25px;
+    /* margin-bottom: 5px; */
   }
 
-  .imageFlat-container:hover .overlay {
-    opacity: 1;
-  }
-
-  /* Bouton */
-  /* ---------------------- */
-  .btn-reserve {
-    font-family: 'David Libre', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    color: white;
-    background-color: #1F5673;
-    padding: 10px 10px 15px 10px;
-    border-radius: 7px;
-    display: block;
-    margin: 50px auto;
-    margin-top: 70px;
-    margin-bottom: 30px;
-    width: 250px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.1s ease;
-    border: 4px solid #1F5673;
-  }
-
-  .btn-reserve:hover {
-    color: #1F5673;
-    font-weight: 600;
-    font-size: 18px;
-    background-color: white;
-    border: 4px solid #1F5673;
-  }
-}
-
-/* ------------VUE--TABLETTE------------- */
-@media(max-width: 1024px) {
-
-  /* Image accueil + titre h1 */
-  /* -------------------------- */
+  /*----------Image accueil ---------- */
   .imageAccueil-container {
     position: relative;
     display: inline-block;
     text-align: center;
-    width: 95%;
+    width: 60%;
     margin: 25px;
   }
 
   .rounded-image {
     border-radius: 7px;
     border: 1px solid black;
-    width: 95%;
+    width: 100%;
     height: auto;
   }
 
-  .image-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: white;
+  /*-------- Bouton -------*/
+  .btn-reserve {
     font-family: 'David Libre', sans-serif;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 22px;
+    color: white;
+    background-color: #1F5673;
+    padding: 10px 15px;
+    border-radius: 7px;
+    display: block;
+    /* margin: 30px auto; */
+    margin-top: 40px;
+    margin-bottom: 45px;
+    width: 245px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #1F5673;
   }
 
+  .btn-reserve:hover {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 22px;
+    background-color: white;
+    border: 2px solid #1F5673;
+  }
+
+  /* --------Les posts------- */
+  .containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0px 60px;
+  }
+
+  .card {
+    flex-basis: calc(33% - 20px);
+    background-color: #94778B;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .imageCard {
+    margin-top: 13px;
+    border-radius: 3%;
+    max-width: 93%;
+    width: 93%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .card h4 {
+    color: #000000;
+    font-weight: 600;
+    font-family: 'David Libre';
+    font-size: 24px;
+    margin: 5px 8px 5px 8px;
+    text-align: center;
+  }
+
+  .content-post {
+    font-family: 'David Libre';
+    color: #ffffff;
+    font-size: 20px;
+    text-align: justify;
+    margin: 0px 10px 5px 10px;
+  }
+
+  .publication-date {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'David Libre';
+    color: #000000;
+    text-align: center;
+    margin: 5px;
+
+  }
+
+  /* -----bouton des posts------ */
+  .btn-post-inline {
+    display: inline-block;
+    margin: 20px;
+  }
+
+  .btn-post {
+    font-family: 'David Libre', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    background-color: #1F5673;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 15px auto;
+    width: 135px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #1F5673;
+  }
+
+  .btn-post:hover {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: white;
+    border: 2px solid #1F5673;
+  }
+}
+
+@media(max-width: 1024px) {
+
+  /* -------Message bienvenue ----- */
+    .welcome-container {
+        position: absolute;
+        top: 115px;
+        width: 100%;
+    
+      }
+    
+      .welcome-box {
+        background-color: #ffffff;
+        border: 1px solid #94778B;
+        border-radius: 5px;
+        padding: 3px;
+      }
+    
+      .welcome-text {
+        color: #1F5673;
+        font-weight: 500;
+        font-size: 18px;
+        /* margin-bottom: 10px; */
+        text-align: center;
+        margin: 0px;
+        font-family: 'David Libre', sans-serif;
+      }
+
+    /*-------- Titre h1--------- */
   .title-first {
     text-align: center;
-    font-size: 30px;
-    font-weight: 500;
-    color: #94778B;
-    font-family: 'David Libre', sans-serif;
-    margin: 55px 25px 45px 25px
-  }
-
-  /* Notre histoire + titre h2 */
-  /* ------------- */
-  .histoire-title {
-    text-align: center;
     font-size: 28px;
     font-weight: 500;
     color: #94778B;
     font-family: 'David Libre', sans-serif;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 15px 25px 20px 25px
   }
 
+  /* ------info box------ */
   .info-box {
     position: relative;
     display: inline-block;
@@ -248,112 +278,26 @@ body {
   }
 
   .info-box p {
-    color: #FFF;
-    font-family: 'David Libre', sans-serif;
-    font-size: 18px;
-    margin: 18px;
-    text-align: center;
-  }
-
-  /* Titre h3 */
-  /* ---------------------- */
-  .title-h3 {
-    font-family: 'David Libre', sans-serif;
-    font-size: 28px;
-    font-weight: 500;
-    color: #94778B;
-    text-align: center;
-    margin: 40px 25px 30px 25px;
-  }
-
-  /* Les plats préférés */
-  /* --------------------- */
-  .imageFlat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 10px;
-    width: 97%;
-  }
-
-  .imageFlat-container {
-    position: relative;
-    height: 0;
-    padding-bottom: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 3px;
-  }
-
-  .imageFlat-container img {
-    border-radius: 7px;
-    border: 2px solid black;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .overlay {
+    color: #ffffff;
     font-family: 'David Libre', sans-serif;
     font-size: 20px;
-    background-color: rgba(255, 255, 255, 255);
-    position: absolute;
-    padding: 5px 0 5px 0;
-    margin: 0px 20px 5px 20px;
-    border-radius: 10px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: #040F48;
-    opacity: 0;
+    margin: 15px;
     text-align: center;
-    transition: opacity 0.4s ease;
   }
 
-  .imageFlat-container:hover .overlay {
-    opacity: 1;
-  }
-
-  /* Bouton */
-  /* ---------------------- */
-  .btn-reserve {
+  /* ----- titre h2------- */
+  .histoire-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 500;
+    color: #94778B;
     font-family: 'David Libre', sans-serif;
-    font-weight: 600;
-    font-size: 17px;
-    color: white;
-    background-color: #1F5673;
-    padding: 10px 25px;
-    border-radius: 7px;
-    display: block;
-    margin: 50px auto;
-    margin-top: 50px;
-    margin-bottom: 40px;
-    width: 240px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.1s ease;
-    border: 2px solid #1F5673;
+    margin-top: 20px;
+    margin: 45px 25px 25px 25px;
+    /* margin-bottom: 5px; */
   }
 
-  .btn-reserve:hover {
-    color: #1F5673;
-    font-weight: 600;
-    font-size: 17px;
-    background-color: white;
-    border: 2px solid #1F5673;
-  }
-}
-
-/* ------------VUE--SMARTPHONE------------- */
-@media(max-width: 768px) {
-
-
-
-  /* Image accueil + titre h1 */
-  /* -------------------------- */
+  /*----------Image accueil ---------- */
   .imageAccueil-container {
     position: relative;
     display: inline-block;
@@ -369,19 +313,145 @@ body {
     height: auto;
   }
 
-  .image-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: white;
+  /*-------- Bouton -------*/
+  .btn-reserve {
     font-family: 'David Libre', sans-serif;
+    font-weight: 500;
     font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    color: white;
+    background-color: #1F5673;
+    padding: 10px 15px;
+    border-radius: 7px;
+    display: block;
+    margin: 10px auto;
+    margin-bottom: 30px;
+    width: 225px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #1F5673;
   }
 
-  /* Titre h1 */
+  .btn-reserve:hover {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: white;
+    border: 2px solid #1F5673;
+  }
+
+  /* --------Les posts------- */
+  .containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .card {
+    flex-basis: calc(33% - 10px);
+    background-color: #94778B;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .imageCard {
+    margin-top: 10px;
+    border-radius: 3%;
+    max-width: 90%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .card h4 {
+    color: #000000;
+    font-weight: 600;
+    font-family: 'David Libre';
+    font-size: 19px;
+    margin: 5px 8px 5px 8px;
+    text-align: center;
+  }
+
+  .content-post {
+    font-family: 'David Libre';
+    color: #ffffff;
+    font-size: 17px;
+    text-align: justify;
+    margin: 0px 8px 5px 8px;
+  }
+
+  .publication-date {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'David Libre';
+    color: #000000;
+    text-align: center;
+    margin: 5px;
+
+  }
+
+  /* -----bouton des posts------ */
+  .btn-post-inline {
+    display: inline-block;
+    margin: 20px;
+  }
+
+  .btn-post {
+    font-family: 'David Libre', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+    background-color: #1F5673;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 15px auto;
+    width: 120px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #1F5673;
+  }
+
+  .btn-post:hover {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: white;
+    border: 2px solid #1F5673;
+  }
+}
+
+/* ------------VUE--SMARTPHONE------------- */
+@media(max-width: 768px) {
+
+  .welcome-container {
+    position: absolute;
+      top: 93px;
+      width: 100%;
+      
+    }
+  
+    .welcome-box {
+      background-color: #ffffff;
+      border: 1px solid #94778B;
+      border-radius: 5px;
+      padding: 3px;
+    }
+  
+    .welcome-text {
+      color: #1F5673;
+      font-weight: 500;
+      font-size: 18px;
+      /* margin-bottom: 10px; */
+      text-align: center;
+      margin: 0px;
+      font-family: 'David Libre', sans-serif;
+    }
+
+  /*-------- Titre h1--------- */
   .title-first {
     text-align: center;
     font-size: 24px;
@@ -391,19 +461,7 @@ body {
     margin: 10px 25px 20px 25px
   }
 
-  /* Notre histoire + titre h2 */
-  /* ------------- */
-  .histoire-title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 500;
-    color: #94778B;
-    font-family: 'David Libre', sans-serif;
-    margin-top: 20px;
-    margin: 30px 25px 20px 25px;
-    margin-bottom: 5px;
-  }
-
+  /* ------info box------ */
   .info-box {
     position: relative;
     display: inline-block;
@@ -423,96 +481,141 @@ body {
     text-align: center;
   }
 
-  /* Titre h3 */
-  /* ---------------------- */
-  .title-h3 {
-    font-family: 'David Libre', sans-serif;
+  /* ----- titre h2------- */
+  .histoire-title {
+    text-align: center;
     font-size: 24px;
     font-weight: 500;
     color: #94778B;
-    text-align: center;
-    margin: 40px 25px 30px 25px;
+    font-family: 'David Libre', sans-serif;
+    margin-top: 20px;
+    margin: 30px 25px 20px 25px;
+    margin-bottom: 5px;
   }
 
-  /* Les plats préférés */
-  /* --------------------- */
+  /*----------Image accueil ---------- */
+  .imageAccueil-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 95%;
+    margin: 25px;
+  }
 
-.containerPrincipal {
-  max-width: 100%;
-  width: 100%;
-  margin: 0 auto;
-}
+  .rounded-image {
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 95%;
+    height: auto;
+  }
+ 
+ /*-------- Bouton -------*/
+ .btn-reserve {
+   font-family: 'David Libre', sans-serif;
+   font-weight: 500;
+   font-size: 16px;
+   color: white;
+   background-color: #1F5673;
+   padding: 10px 15px;
+   border-radius: 7px;
+   display: block;
+   margin: 10px auto;
+   margin-bottom: 30px;
+   width: 215px;
+   text-align: center;
+   text-decoration: none;
+   transition: all 0.1s ease;
+   border: 2px solid #1F5673;
+ }
 
-.containerCard {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
+ .btn-reserve:hover {
+   color: #1F5673;
+   font-weight: 500;
+   font-size: 16px;
+   background-color: white;
+   border: 2px solid #1F5673;
+ }
 
-.card {
-  flex-basis: calc(50% - 10px);
-  background-color: #94778B;
-  border: 1px solid #000000;
-  border-radius: 10px;
-  margin-top: 10px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
+  /* --------Les posts------- */
+  .containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 
-.imageCard {
-  margin-top: 10px;
-  max-width: 90%;
-  height: auto;
-  object-fit: cover;
-}
+  .card {
+    flex-basis: calc(50% - 10px);
+    background-color: #94778B;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
 
-.card h4 {
-  color: #000000;
-  font-family: 'David Libre';
-  font-size: 15px;
-  margin: 5px 5px 5px 5px;
-  text-align: center;
-}
+  .imageCard {
+    margin-top: 10px;
+    border-radius: 3%;
+    max-width: 90%;
+    height: auto;
+    object-fit: cover;
+  }
 
-.card p {
+  .card h4 {
+    color: #000000;
+    font-weight: 600;
     font-family: 'David Libre';
-    color: #ffffff;
-  font-size: 13px;
+    font-size: 15px;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+  }
 
-  margin: 0px 5px 5px 5px;
-}
+  .content-post {
+      font-family: 'David Libre';
+      color: #ffffff;
+    font-size: 13px;
+  text-align: justify;
+    margin: 0px 5px 5px 5px;
+  }
 
-.publication-date {
-  font-size: 10px;
-  font-family: 'David Libre';
-  color: #000000;
-}
+  .publication-date {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'David Libre';
+    color: #000000;
+    text-align: center;
+    margin: 5px;
 
-  /* Bouton */
-  /* ---------------------- */
-  .btn-reserve {
+  }
+
+  /* -----bouton des posts------ */
+  .btn-post-inline {
+      display: inline-block;
+      margin: 15px;
+  }
+
+  .btn-post {
     font-family: 'David Libre', sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     color: white;
     background-color: #1F5673;
-    padding: 10px 15px;
-    border-radius: 7px;
-    display: block;
-    margin: 10px auto;
-    margin-bottom: 30px;
-    width: 215px;
+    padding: 4px 8px;
+    border-radius: 5px;
+      margin: 4px auto;
+    margin-bottom: 10px;
+    width: 85px;
     text-align: center;
     text-decoration: none;
     transition: all 0.1s ease;
     border: 2px solid #1F5673;
   }
 
-  .btn-reserve:hover {
+  .btn-post:hover {
     color: #1F5673;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     background-color: white;
     border: 2px solid #1F5673;
   }

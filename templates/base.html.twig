@@ -37,12 +37,12 @@
 					<a href="{{ path('resend_verification') }}">Renvoyer un lien d'activation</a>
 				{% endif %}
 				{% if app.user %}
-					Bienvenue
-					{{ app.user.pseudo}}
-					{# <a href="{{ path('app_logout') }}">Se déconnecter</a> #}
-					<a class="nav-link" href="{{ path('app_post_add') }}">Publier</a>
-				{# {% else %} #}
-					{# <a href="{{ path('app_login') }}">Se connecter</a> #}
+					<div class="welcome-container">
+						<div class="welcome-box">
+							<p class="welcome-text">Bonjour
+								{{ app.user.pseudo }}</p>
+						</div>
+					</div>
 				{% endif %}
 			</div>
 		</div>

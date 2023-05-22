@@ -109,7 +109,7 @@ class UserFixture extends Fixture
 
     $post1 = new post();
     $post1->setTitle('Une expérience naturelle inoubliable');
-    $post1->setContent("Au Costa Rica, j'ai vécu une expérience naturelle inoubliable. Ce pays regorge de richesses naturelles exceptionnelles, des forêts tropicales luxuriantes aux volcans majestueux. J'ai eu la chance d'explorer les parcs nationaux et de me perdre au milieu d'une biodiversité époustouflante. Les singes qui se balançaient dans les arbres, les toucans aux couleurs vives et les paresseux paisibles ont rendu mes randonnées encore plus magiques. Les plages immaculées et préservées ont également ajouté une touche de beauté naturelle à mon voyage. Le Costa Rica est vraiment un paradis pour les amoureux de la nature, où chaque instant est une rencontre avec la faune et la flore les plus fascinantes.");
+    $post1->setContent("Au Costa Rica, j'ai vécu une expérience naturelle inoubliable. Ce pays regorge de richesses naturelles exceptionnelles, des forêts tropicales luxuriantes aux volcans majestueux. J'ai eu la chance d'explorer les parcs nationaux et de me perdre au milieu d'une biodiversité époustouflante. Les singes qui se balançaient dans les arbres, les toucans aux couleurs vives et les paresseux paisibles ont rendu mes randonnées encore plus magiques. Les plages immaculées et préservées ont également ajouté une touche de beauté naturelle à mon voyage. Le Costa Rica est vraiment un paradis pour les amoureux de la nature.");
     $post1->setPublishedAt(new \DateTime('2021-06-06 12:00'));
     $user = $this->getReference('Michel');
     $post1->setUser($user);
@@ -128,9 +128,7 @@ class UserFixture extends Fixture
 
     $post3 = new post();
     $post3->setTitle('Un engagement remarquable envers la durabilité');
-    $post3->setContent("Ce qui m'a le plus impressionné lors de mon voyage au Costa Rica, c'est l'engagement remarquable du pays envers la durabilité et la préservation de l'environnement. Des parcs nationaux bien gérés aux initiatives écologiques, le Costa Rica est un modèle de développement durable. J'ai été impressionné par la quantité d'énergies renouvelables utilisées dans le pays et par les efforts pour réduire l'empreinte écologique du tourisme. Les hébergements respectueux de l'environnement, les pratiques agricoles durables et les programmes de conservation témoignent de la volonté du Costa Rica de préserver son patrimoine naturel pour les générations futures. En tant que voyageur, c'était rassurant de savoir que je pouvais profiter des merveilles de ce pays tout en contribuant à sa préservation.
-    <br>
-    Ces avis reflètent mon expérience personnelle au Costa Rica et je recommande vivement cette destination à tous ceux qui cherchent à se reconnecter avec la nature, à découvrir une culture accueillante et à soutenir des pratiques durables.");
+    $post3->setContent("Ce qui m'a le plus impressionné lors de mon voyage au Costa Rica, c'est l'engagement remarquable du pays envers la durabilité et la préservation de l'environnement. Des parcs nationaux bien gérés aux initiatives écologiques. J'ai été impressionné par la quantité d'énergies renouvelables utilisées dans le pays et par les efforts pour réduire l'empreinte écologique du tourisme. Les hébergements respectueux de l'environnement, les pratiques agricoles durables et les programmes de conservation témoignent de la volonté du Costa Rica de préserver son patrimoine naturel pour les générations futures.");
     $post3->setPublishedAt(new \DateTime('2021-04-04 18:00'));
     $user = $this->getReference('André');
     $post3->setUser($user);
