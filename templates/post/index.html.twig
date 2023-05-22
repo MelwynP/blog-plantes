@@ -5,49 +5,63 @@
 
 
 {% block body %}
-	<h1>the world</h1>
+	<div class="containerPrincipal">
 
-	<h2>Article</h2>
+
+		<h1 class="title-first">BIENVENUE SUR WORLD<br>
+			le blog participatif dédié aux voyageurs passionnés !
+		</h1>
+
+		<div class="info-box">
+			<p>Découvrez chaque mois de nouveaux articles captivants sur des destinations du monde entier. Partagez vos expériences, astuces et photos avec notre communauté de voyageurs enregistrés. Respectez les règles de conduite pour une expérience agréable pour tous. Rejoignez-nous et faites-nous rêver avec vos aventures extraordinaires !</p>
+		</div>
+
+		<h2 class="histoire-title">Ce mois-ci, nous mettons en lumière le Costa Rica !</h2>
+
+<div class="imageAccueil-container">
 	{% for article in article %}
-		<h2>{{ article.title }}</h2>
-		{% for image in article.image %}
-			{% if image.path %}
-				<img src="{{ asset('assets/uploads/imageBlog/' ~ image.path) }}">
+				{# <h2>{{ article.title }}</h2> #}
+				{% for image in article.image %}
+					{% if image.path %}
+						<img src="{{ asset('assets/uploads/imageBlog/' ~ image.path) }} {# alt="blog the world" class=" rounded-image"#}>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+</div>
+
+
+
+		{% for post in post %}
+			{% for image in post.image %}
+				{% if image.path %}
+					<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
+				{% endif %}
+			{% endfor %}
+			{% if post.title %}
+				{{ post.title }}
+			{% endif %}
+			{% if post.content %}
+				{{ post.content }}
+			{% endif %}
+			{% if post.publishedAt %}
+				{{ post.publishedAt|date('d/m/Y H\\hi') }}
+
+
+			{% endif %}
+			{% if app.user and app.user is same as post.user %}
+				<a href="{{ path('app_post_edit', { id: post.id }) }}">Modifier</a>
+				<a href="{{ path('app_post_delete', { id: post.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
 			{% endif %}
 		{% endfor %}
-	{% endfor %}
 
 
-{% for post in post %}
-	{% for image in post.image %}
-		{% if image.path %}
-			<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}">
-		{% endif %}
-	{% endfor %}
-	{% if post.title %}
-		{{ post.title }}
-	{% endif %}
-	{% if post.content %}
-		{{ post.content }}
-	{% endif %}
-	{% if post.publishedAt %}
-{{ post.publishedAt|date('d/m/Y H\\hi') }}
+		{% for message in app.flashes('error') %}
+			<div class="alert alert-danger mt-3" role="alert">
+				{{ message }}
+			</div>
+		{% endfor %}
 
-
-	{% endif %}
-	{% if app.user and app.user is same as post.user %}
-		<a href="{{ path('app_post_edit', { id: post.id }) }}">Modifier</a>
-		<a href="{{ path('app_post_delete', { id: post.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
-	{% endif %}
-{% endfor %}
-
-
-
-	{% for message in app.flashes('error') %}
-		<div class="alert alert-danger mt-3" role="alert">
-			{{ message }}
-		</div>
-	{% endfor %}
+	</div>
 
 
 {% endblock %}

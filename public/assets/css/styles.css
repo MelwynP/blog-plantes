@@ -47,16 +47,13 @@ body {
     height: auto;
   }
 
-  .image-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: white;
+  .title-first {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 500;
+    color: #94778B;
     font-family: 'David Libre', sans-serif;
-    font-size: 45px;
-    font-weight: bold;
-    margin-bottom: 50px;
+    margin: 55px 25px 45px 25px
   }
 
   /* Notre histoire + titre h2 */
@@ -218,6 +215,15 @@ body {
     margin-bottom: 20px;
   }
 
+  .title-first {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    color: #94778B;
+    font-family: 'David Libre', sans-serif;
+    margin: 55px 25px 45px 25px
+  }
+
   /* Notre histoire + titre h2 */
   /* ------------- */
   .histoire-title {
@@ -371,6 +377,15 @@ body {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
+  }
+
+  .title-first {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #94778B;
+    font-family: 'David Libre', sans-serif;
+    margin: 55px 25px 45px 25px
   }
 
   /* Notre histoire + titre h2 */
