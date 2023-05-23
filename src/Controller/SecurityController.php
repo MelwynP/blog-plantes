@@ -21,11 +21,6 @@ class SecurityController extends AbstractController
   #[Route(path: '/connexion', name: 'app_login')]
   public function login(AuthenticationUtils $authenticationUtils): Response
   {
-    // if ($this->getUser()) {
-    //     return $this->redirectToRoute('target_path');
-    // }
-    //Route de redirection si l'utilisateur est connecté on l'envoi sur ... (à définir)
-    // get the login error if there is one
     $error = $authenticationUtils->getLastAuthenticationError();
     // last username entered by the user
     $lastUsername = $authenticationUtils->getLastUsername();
@@ -105,7 +100,6 @@ class SecurityController extends AbstractController
     ]);
   }
 
-
   // 2eme etape, donc une nouvelle route
   #[Route(path: '/oubli-mot-de-passe/{token}', name: 'reset_pass')]
   public function resetPass(string $token, Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, UserPasswordHasherInterface $PasswordHasher): Response
@@ -135,7 +129,6 @@ class SecurityController extends AbstractController
         $this->addFlash('success', 'Mot de passe changé avec succès');
         return $this->redirectToRoute('app_login');
         // Il faut ajouter de la sécurité
-
       }
 
       return $this->render('security/reset_password.html.twig', [

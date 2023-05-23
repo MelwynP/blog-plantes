@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use DateTimeInterface;
 use App\Entity\Discover;
 use App\Entity\Image;
 use App\Entity\Category;
@@ -12,7 +11,6 @@ use App\Entity\Post;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Faker;
 
 class UserFixture extends Fixture
 {
@@ -32,7 +30,6 @@ class UserFixture extends Fixture
     $admin->setRoles(['ROLE_ADMIN']);
     $admin->setIsVerified(1);
     $manager->persist($admin);
-
 
     $user1 = new User();
     $user1->setEmail('michellouis@orange.fr');
@@ -66,22 +63,6 @@ class UserFixture extends Fixture
     $user3->setIsVerified(1);
     $manager->persist($user3);
     $this->addReference('André', $user3);
-  
-    // $user
-
-    // $faker = Faker\Factory::create('fr_FR');
-
-    // for ($usr = 1; $usr <= 10; $usr++) {
-    //   $user = new User();
-    //   $user->setEmail($faker->email);
-    //   $user->setName($faker->lastName);
-    //   $user->setRoles(['ROLE_USER']);
-    //   $user->setPseudo($faker->name);
-    //   $user->setPassword($this->passwordEncoder->hashPassword($user, 'user'));
-    //   $manager->persist($user);
-    // }
-
-
 
     $category = new Category();
     $category->setName('Amérique centrale');
@@ -196,10 +177,6 @@ class UserFixture extends Fixture
     $image6->setDiscover($discover1);
     $image6->setPath('3d90ef11090aea74d62bd266f795f7b3.webp');
     $manager->persist($image6);
-
-
-
-
 
     $manager->flush();
   }

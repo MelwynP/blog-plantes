@@ -23,7 +23,6 @@
   margin: 45px 25px 45px 25px
 }
 
-
 .btn-style {
   font-family: 'David Libre', sans-serif;
   font-weight: 500;
@@ -69,8 +68,6 @@
   align-items: center;
 }
 
-
-
 #erreur,
 #responseRequete {
   text-align: center;
@@ -80,14 +77,12 @@
   margin-bottom: 22px;
 }
 
-
 /* ----------- vue TABLETTE ------------------ */
 @media screen and (max-width: 1024px) {
   #monFormulaire {
     width: 70%;
     font-size: 18px;
   }
-
 
   .resReg-title {
     text-align: center;
@@ -97,7 +92,6 @@
     font-family: 'David Libre', sans-serif;
     margin: 25px 35px 30px 35px
   }
-
 
   .btn-style {
     font-family: 'David Libre', sans-serif;
@@ -166,7 +160,6 @@
     font-size: 16px;
   }
 
-
   .resReg-title {
     text-align: center;
     font-size: 24px;
@@ -225,7 +218,6 @@
     margin-right: 15px;
   }
 
-
   #erreur,
   #responseRequete {
     text-align: center;
@@ -234,7 +226,4 @@
     font-weight: bold;
     margin-bottom: 22px;
   }
-
-
-
 }

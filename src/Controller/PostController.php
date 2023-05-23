@@ -42,7 +42,6 @@ class PostController extends AbstractController
       ]);
   }
       
-
     #[Route('/ajouter', name: 'add')]
     // function qui permet de creer un nouveau post si l'utilisateur est connecté 
     public function add(Request $request,EntityManagerInterface $em, PictureService $pictureService): Response
@@ -61,7 +60,6 @@ class PostController extends AbstractController
 
                 // On appelle le service d'ajout
                 $fichier = $pictureService->add($image, $folder, 300, 300);
-
                 $img = new Image();
                 $img->setPath($fichier);
                 $img->setPost($post);
@@ -69,14 +67,14 @@ class PostController extends AbstractController
               }
               
               // association du post a l'utilisateur connecté
-            $post->setUser($this->getUser());
-            $post->setPublishedAt(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
-            // $post->setPublishedAt(new \DateTime());
-            $em->persist($post);
-            $em->flush();
-            $this->addFlash('success', 'Post ajouté avec succès');
+              $post->setUser($this->getUser());
+              $post->setPublishedAt(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
+              // $post->setPublishedAt(new \DateTime());
+              $em->persist($post);
+              $em->flush();
+              $this->addFlash('success', 'Post ajouté avec succès');
 
-            return $this->redirectToRoute('app_post_index');
+              return $this->redirectToRoute('app_post_index');
             }
 
         return $this->render('post/add.html.twig', [
@@ -147,5 +145,4 @@ class PostController extends AbstractController
         $this->addFlash('success', 'Post supprimé avec succès');
         return $this->redirectToRoute("app_post_index");
     }
-
 }

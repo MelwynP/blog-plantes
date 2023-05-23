@@ -32,10 +32,6 @@
     margin-right: 220px;
   }
 
-  /* .navbar-light .navbar-toggler {
-      border: 2px solid rgba(255, 255, 255, 255);
-    } */
-
   .cadenas {
     position: absolute;
     right: 50px;
@@ -66,10 +62,7 @@
     margin-right: 41px;
     color: #1F5673 !important;
   }
-
 }
-
-
 
 /* /* -----------------NAVBAR--VUE--TABLETTE------------- */
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -145,10 +138,8 @@
     left: 50%;
     transform: translateX(-50%);
     margin-top: -20px;
-
   }
 }
-
 
 /* --------------NAVBAR--CSS--SMARTPHONE-------------- */
 @media(max-width: 768px) {

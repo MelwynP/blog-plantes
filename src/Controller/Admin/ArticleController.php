@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
-
 #[Route('/admin/article', name: 'admin_article_')]
 class ArticleController extends AbstractController
 {
@@ -54,8 +53,6 @@ class ArticleController extends AbstractController
         $article->addImage($img);
 
         // $article = $articleFormulaire->get('article')->getData();
-
-
       }
 
       // $article->setUser($this->getUser());

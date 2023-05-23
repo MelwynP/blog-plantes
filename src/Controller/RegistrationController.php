@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use DateTimeImmutable;
-use DateTimeZone;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
@@ -41,7 +39,6 @@ class RegistrationController extends AbstractController
         $user->setRoles(["ROLE_USER"]);
       }
 
-     
       // encode the plain password
       $user->setPassword(
         $userPasswordHasher->hashPassword(

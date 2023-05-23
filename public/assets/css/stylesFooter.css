@@ -62,7 +62,6 @@
     margin-bottom: 20px;
   }
 
-
   .logo-container {
     text-align: center !important;
     margin: 15px;
@@ -98,10 +97,8 @@
   }
 }
 
-
 /* -----------------FOOTER--VUE--MOBILE------------- */
 @media(max-width: 768px) {
-
   footer {
     background-color: #A9CEF4;
     font-family: 'David Libre', sans-serif;
@@ -117,7 +114,6 @@
     margin-bottom: 20px;
   }
 
-
   .logo-container {
     text-align: center !important;
     margin-top: 15px;
@@ -127,7 +123,6 @@
   .logo-footer {
     text-align: center;
     width: 100px;
-
   }
 
   .links {
