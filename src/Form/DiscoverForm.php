@@ -22,91 +22,82 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 class DiscoverForm extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-        ->add('country', TextType::class, [
-            'attr' => [
-                'placeholder' => 'Le nom du pays',
-            ],
-      "required" => false,
+  public function buildForm(FormBuilderInterface $builder, array $options): void
+  {
+    $builder
+      ->add('country', TextType::class, [
+        'attr' => [
+          'placeholder' => 'Le nom du pays',
+        ],
+        "required" => false,
+        'label' => 'Pays',
+      ])
 
-            'label' => 'Pays',
-        ])
+      ->add('capital', TextType::class, [
+        'attr' => [
+          'placeholder' => 'La capitale du pays',
+        ],
+        "required" => false,
+        'label' => 'Capitale',
+      ])
 
-            ->add('capital', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'La capitale du pays',
-                ],
-      "required" => false,
+      ->add('language', TextType::class, [
+        'attr' => [
+          'placeholder' => 'La langue du pays',
+        ],
+        "required" => false,
+        'label' => 'Langue',
+      ])
 
-                'label' => 'Capitale',
-            ])
+      ->add('currency', TextType::class, [
+        'attr' => [
+          'placeholder' => 'La monnaie du pays',
+        ],
+        "required" => false,
+        'label' => 'Monnaie',
+      ])
 
-            ->add('language', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'La langue du pays',
-                ],
-      "required" => false,
+      ->add('population', TextType::class, [
+        'attr' => [
+          'placeholder' => 'La population du pays',
+        ],
+        "required" => false,
+        'label' => 'Population',
+      ])
 
-                'label' => 'Langue',
-            ])
+      ->add('area', TextType::class, [
+        'attr' => [
+          'placeholder' => 'La superficie du pays',
+        ],
+        "required" => false,
+        'label' => 'Superficie',
+      ])
 
-            ->add('currency', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'La monnaie du pays',
-                ],
-      "required" => false,
+      ->add('contentIntro', TextType::class, [
+        'attr' => [
+          'placeholder' => 'Contenu introductif',
+        ],
+        "required" => false,
+        'label' => 'Contenu introductif',
+      ])
 
-                'label' => 'Monnaie',
-            ])
+      ->add('content', TextType::class, [
+        'attr' => [
+          'placeholder' => 'Contenu',
+        ],
+        "required" => false,
+        'label' => 'Contenu',
+      ])
 
-            ->add('population', IntegerType::class, [
-              'attr' => [
-                  'placeholder' => 'La population du pays',
-               ],
-      "required" => false,
+      ->add('contentFooter', TextType::class, [
+        'attr' => [
+          'placeholder' => 'Contenu finale',
+        ],
+        "required" => false,
+        'label' => 'Contenu finale',
+      ])
 
-                'label' => 'Population',
-            ])
-
-            ->add('area', TextType::class, [
-              'attr' => [
-                  'placeholder' => 'La superficie du pays',
-               ],
-      "required" => false,
-
-                'label' => 'Superficie',
-            ])
-
-->add('contentIntro', TextType::class, [
-              'attr' => [
-                  'placeholder' => 'Contenu introductif',
-               ],
-      "required" => false,
-
-                'label' => 'Contenu introductif',
-            ])
-
-            ->add('content', TextType::class, [
-              'attr' => [
-                  'placeholder' => 'Contenu',
-               ],
-      "required" => false,
-
-                'label' => 'Contenu',
-            ])
-
-            ->add('contentFooter', TextType::class, [
-              'attr' => [
-                  'placeholder' => 'Contenu finale',
-               ],
-      "required" => false,
-
-                'label' => 'Contenu finale',
-            ])
-
-            ->add('image', FileType::class, [
+      ->add('image', FileType::class, [
         'label' => 'Image',
         'multiple' => true,
         'mapped' => false,
@@ -122,14 +113,12 @@ class DiscoverForm extends AbstractType
           )
         ]
       ]);
+  }
 
-
-    }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Discover::class,
-        ]);
-    }
+  public function configureOptions(OptionsResolver $resolver): void
+  {
+    $resolver->setDefaults([
+      'data_class' => Discover::class,
+    ]);
+  }
 }

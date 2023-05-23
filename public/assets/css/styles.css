@@ -1,8 +1,4 @@
-/* Fonts */
-
-
 /* ------------VUE--PC------------- */
-/* PAGE MENU  */
 
 body {
   margin: 0px;
@@ -30,18 +26,27 @@ body {
 /* ------------VUE--PC------------- */
 @media(min-width: 1024px) {
 
-/* -------Message bienvenue + pseudo et bouton ----- */
+  /* ----------séparateur----------- */
+  .separateur {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 -20px;
+    }
+  
+    .separateur img {
+      /* height: 100px; */
+      max-width: 100%;
+      width: 50%;
+    }
+
+/* -------Message bienvenue + pseudo-toutes pages---- */
 .welcome-container {
     position: absolute;
     top: 132px;
     width: 100%;
-
   }
 
   .welcome-box {
-    background-color: #ffffff;
-    border: 1px solid #94778B;
-    border-radius: 5px;
     padding: 3px;
   }
 
@@ -49,9 +54,8 @@ body {
     color: #1F5673;
     font-weight: 500;
     font-size: 18px;
-    /* margin-bottom: 10px; */
     text-align: center;
-    margin: 0px;
+    margin: -5px;
     font-family: 'David Libre', sans-serif;
   }
 
@@ -63,7 +67,7 @@ body {
     font-weight: 500;
     color: #94778B;
     font-family: 'David Libre', sans-serif;
-    margin: 0px 25px 40px 25px
+    margin: 35px 25px 40px 25px
   }
 
   /* ------info box------ */
@@ -85,6 +89,7 @@ body {
     margin: 15px;
     text-align: center;
   }
+
 
   /* ----- titre h2------- */
   .histoire-title {
@@ -226,22 +231,95 @@ body {
     background-color: white;
     border: 2px solid #1F5673;
   }
-}
 
+/* ----------------------------------------------------------- */
+    /* --------info box content page decouverte------  */
+    .info-box-content {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 70%;
+      margin-top: 5px;
+      background-color: #ffffff;
+    }
+  
+    .info-box-content p {
+      color: #000000;
+      font-weight: 500;
+      font-family: 'David Libre', sans-serif;
+      text-align: justify;
+      font-size: 22px;
+      margin: 10px;
+      text-align: center;
+    }
+  
+    /* ----------liste a point page decouverte--------- */
+    .cles-container {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 15px 10px 5px 10px;
+      margin-top: 40px;
+      margin: 0 auto;
+      width: 550px;
+      font-family: 'David Libre', sans-serif;
+      font-size: 22px;
+      text-align: center;
+    }
+  
+    .point-cles {
+      color: #1F5673;
+      font-weight: 600;
+    }
+  
+    .cles-container p::before {
+      content: "";
+      display: inline-block;
+      margin-right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgb(47, 47, 47);
+    }
+  
+    /*----------Image page decouverte ---------- */
+    .imageAccueil-container-decouverte {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 40%;
+      margin: 45px 25px 35px 25px;
+    }
+  
+    .rounded-image-decouverte {
+      border-radius: 7px;
+      border: 1px solid black;
+      width: 90%;
+      height: auto;
+    }
+}
+/* ------------------------------------------------------------------------- */
+/* -------------Vue tablette------------------------------ */
 @media(max-width: 1024px) {
+
+/* --------séparateur----------- */
+  .separateur {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 -20px;
+    }
+  
+    .separateur img {
+      height: 80px;
+    }
 
   /* -------Message bienvenue ----- */
     .welcome-container {
-        position: absolute;
-        top: 115px;
+        top: 75px;
         width: 100%;
     
       }
     
       .welcome-box {
-        background-color: #ffffff;
-        border: 1px solid #94778B;
-        border-radius: 5px;
         padding: 3px;
       }
     
@@ -251,7 +329,7 @@ body {
         font-size: 18px;
         /* margin-bottom: 10px; */
         text-align: center;
-        margin: 0px;
+        margin: -45px;
         font-family: 'David Libre', sans-serif;
       }
 
@@ -422,34 +500,106 @@ body {
     background-color: white;
     border: 2px solid #1F5673;
   }
-}
 
+    /* ----------------------------------------------------------- */
+    /* --------info box content page decouverte------  */
+    .info-box-content {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 80%;
+      margin-top: 0px;
+      background-color: #ffffff;
+    }
+  
+    .info-box-content p {
+      color: #000000;
+      font-weight: 500;
+      font-family: 'David Libre', sans-serif;
+      text-align: justify;
+      font-size: 20px;
+      margin: 10px;
+      text-align: center;
+    }
+  
+    /* ----------liste a point page decouverte--------- */
+    .cles-container {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 15px 10px 5px 10px;
+      margin-top: 40px;
+      margin: 0 auto;
+      width: 430px;
+      font-family: 'David Libre', sans-serif;
+      font-size: 20px;
+      text-align: center;
+    }
+  
+    .point-cles {
+      color: #1F5673;
+      font-weight: 600;
+    }
+  
+    .cles-container p::before {
+      content: "";
+      display: inline-block;
+      margin-right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgb(47, 47, 47);
+    }
+  
+    /*----------Image page decouverte ---------- */
+    .imageAccueil-container-decouverte {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 70%;
+      margin: 40px 25px 35px 25px;
+    }
+  
+    .rounded-image-decouverte {
+      border-radius: 7px;
+      border: 1px solid black;
+      width: 95%;
+      height: auto;
+    }
+
+}
+/* ------------------------------------------------------------------------------- */
 /* ------------VUE--SMARTPHONE------------- */
 @media(max-width: 768px) {
 
+  /* -----séparateur------ */
+  .separateur {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 -20px;
+    }
+  
+    .separateur img {
+      height: 45px;
+    }
+
+    /* -------bienvenue utilisateur */
   .welcome-container {
-    position: absolute;
-      top: 93px;
-      width: 100%;
-      
+    top: 53px;
+    width: 100%;
     }
   
-    .welcome-box {
-      background-color: #ffffff;
-      border: 1px solid #94778B;
-      border-radius: 5px;
-      padding: 3px;
-    }
-  
-    .welcome-text {
-      color: #1F5673;
-      font-weight: 500;
-      font-size: 18px;
-      /* margin-bottom: 10px; */
-      text-align: center;
-      margin: 0px;
-      font-family: 'David Libre', sans-serif;
-    }
+  .welcome-box {
+    padding: 3px;
+  }
+
+  .welcome-text {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    margin: -48px;
+    font-family: 'David Libre', sans-serif;
+  }
 
   /*-------- Titre h1--------- */
   .title-first {
@@ -489,7 +639,7 @@ body {
     color: #94778B;
     font-family: 'David Libre', sans-serif;
     margin-top: 20px;
-    margin: 30px 25px 20px 25px;
+    margin: 25px 25px 35px 25px;
     margin-bottom: 5px;
   }
 
@@ -618,5 +768,70 @@ body {
     font-size: 14px;
     background-color: white;
     border: 2px solid #1F5673;
+  }
+
+  /* ----------------------------------------------------------- */
+  /* --------info box content page decouverte------  */
+  .info-box-content {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 90%;
+    margin-top: 15px;
+    background-color: #ffffff;
+  }
+
+  .info-box-content p {
+    color: #000000;
+    font-weight: 500;
+    font-family: 'David Libre', sans-serif;
+    text-align: justify;
+    font-size: 18px;
+    margin: 5px;
+    text-align: center;
+  }
+
+  /* ----------liste a point page decouverte--------- */
+  .cles-container {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px 10px 5px 10px;
+    margin-top: 40px;
+    margin: 15px 0 5px 0;
+    width: 350px;
+    font-family: 'David Libre', sans-serif;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .point-cles {
+    color: #1F5673;
+    font-weight: 600;
+  }
+
+  .cles-container p::before {
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgb(47, 47, 47);
+  }
+
+  /*----------Image page decouverte ---------- */
+  .imageAccueil-container-decouverte {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 80%;
+    margin: 40px 25px 35px 25px;
+  }
+
+  .rounded-image-decouverte {
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 90%;
+    height: auto;
   }
 }

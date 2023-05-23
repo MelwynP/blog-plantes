@@ -91,15 +91,15 @@ class UserFixture extends Fixture
     $article1 = new Article();
     $article1->setTitle('Costa Rica');
     $article1->setContent('Lors de ma visite au Costa Rica en 2020, j\'ai été émerveillé par la beauté naturelle exceptionnelle de ce pays d\'Amérique centrale. Niché entre l\'océan Pacifique et la mer des Caraïbes, le Costa Rica offre une diversité incroyable de paysages, de faune et de flore, ainsi qu\'une culture riche et accueillante.
-    <br>
+    
     L\'un des aspects les plus frappants du Costa Rica est sa végétation luxuriante. Des forêts tropicales denses, abritant une incroyable variété d\'espèces animales et végétales, aux volcans majestueux recouverts de brume, chaque coin du pays offre une expérience unique. Lors de mes explorations, j\'ai eu la chance de découvrir des parcs nationaux exceptionnels tels que le parc national de Tortuguero, où j\'ai pu observer les tortues marines lors de leur période de ponte, ainsi que le parc national Manuel Antonio, avec ses plages de sable blanc et sa biodiversité incroyable.
-    <br>
+    
     En parlant de biodiversité, le Costa Rica est réputé pour être l\'un des pays les plus riches en termes de faune. J\'ai été émerveillé par la variété des espèces que j\'ai pu observer, allant des singes hurleurs aux paresseux suspendus aux arbres, en passant par les toucans aux couleurs vives et les grenouilles colorées. Les amateurs de nature et d\'écotourisme trouveront leur bonheur dans ce paradis tropical, où la préservation de l\'environnement est une priorité.
-    <br>
+    
     Outre sa nature extraordinaire, le Costa Rica possède également une culture vibrante et chaleureuse. J\'ai été accueilli à bras ouverts par les habitants, connus sous le nom de "Ticos", qui se sont révélés être des hôtes exceptionnels. J\'ai eu l\'occasion de goûter à la délicieuse cuisine costaricaine, avec des plats traditionnels tels que le gallo pinto (mélange de riz et de haricots), le ceviche (plat à base de fruits de mer) et les délicieux fruits tropicaux frais.
-    <br>
+    
     En parcourant le pays, j\'ai également pu apprécier l\'engagement du Costa Rica envers la durabilité et la préservation de l\'environnement. Le pays est un leader mondial dans les énergies renouvelables, avec une grande partie de son électricité provenant de sources propres telles que l\'hydroélectricité et l\'énergie éolienne. De plus, de nombreux établissements touristiques adoptent des pratiques écologiques et respectueuses de la nature, ce qui renforce le sentiment d\'être en harmonie avec l\'environnement.
-    <br>
+    
     Ma visite au Costa Rica en 2020 restera à jamais gravée dans ma mémoire. Ce pays magnifique m\'a offert des expériences inoubliables, des rencontres enrichissantes et une profonde connexion avec la nature. Que ce soit en explorant ses parcs nationaux, en se relaxant sur ses plages idylliques ou en découvrant sa culture fascinante, le Costa Rica est une destination de voyage qui ne manquera pas de combler les amoureux de la nature et les aventuriers en quête de découvertes uniques.');
     // $category = $this->addReference('Amérique centrale', $category);
     $article1->setCategory($category);
@@ -145,12 +145,12 @@ class UserFixture extends Fixture
     $discover1->setPopulation('5,1 millions');
     $discover1->setContentIntro("Le Costa Rica, petit joyau d'Amérique centrale, est un pays qui évoque des images de plages tropicales, de jungles luxuriantes et de volcans majestueux. Niché entre la mer des Caraïbes et l'océan Pacifique, ce pays fascinant offre aux voyageurs une expérience inoubliable au cœur de la nature. Mais le Costa Rica est bien plus qu'une simple destination de vacances exotique. C'est un pays qui met en avant des valeurs telles que la préservation de l'environnement, l'éducation et la paix.");
     $discover1->setContent("Le Costa Rica est réputé pour sa biodiversité extraordinaire, abritant une multitude d'espèces animales et végétales uniques au monde. Ses parcs nationaux et ses réserves naturelles offrent des opportunités incroyables d'explorer des écosystèmes variés, allant des forêts tropicales humides aux mangroves en passant par les récifs coralliens. Les amoureux de la nature peuvent observer des singes hurleurs, des toucans colorés, des paresseux tranquilles et même des tortues marines venant pondre sur les plages.
-    <br>
+
     Le Costa Rica est également connu pour sa politique environnementale progressiste. Le pays s'est fixé pour objectif d'être neutre en carbone d'ici 2021, en favorisant les énergies renouvelables et en protégeant ses ressources naturelles. Les initiatives de conservation sont mises en place pour préserver les habitats fragiles et promouvoir le tourisme durable. Les visiteurs ont la possibilité de participer à des activités respectueuses de l'environnement, telles que l'observation des oiseaux, la randonnée dans la canopée et l'exploration des parcs nationaux.
-    <br>
-    Le peuple costaricien, appelé les 'Ticos', est réputé pour sa convivialité et sa joie de vivre. Leur devise nationale, 'Pura Vid', résume leur façon de voir la vie : profiter de l'instant présent, être reconnaissant pour les petites choses et trouver le bonheur dans la simplicité. Les traditions et la culture costariciennes sont profondément enracinées, et les visiteurs peuvent découvrir la cuisine locale, la musique traditionnelle et les danses folkloriques lors de festivals colorés.");
+
+    Le peuple costaricien, appelé les 'Ticos', est réputé pour sa convivialité et sa joie de vivre. Leur devise nationale, 'Pura Vida', résume leur façon de voir la vie : profiter de l'instant présent, être reconnaissant pour les petites choses et trouver le bonheur dans la simplicité. Les traditions et la culture costariciennes sont profondément enracinées, et les visiteurs peuvent découvrir la cuisine locale, la musique traditionnelle et les danses folkloriques lors de festivals colorés.");
     $discover1->setContentFooter("En conclusion, le Costa Rica est une destination de voyage extraordinaire qui offre une combinaison parfaite de nature préservée, d'aventure, de culture et de détente. Que vous soyez un passionné de plein air à la recherche de nouvelles découvertes ou que vous souhaitiez simplement vous détendre sur des plages de sable blanc, le Costa Rica saura vous séduire.
-    <br>
+    
     En explorant ce pays enchanteur, vous serez émerveillé par la richesse de sa biodiversité, la beauté de ses paysages et l'hospitalité chaleureuse de ses habitants. Que vous choisissiez de vous aventurer dans les profondeurs de la forêt tropicale, de vous détendre sur une plage isolée ou d'admirer les volcans actifs, chaque instant au Costa Rica sera une expérience inoubliable.");
     $manager->persist($discover1);
     $this->addReference('decouverte1', $discover1);
@@ -184,6 +184,18 @@ class UserFixture extends Fixture
     $image5->setDiscover($discover1);
     $image5->setPath('2c96d7031a6f310169cc33add733cff0.webp');
     $manager->persist($image5);
+    
+    $image6 = new Image();
+    $user = $this->getReference('decouverte1');
+    $image6->setDiscover($discover1);
+    $image6->setPath('1c9cf1c7a50e8e814b8daf61fb005795.webp');
+    $manager->persist($image6);
+    
+    $image6 = new Image();
+    $user = $this->getReference('decouverte1');
+    $image6->setDiscover($discover1);
+    $image6->setPath('3d90ef11090aea74d62bd266f795f7b3.webp');
+    $manager->persist($image6);
 
 
 

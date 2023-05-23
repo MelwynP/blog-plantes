@@ -5,19 +5,20 @@
 
 
 {% block body %}
-	<div class="containerPrincipal">
+	<div
+		class="containerPrincipal">
 
-{# -------Titre h1-------- #}
+		{# -------Titre h1-------- #}
 		<h1 class="title-first">BIENVENUE SUR WORLD<br>
 			le blog participatif dédié aux voyageurs passionnés !
 		</h1>
-    
-{# --------Info Box-------- #}
+
+		{# --------Info Box-------- #}
 		<div class="info-box">
 			<p>Découvrez chaque mois de nouveaux articles captivants sur des destinations du monde entier. Partagez vos expériences, astuces et photos avec notre communauté de voyageurs enregistrés. Respectez les règles de conduite pour une expérience agréable pour tous. Rejoignez-nous et faites-nous rêver avec vos aventures extraordinaires !</p>
 		</div>
 
-{# ------ Article--------- #}
+		{# ------ Article--------- #}
 		{% for article in article %}
 			<h2 class="histoire-title">Ce mois-ci, nous mettons en lumière le
 				{{ article.title }}
@@ -29,39 +30,37 @@
 			{% endfor %}
 		</div>
 
-{# -----Bouton -------- #}
+		{# -----Bouton -------- #}
 		<a href="{{ path('app_post_add') }}" class="btn-reserve">
 			Déposer un post</a>
 
-{# ------Les posts-------- #}
-<div class="containerCard">
-  {% for post in post %}
-    <div class="card">
-      {% if post.image.first() %}
-        <img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ post.image.first().path) }}" alt="Post Image" class="imageCard">
-      {% endif %}
-      <h4>{{ post.title }}</h4>
-      <p class="content-post">{{ post.content }}</p>
-      <p class="publication-date">Publié le
-        {{ post.publishedAt|date('d/m/Y à H\\hi') }}
-        par
-        {{ post.user.pseudo }}</p>
-      {% if app.user and app.user is same as post.user %}
-        <div class="btn-post-inline">
-          <a href="{{ path('app_post_edit', { id: post.id }) }}" class="btn-post">Modifier</a>
-          <a href="{{ path('app_post_delete', { id: post.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')" class="btn-post">Supprimer</a>
-        </div>
-      {% endif %}
-    </div>
-  {% endfor %}
-</div>
-
-
-		{# {% for message in app.flashes('error') %}
-			<div class="alert alert-danger mt-3" role="alert">
-				{{ message }}
-			</div>
-		{% endfor %} #}
+		{# ------Les posts-------- #}
+		<div class="containerCard">
+			{% for post in post %}
+				<div class="card">
+					{% if post.image.first() %}
+						<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ post.image.first().path) }}" alt="Post Image" class="imageCard">
+					{% endif %}
+					<h4>{{ post.title }}</h4>
+					<p class="content-post">{{ post.content }}</p>
+					<p class="publication-date">Publié le
+						{{ post.publishedAt|date('d/m/Y à H\\hi') }}
+						par
+						{{ post.user.pseudo }}</p>
+					{% if app.user and app.user is same as post.user %}
+						<div class="btn-post-inline">
+							<a href="{{ path('app_post_edit', { id: post.id }) }}" class="btn-post">Modifier</a>
+							<a href="{{ path('app_post_delete', { id: post.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')" class="btn-post">Supprimer</a>
+						</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+    
+    {# separateur #}
+		<span class="separateur">
+			<img src="assets/pictures/separateur.png" alt="séparateur">
+		</span>
 
 	</div>
 {% endblock %}

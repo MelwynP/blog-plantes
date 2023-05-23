@@ -1,5 +1,5 @@
 /* FORMULAIRE RESERVATION + INSCRIPTION */
-
+/* ---------------vue pc-------------------- */
 
 #monFormulaire {
   font-family: 'David Libre', sans-serif;
@@ -26,7 +26,7 @@
 
 .btn-style {
   font-family: 'David Libre', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   color: white;
   background-color: #1F5673;
@@ -45,7 +45,7 @@
 
 .btn-style:hover {
   color: #1F5673;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   background-color: #ffffff;
   border: 4px solid #1F5673;
@@ -81,7 +81,7 @@
 }
 
 
-/* TABLETTE ------------------ */
+/* ----------- vue TABLETTE ------------------ */
 @media screen and (max-width: 1024px) {
   #monFormulaire {
     width: 70%;
@@ -101,7 +101,7 @@
 
   .btn-style {
     font-family: 'David Libre', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 17px;
     color: white;
     background-color: #1F5673;
@@ -120,7 +120,7 @@
 
   .btn-style:hover {
     color: #1F5673;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 17px;
     background-color: white;
     border: 2px solid #1F5673;
@@ -159,7 +159,7 @@
 
 }
 
-/* MOBILE ------------------- */
+/*----------------- MOBILE ------------------- */
 @media screen and (max-width: 768px) {
   #monFormulaire {
     width: 95%;
