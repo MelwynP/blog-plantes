@@ -10,8 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-
-
 #[Route('/admin/post', name: 'admin_post_')]
 class PostCheckController extends AbstractController
 {

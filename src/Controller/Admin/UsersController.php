@@ -10,8 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-
-
 #[Route('/admin/utilisateurs', name: 'admin_users_')]
 class UsersController extends AbstractController
 {
@@ -31,7 +29,6 @@ class UsersController extends AbstractController
       'userOrder' => $userOrder,
     ]);
   }
-
 
   #[Route('/supprimer/{id}', name: "delete")]
   #[ParamConverter("user", class:"App\Entity\User")]

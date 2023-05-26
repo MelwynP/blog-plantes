@@ -26,14 +26,12 @@
 								<td>{{ user.pseudo }}</td>
 								<td>{{ user.name }}</td>
 								<td>{{ user.email }}</td>
-								<td>{{ user.createdAt|date('d/m/Y') }}</td>
-<td>
-	{% if user.email != 'contact@blog-participatif.tech' %}
-		<a href="{{ path('admin_users_delete', {id: user.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
-	{% endif %}
-</td>
-
-
+								<td>{{ user.createdAt|date('d/m/Y H\\hi') }}</td>
+								<td>
+									{% if user.email != 'contact@blog-participatif.tech' %}
+										<a href="{{ path('admin_users_delete', {id: user.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
+									{% endif %}
+								</td>
 							</tr>
 						{% endfor %}
 					</table>

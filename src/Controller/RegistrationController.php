@@ -47,6 +47,9 @@ class RegistrationController extends AbstractController
         )
       );
 
+      $user->setCreatedAt(new \DateTimeImmutable('now', new \DateTimeZone('Europe/Paris')));
+
+
       $entityManager->persist($user);
       $entityManager->flush();
       // ici faites ce que vous voulez par exemple envoyer un email de verification, mais il faut le service SendMailService, je peux donc ajouter un service pour envoyer un email de verification.

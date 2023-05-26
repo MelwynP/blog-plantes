@@ -7,7 +7,7 @@
 	<section class="container">
 		<div class="row">
 			<div class="col">
-        <h2 class="resReg-title">Formulaire de connexion</h2>
+				<h2 class="resReg-title">Formulaire de connexion</h2>
 				<form method="post" id="monFormulaire">
 					{% if error %}
 						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -16,8 +16,7 @@
 						<div class="mb-3">
 							Vous êtes connecté(e) en tant que :<br>
 							{{ app.user.userIdentifier }}
-<a class="btn-style primary" href="{{ path('app_logout') }}">Me déconnecter</a>
-
+							<a class="btn-style primary" href="{{ path('app_logout') }}">Me déconnecter</a>
 						</div>
 					{% endif %}
 					<label for="inputEmail">E-mail</label>
@@ -30,9 +29,9 @@
 						</button>
 					</div>
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-          <button class="btn-style primary" type="submit">Me connecter</button>
-          <a href="{{ path('app_register') }}" class="btn-style secondary">S'inscrire</a>
-          <a href="{{ path('app_forgot_password') }}" class="btn-style secondary">Mot de passe oublié</a>
+					<button class="btn-style primary" type="submit">Me connecter</button>
+					<a href="{{ path('app_register') }}" class="btn-style secondary">S'inscrire</a>
+					<a href="{{ path('app_forgot_password') }}" class="btn-style secondary">Mot de passe oublié</a>
 				</form>
 			</div>
 		</div>

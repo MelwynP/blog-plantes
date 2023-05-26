@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -16,10 +18,12 @@ class Post
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 120, nullable: true)]
+    #[Assert\Length(max: 120, maxMessage: 'Le titre doit contenir au maximum {{ limit }} caractères')]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Length(max: 350, maxMessage: 'Le contenu doit contenir au maximum {{ limit }} caractères')]
     private ?string $content = null;
 
     #[ORM\Column(type: "datetime")]

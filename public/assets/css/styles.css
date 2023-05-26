@@ -1,0 +1,837 @@
+/* ------------VUE--PC------------- */
+
+body {
+  margin: 0px;
+  padding: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+.containerPrincipal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ------------Pages réinitialisation MDP + page confirmation margin top/bottom --------------- */
+.container-reini {
+  margin-top: 120px;
+  margin-bottom: 190px;
+}
+
+
+/* ------------VUE--PC------------- */
+@media(min-width: 1024px) {
+
+  /* ----------séparateur----------- */
+  .separateur {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 -20px;
+    }
+  
+    .separateur img {
+      /* height: 100px; */
+      max-width: 100%;
+      width: 50%;
+    }
+
+/* -------Message bienvenue + pseudo-toutes pages---- */
+.welcome-container {
+    position: absolute;
+    top: 132px;
+    width: 100%;
+  }
+
+  .welcome-box {
+    padding: 3px;
+  }
+
+  .welcome-text {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    margin: -5px;
+    font-family: 'David Libre', sans-serif;
+  }
+
+
+/*-------- Titre h1--------- */
+  .title-first {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 500;
+    color: #94778B;
+    font-family: 'David Libre', sans-serif;
+    margin: 35px 25px 40px 25px
+  }
+
+  /* ------info box------ */
+  .info-box {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 60%;
+    margin-top: 25px;
+    background-color: #1F5673;
+    border-radius: 12px;
+    border: 1px solid black;
+  }
+
+  .info-box p {
+    color: #ffffff;
+    font-family: 'David Libre', sans-serif;
+    font-size: 22px;
+    margin: 15px;
+    text-align: center;
+  }
+
+
+  /* ----- titre h2------- */
+  .histoire-title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 500;
+    color: #94778B;
+    font-family: 'David Libre', sans-serif;
+    margin-top: 20px;
+    margin: 50px 25px 30px 25px;
+    /* margin-bottom: 5px; */
+  }
+
+  /*----------Image accueil ---------- */
+  .imageAccueil-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 60%;
+    margin: 25px;
+  }
+
+  .rounded-image {
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+  }
+
+  /*-------- Bouton -------*/
+  .btn-reserve {
+    font-family: 'David Libre', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: white;
+    background-color: #1F5673;
+    padding: 10px 15px;
+    border-radius: 7px;
+    display: block;
+    /* margin: 30px auto; */
+    margin-top: 40px;
+    margin-bottom: 45px;
+    width: 245px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #1F5673;
+  }
+
+  .btn-reserve:hover {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 22px;
+    background-color: white;
+    border: 2px solid #1F5673;
+  }
+
+  /* --------Les posts------- */
+  .containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0px 60px;
+  }
+
+  .card {
+    flex-basis: calc(33% - 20px);
+    background-color: #94778B;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .imageCard {
+    margin-top: 13px;
+    border-radius: 3%;
+    max-width: 93%;
+    width: 93%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .card h4 {
+    color: #000000;
+    font-weight: 600;
+    font-family: 'David Libre';
+    font-size: 24px;
+    margin: 5px 8px 5px 8px;
+    text-align: center;
+  }
+
+  .content-post {
+    font-family: 'David Libre';
+    color: #ffffff;
+    font-size: 20px;
+    text-align: justify;
+    margin: 0px 10px 5px 10px;
+  }
+
+  .publication-date {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'David Libre';
+    color: #000000;
+    text-align: center;
+    margin: 5px;
+
+  }
+
+  /* -----bouton des posts------ */
+  .btn-post-inline {
+    display: inline-block;
+    margin: 20px;
+  }
+
+  .btn-post {
+    font-family: 'David Libre', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    background-color: #1F5673;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 15px auto;
+    width: 135px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #1F5673;
+  }
+
+  .btn-post:hover {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: white;
+    border: 2px solid #1F5673;
+  }
+
+/* ----------------------------------------------------------- */
+    /* --------info box content page decouverte------  */
+    .info-box-content {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 70%;
+      margin-top: 5px;
+      background-color: #ffffff;
+    }
+  
+    .info-box-content p {
+      color: #000000;
+      font-weight: 500;
+      font-family: 'David Libre', sans-serif;
+      text-align: justify;
+      font-size: 22px;
+      margin: 10px;
+      text-align: center;
+    }
+  
+    /* ----------liste a point page decouverte--------- */
+    .cles-container {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 15px 10px 5px 10px;
+      margin-top: 40px;
+      margin: 0 auto;
+      width: 550px;
+      font-family: 'David Libre', sans-serif;
+      font-size: 22px;
+      text-align: center;
+    }
+  
+    .point-cles {
+      color: #1F5673;
+      font-weight: 600;
+    }
+  
+    .cles-container p::before {
+      content: "";
+      display: inline-block;
+      margin-right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgb(47, 47, 47);
+    }
+  
+    /*----------Image page decouverte ---------- */
+    .imageAccueil-container-decouverte {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 40%;
+      margin: 45px 25px 35px 25px;
+    }
+  
+    .rounded-image-decouverte {
+      border-radius: 7px;
+      border: 1px solid black;
+      width: 90%;
+      height: auto;
+    }
+}
+/* ------------------------------------------------------------------------- */
+/* -------------Vue tablette------------------------------ */
+@media(max-width: 1024px) {
+
+/* --------séparateur----------- */
+  .separateur {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 -20px;
+    }
+  
+    .separateur img {
+      height: 80px;
+    }
+
+  /* -------Message bienvenue ----- */
+    .welcome-container {
+        top: 75px;
+        width: 100%;
+    
+      }
+    
+      .welcome-box {
+        padding: 3px;
+      }
+    
+      .welcome-text {
+        color: #1F5673;
+        font-weight: 500;
+        font-size: 18px;
+        /* margin-bottom: 10px; */
+        text-align: center;
+        margin: -45px;
+        font-family: 'David Libre', sans-serif;
+      }
+
+    /*-------- Titre h1--------- */
+  .title-first {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    color: #94778B;
+    font-family: 'David Libre', sans-serif;
+    margin: 15px 25px 20px 25px
+  }
+
+  /* ------info box------ */
+  .info-box {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 85%;
+    margin-top: 20px;
+    background-color: #1F5673;
+    border-radius: 12px;
+    border: 1px solid black;
+  }
+
+  .info-box p {
+    color: #ffffff;
+    font-family: 'David Libre', sans-serif;
+    font-size: 20px;
+    margin: 15px;
+    text-align: center;
+  }
+
+  /* ----- titre h2------- */
+  .histoire-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 500;
+    color: #94778B;
+    font-family: 'David Libre', sans-serif;
+    margin-top: 20px;
+    margin: 45px 25px 25px 25px;
+    /* margin-bottom: 5px; */
+  }
+
+  /*----------Image accueil ---------- */
+  .imageAccueil-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 95%;
+    margin: 25px;
+  }
+
+  .rounded-image {
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 95%;
+    height: auto;
+  }
+
+  /*-------- Bouton -------*/
+  .btn-reserve {
+    font-family: 'David Libre', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    background-color: #1F5673;
+    padding: 10px 15px;
+    border-radius: 7px;
+    display: block;
+    margin: 10px auto;
+    margin-bottom: 30px;
+    width: 225px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #1F5673;
+  }
+
+  .btn-reserve:hover {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: white;
+    border: 2px solid #1F5673;
+  }
+
+  /* --------Les posts------- */
+  .containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .card {
+    flex-basis: calc(33% - 10px);
+    background-color: #94778B;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .imageCard {
+    margin-top: 10px;
+    border-radius: 3%;
+    max-width: 90%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .card h4 {
+    color: #000000;
+    font-weight: 600;
+    font-family: 'David Libre';
+    font-size: 19px;
+    margin: 5px 8px 5px 8px;
+    text-align: center;
+  }
+
+  .content-post {
+    font-family: 'David Libre';
+    color: #ffffff;
+    font-size: 17px;
+    text-align: justify;
+    margin: 0px 8px 5px 8px;
+  }
+
+  .publication-date {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'David Libre';
+    color: #000000;
+    text-align: center;
+    margin: 5px;
+
+  }
+
+  /* -----bouton des posts------ */
+  .btn-post-inline {
+    display: inline-block;
+    margin: 20px;
+  }
+
+  .btn-post {
+    font-family: 'David Libre', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+    background-color: #1F5673;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 15px auto;
+    width: 120px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #1F5673;
+  }
+
+  .btn-post:hover {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: white;
+    border: 2px solid #1F5673;
+  }
+
+    /* ----------------------------------------------------------- */
+    /* --------info box content page decouverte------  */
+    .info-box-content {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 80%;
+      margin-top: 0px;
+      background-color: #ffffff;
+    }
+  
+    .info-box-content p {
+      color: #000000;
+      font-weight: 500;
+      font-family: 'David Libre', sans-serif;
+      text-align: justify;
+      font-size: 20px;
+      margin: 10px;
+      text-align: center;
+    }
+  
+    /* ----------liste a point page decouverte--------- */
+    .cles-container {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 15px 10px 5px 10px;
+      margin-top: 40px;
+      margin: 0 auto;
+      width: 430px;
+      font-family: 'David Libre', sans-serif;
+      font-size: 20px;
+      text-align: center;
+    }
+  
+    .point-cles {
+      color: #1F5673;
+      font-weight: 600;
+    }
+  
+    .cles-container p::before {
+      content: "";
+      display: inline-block;
+      margin-right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgb(47, 47, 47);
+    }
+  
+    /*----------Image page decouverte ---------- */
+    .imageAccueil-container-decouverte {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 70%;
+      margin: 40px 25px 35px 25px;
+    }
+  
+    .rounded-image-decouverte {
+      border-radius: 7px;
+      border: 1px solid black;
+      width: 95%;
+      height: auto;
+    }
+
+}
+/* ------------------------------------------------------------------------------- */
+/* ------------VUE--SMARTPHONE------------- */
+@media(max-width: 768px) {
+
+  /* -----séparateur------ */
+  .separateur {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 -20px;
+    }
+  
+    .separateur img {
+      height: 45px;
+    }
+
+    /* -------bienvenue utilisateur */
+  .welcome-container {
+    top: 53px;
+    width: 100%;
+    }
+  
+  .welcome-box {
+    padding: 3px;
+  }
+
+  .welcome-text {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    margin: -48px;
+    font-family: 'David Libre', sans-serif;
+  }
+
+  /*-------- Titre h1--------- */
+  .title-first {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #94778B;
+    font-family: 'David Libre', sans-serif;
+    margin: 10px 25px 20px 25px
+  }
+
+  /* ------info box------ */
+  .info-box {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 85%;
+    margin-top: 20px;
+    background-color: #1F5673;
+    border-radius: 12px;
+    border: 1px solid black;
+  }
+
+  .info-box p {
+    color: #FFF;
+    font-family: 'David Libre', sans-serif;
+    font-size: 16px;
+    margin: 15px;
+    text-align: center;
+  }
+
+  /* ----- titre h2------- */
+  .histoire-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #94778B;
+    font-family: 'David Libre', sans-serif;
+    margin-top: 20px;
+    margin: 25px 25px 35px 25px;
+    margin-bottom: 5px;
+  }
+
+  /*----------Image accueil ---------- */
+  .imageAccueil-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 95%;
+    margin: 25px;
+  }
+
+  .rounded-image {
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 95%;
+    height: auto;
+  }
+ 
+ /*-------- Bouton -------*/
+ .btn-reserve {
+   font-family: 'David Libre', sans-serif;
+   font-weight: 500;
+   font-size: 16px;
+   color: white;
+   background-color: #1F5673;
+   padding: 10px 15px;
+   border-radius: 7px;
+   display: block;
+   margin: 10px auto;
+   margin-bottom: 30px;
+   width: 215px;
+   text-align: center;
+   text-decoration: none;
+   transition: all 0.1s ease;
+   border: 2px solid #1F5673;
+ }
+
+ .btn-reserve:hover {
+   color: #1F5673;
+   font-weight: 500;
+   font-size: 16px;
+   background-color: white;
+   border: 2px solid #1F5673;
+ }
+
+  /* --------Les posts------- */
+  .containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .card {
+    flex-basis: calc(50% - 10px);
+    background-color: #94778B;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .imageCard {
+    margin-top: 10px;
+    border-radius: 3%;
+    max-width: 90%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .card h4 {
+    color: #000000;
+    font-weight: 600;
+    font-family: 'David Libre';
+    font-size: 15px;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+  }
+
+  .content-post {
+      font-family: 'David Libre';
+      color: #ffffff;
+    font-size: 13px;
+  text-align: justify;
+    margin: 0px 5px 5px 5px;
+  }
+
+  .publication-date {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'David Libre';
+    color: #000000;
+    text-align: center;
+    margin: 5px;
+
+  }
+
+  /* -----bouton des posts------ */
+  .btn-post-inline {
+      display: inline-block;
+      margin: 15px;
+  }
+
+  .btn-post {
+    font-family: 'David Libre', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+    background-color: #1F5673;
+    padding: 4px 8px;
+    border-radius: 5px;
+      margin: 4px auto;
+    margin-bottom: 10px;
+    width: 85px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #1F5673;
+  }
+
+  .btn-post:hover {
+    color: #1F5673;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: white;
+    border: 2px solid #1F5673;
+  }
+
+  /* ----------------------------------------------------------- */
+  /* --------info box content page decouverte------  */
+  .info-box-content {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 90%;
+    margin-top: 15px;
+    background-color: #ffffff;
+  }
+
+  .info-box-content p {
+    color: #000000;
+    font-weight: 500;
+    font-family: 'David Libre', sans-serif;
+    text-align: justify;
+    font-size: 18px;
+    margin: 5px;
+    text-align: center;
+  }
+
+  /* ----------liste a point page decouverte--------- */
+  .cles-container {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px 10px 5px 10px;
+    margin-top: 40px;
+    margin: 15px 0 5px 0;
+    width: 350px;
+    font-family: 'David Libre', sans-serif;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .point-cles {
+    color: #1F5673;
+    font-weight: 600;
+  }
+
+  .cles-container p::before {
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgb(47, 47, 47);
+  }
+
+  /*----------Image page decouverte ---------- */
+  .imageAccueil-container-decouverte {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 80%;
+    margin: 40px 25px 35px 25px;
+  }
+
+  .rounded-image-decouverte {
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 90%;
+    height: auto;
+  }
+}

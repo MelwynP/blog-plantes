@@ -36,11 +36,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[ORM\Column]
   private ?string $password = null;
 
-  #[ORM\Column(length: 255, nullable: true)]
-  #[Assert\Length(min: 2, max: 100, minMessage: 'Le nom doit contenir au moins {{ limit }} caractères', maxMessage: 'Le nom doit contenir au maximum {{ limit }} caractères')]
+  #[ORM\Column(length: 80, nullable: true)]
+  #[Assert\Length(min: 2, max: 80, minMessage: 'Le nom doit contenir au moins {{ limit }} caractères', maxMessage: 'Le nom doit contenir au maximum {{ limit }} caractères')]
   private ?string $name = null;
 
-  #[ORM\Column(length: 255)]
+  #[ORM\Column(length: 80)]
   #[Assert\Length(min: 2, max: 80, minMessage: 'Le pseudo doit contenir au moins {{ limit }} caractères', maxMessage: 'Le pseudo doit contenir au maximum {{ limit }} caractères')]
   private ?string $pseudo = null;
 

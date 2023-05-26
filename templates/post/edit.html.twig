@@ -8,9 +8,21 @@
 	<main class="container">
 		<section class="row">
 			<div class="col-12">
-				{% include "post/_form.html.twig" %}
+				{{ form_start(PostForm, {'attr': {'id': 'monFormulaire'}}) }}
+				{{ form_row(PostForm.title) }}
+				{{ form_row(PostForm.content) }}
+				{{ form_row(PostForm.image) }}
+				<div>
+					<label>Image existante :</label>
+					{% for image in post.image %}
+						<div class="existing-image">
+							<img src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}" alt="">
+						</div>
+					{% endfor %}
+				</div>
+				<button class="btn-style primary">Publier</button>
+				{{ form_end(PostForm) }}
 			</div>
 		</section>
 	</main>
 {% endblock %}
-

@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Découverte
+{% endblock %}
+
+{% block body %}
+	<div class="containerPrincipal">
+
+		{% for discover in discover %}
+			{# titre h1 #}
+			<h1 class="title-first">Découvrez l'inconnu, explorez l'inattendu.<br>ZOOM sur le {{ discover.country }}
+			</h1>
+
+
+			{# contenu header #}
+			<div class="info-box-content">
+				<p>{{ discover.contentIntro }}</p>
+			</div>
+
+			{# premiere image #}
+			{% if discover.image[0].path %}
+				<div class="imageAccueil-container-decouverte">
+					<img src="{{ asset('assets/uploads/imageBlog/' ~ discover.image[0].path) }}" class="rounded-image-decouverte">
+				</div>
+			{% endif %}
+
+			{# titre h2 #}
+			<h2 class="histoire-title">L'histoire captivante du
+				{{ discover.country }}</h2>
+			<div class="info-box-content">
+				<p>{{ discover.content }}</p>
+			</div>
+
+			{# deuxieme image #}
+			{% if discover.image[1].path %}
+				<div class="imageAccueil-container-decouverte">
+					<img src="{{ asset('assets/uploads/imageBlog/' ~ discover.image[1].path) }}" class="rounded-image-decouverte">
+				</div>
+			{% endif %}
+
+			{# titre h2 #}
+			<h2 class="histoire-title">Les Points Clés</h2>
+
+			{# infos clés #}
+			<div class="cles-container">
+				<p>
+					<span class="point-cles">La capitale est
+						{{ discover.capital }}</span>
+				</p>
+				<p>
+					<span class="point-cles">Le language est l'{{ discover.language }}</span>
+				</p>
+				<p>
+					<span class="point-cles">La monnaie est le
+						{{ discover.currency }}</span>
+				</p>
+				<p>
+					<span class="point-cles">La population est de
+						{{ discover.population }}</span>
+				</p>
+				<p>
+					<span class="point-cles">La superficie est de
+						{{ discover.area }}</span>
+				</p>
+			</div>
+
+			{# titre h2 #}
+			<h2 class="histoire-title">
+				Une destination d'exception qui vous laissera émerveillé !</h2>
+
+			{# contenu footer #}
+			<div class="info-box-content">
+				<p>{{ discover.contentFooter }}</p>
+			</div>
+
+			{# troisieme image #}
+			{% if discover.image[2].path %}
+				<div class="imageAccueil-container-decouverte">
+					<img src="{{ asset('assets/uploads/imageBlog/' ~ discover.image[2].path) }}" class="rounded-image-decouverte">
+				</div>
+
+			{% endif %}
+		{% endfor %}
+
+    {# séparateur #}
+<span class="separateur">
+	<img src="assets/pictures/separateur.png" alt="séparateur">
+</span>
+
+	</div>
+{% endblock %}

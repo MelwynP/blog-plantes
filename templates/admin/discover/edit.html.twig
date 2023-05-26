@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Administration des articles
+{% endblock %}
+
+{% block body %}
+	<h2 class="histoire-title">Modifier la page découverte</h2>
+	<main class="container">
+		<section class="row">
+			<div class="col-12">
+				{{ form_start(discoverFormulaire, {'attr': {'id': 'monFormulaire'}}) }}
+				{{ form_row(discoverFormulaire.country) }}
+				{{ form_row(discoverFormulaire.capital) }}
+				{{ form_row(discoverFormulaire.language) }}
+				{{ form_row(discoverFormulaire.currency) }}
+				{{ form_row(discoverFormulaire.area) }}
+				{{ form_row(discoverFormulaire.contentIntro) }}
+				{{ form_row(discoverFormulaire.content) }}
+				{{ form_row(discoverFormulaire.contentFooter) }}
+				{{ form_row(discoverFormulaire.image) }}
+				<div>
+					<label>Image existante :</label>
+					{% for image in discover.image %}
+						<div class="existing-image">
+							<img
+							src="{{ asset('assets/uploads/imageBlog/mini/300x300-' ~ image.path) }}" alt="">
+						<!-- Affichez d'autres informations sur l'image si nécessaire -->
+						</div>
+					{% endfor %}
+				</div>
+				<button class="btn-style primary">Publier</button>
+				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+				{{ form_end(discoverFormulaire) }}
+			</div>
+		</section>
+	</main>
+{% endblock %}

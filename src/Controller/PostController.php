@@ -40,17 +40,17 @@ class PostController extends AbstractController
       'category' => $categoryRepository->findAll(),
       'search' => $search,
       ]);
-
   }
       
     #[Route('/ajouter', name: 'add')]
     // function qui permet de creer un nouveau post si l'utilisateur est connecté 
-    public function create(Request $request,EntityManagerInterface $em, PictureService $pictureService): Response
+    public function add(Request $request,EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $post = new Post();
         $PostForm = $this->createForm(PostType::class, $post);
         $PostForm->handleRequest($request);
+
         if ($PostForm->isSubmitted() && $PostForm->isValid()) {
             $image = $PostForm->get('image')->getData();
               //  si l'utilisateur a ajouté une image, on la traite et on l'enregistre dans le dossier public/uploads 
@@ -60,21 +60,21 @@ class PostController extends AbstractController
 
                 // On appelle le service d'ajout
                 $fichier = $pictureService->add($image, $folder, 300, 300);
-
                 $img = new Image();
                 $img->setPath($fichier);
+                $img->setPost($post);
                 $post->addImage($img);
               }
               
               // association du post a l'utilisateur connecté
-            $post->setUser($this->getUser());
-            $post->setPublishedAt(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
-            // $post->setPublishedAt(new \DateTime());
-            $em->persist($post);
-            $em->flush();
-            $this->addFlash('success', 'Post ajouté avec succès');
+              $post->setUser($this->getUser());
+              $post->setPublishedAt(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
+              // $post->setPublishedAt(new \DateTime());
+              $em->persist($post);
+              $em->flush();
+              $this->addFlash('success', 'Post ajouté avec succès');
 
-            return $this->redirectToRoute('app_post_index');
+              return $this->redirectToRoute('app_post_index');
             }
 
         return $this->render('post/add.html.twig', [
@@ -92,20 +92,20 @@ class PostController extends AbstractController
           $this->addFlash("error", "Vous ne pouvez pas modifier une publication qui ne vous appartient pas.");
           return $this->redirectToRoute('app_post_index');
         }
+    $existingImages = $post->getImage()->toArray(); 
 
         $PostForm = $this->createForm(PostType::class, $post);
         $PostForm->handleRequest($request);
+
         if ($PostForm->isSubmitted() && $PostForm->isValid()) {
+      $images = $PostForm->get('image')->getData();
 
-
-      foreach ($post->getImage() as $image) {
-        // Supprime l'image du dossier
-        $pictureService->delete($image->getPath());
-        // Supprime l'image de la collection
-        $post->getImage()->removeElement($image);
-      }
-
-      $images = $PostForm->get('images')->getData();
+      if (!empty($images)) {
+        // Supprimer les images existantes seulement si de nouvelles images sont ajoutées
+        foreach ($existingImages as $image) {
+          $pictureService->delete($image->getPath());
+          $post->removeImage($image);
+        }
 
       foreach ($images as $image) {
         // On définit le dossier de destination
@@ -118,6 +118,7 @@ class PostController extends AbstractController
         $img->setPath($fichier);
         $post->addImage($img);
       }
+      }
 
             $em->persist($post);
             $em->flush();
@@ -128,6 +129,7 @@ class PostController extends AbstractController
         }
         return $this->render('post/edit.html.twig', [
             "PostForm" => $PostForm->createView(),
+            'post' => $post,
         ]);
     }
 
@@ -143,5 +145,4 @@ class PostController extends AbstractController
         $this->addFlash('success', 'Post supprimé avec succès');
         return $this->redirectToRoute("app_post_index");
     }
-
 }
